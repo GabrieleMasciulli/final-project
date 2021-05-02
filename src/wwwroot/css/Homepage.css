@@ -49,7 +49,10 @@ body {
 }
 
 .screener tbody td {
+  vertical-align: middle;
   font-weight: 500;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
 }
 
 .text-end {
@@ -58,6 +61,29 @@ body {
 
 .screener tbody tr:hover {
   background-color: var(--table-row-hover-background-color);
+}
+
+/* table head */
+
+.logo-wrapper {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.logo-wrapper .crypto-logo {
+  width: 26px;
+  height: 26px;
+  border-radius: 12px;
+}
+
+@media screen and (min-width: 768px) {
+  .name-content {
+    flex-direction: row;
+    -webkit-box-align: center;
+    align-items: center;
+  }
 }
 
 /* Pagination part */

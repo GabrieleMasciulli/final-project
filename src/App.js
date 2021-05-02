@@ -4,13 +4,14 @@ import './wwwroot/css/Homepage.css'
 import cryptoService from './services/Crypto'
 import Table from './components/Table'
 import Pagination from './components/Pagination'
+import Footer from './components/Footer'
 
 function App() {
   const [cryptos, setCryptos] = useState([])
-  const [cryptosCount, setCount] = useState(691)
+  const [maxPages, setMaxPages] = useState(139)
   const [pagination, setPagination] = useState({
     page: 1,
-    rows: 20,
+    rows: 50,
   })
 
   console.log('Prev Cryptos: ', cryptos)
@@ -42,10 +43,11 @@ function App() {
       <Table cryptos={cryptos} />
       <Pagination
         pagination={pagination}
-        count={cryptosCount}
+        count={maxPages}
         pageChage={handlePageChange}
         rowsChange={handleRowsChange}
       />
+      <Footer />
     </div>
   )
 }

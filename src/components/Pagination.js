@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import React from 'react'
 import Pagination from '@material-ui/lab/Pagination'
 import { makeStyles } from '@material-ui/core/styles'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -34,15 +35,23 @@ const useStyles = makeStyles(theme => ({
 const TippyContent = ({ handleClick }) => {
   return (
     <div className='rows-dropdown-content'>
-      <button value='100' onClick={handleClick}>
-        100
-      </button>
-      <button value='50' onClick={handleClick}>
-        50
-      </button>
-      <button value='20' onClick={handleClick}>
-        20
-      </button>
+      <a href='#'>
+        <button value='100' onClick={handleClick}>
+          100
+        </button>
+      </a>
+
+      <a href='#'>
+        <button value='50' onClick={handleClick}>
+          50
+        </button>
+      </a>
+
+      <a href='#'>
+        <button value='20' onClick={handleClick}>
+          20
+        </button>
+      </a>
     </div>
   )
 }
@@ -72,7 +81,7 @@ const PaginationRanges = ({ pagination, count, pageChage, rowsChange }) => {
           content={<TippyContent handleClick={rowsChange} />}
         >
           <div className='rows-dropdown'>
-            20
+            {pagination.rows}
             <FontAwesomeIcon icon={faCaretDown} />
           </div>
         </Tippy>

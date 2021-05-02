@@ -3,6 +3,7 @@ import EmptyStar from './EmpyStar'
 
 const Row = ({ crypto }) => {
   const {
+    image,
     market_cap_rank,
     name,
     current_price,
@@ -14,22 +15,43 @@ const Row = ({ crypto }) => {
     price_change_percentage_7d_in_currency: week_change,
   } = crypto
 
+  const formattedData = (type, value) => {
+    let result = ``
+    if (type === 'number') {
+      result = value !== null ? value : ''
+    } else if (type === '$') {
+      result = value !== null ? `$${value.toLocaleString()}` : '?'
+    } else if (type === '%') {
+      result = value !== null ? `${value.toFixed(2)} %` : '?'
+    }
+    return result
+  }
+
   return (
     <tr>
       <td className='text-center'>
         <EmptyStar />
       </td>
-      <td className='text-center'>{market_cap_rank}</td>
-      <td className='text-start'>
-        {name} , {symbol.toUpperCase()}
+      <td className='text-center'>
+        {formattedData('number', market_cap_rank)}
       </td>
-      <td className='text-end'>${current_price.toLocaleString()}</td>
-      <td className='text-end'>{day_change.toFixed(2)}%</td>
-      <td className='text-end'>{week_change.toFixed(2)}%</td>
-      <td className='text-end'>${market_cap.toLocaleString()}</td>
-      <td className='text-end'>${volume.toLocaleString()}</td>
+      <td className='text-start'>
+        <div className='logo-wrapper'>
+          <img className='crypto-logo' src={image} alt='' />
+          <div className='name-content'>
+            {name} , {symbol.toUpperCase()}
+          </div>
+        </div>
+      </td>
+      <td className='text-end'>{formattedData('$', current_price)}</td>
+      <td className='text-end'>{formattedData('%', day_change)}</td>
+      <td className='text-end'>{formattedData('%', week_change)}</td>
+      <td className='text-end'>{formattedData('$', market_cap)}</td>
+      <td className='text-end'>{formattedData('$', volume)}</td>
       <td className='text-end'>
-        {circulating_supply.toLocaleString()}, {symbol.toUpperCase()}
+        {circulating_supply !== null
+          ? `${circulating_supply.toLocaleString()} ${symbol.toUpperCase()}`
+          : '?'}
       </td>
       <td className='text-end'>Last 7 Days</td>
     </tr>
