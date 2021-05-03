@@ -19,40 +19,72 @@ body {
   font-family: Inter, -apple-system, BlinkMacSystemFont, 'segoe ui', Roboto,
     Helvetica, Arial, sans-serif;
   font-size: 14px !important;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 }
 
 .page-wrapper {
-  margin-left: 10rem;
-  margin-right: 10rem;
+  width: 100%;
+  max-width: 1400px;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 /* Table part */
 
 .screener-wrapper {
+  overflow-x: scroll;
+  overflow-y: visible;
   background: linear-gradient(
     rgb(248, 250, 253) 0%,
     rgba(248, 250, 253, 0) 413px
   );
 }
 
-.table-responsive {
-  background-color: var(--table-background-color);
-  width: auto;
+.screener {
+  border-spacing: 0;
+  width: 100%;
+  margin-bottom: 1rem;
+  background-color: #fff;
+  border-collapse: separate;
 }
 
-.screener thead {
+.screener thead th {
   font-weight: 800;
+  padding: 0.75rem;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  border-bottom: 1px solid #dee2e6;
+  border-top: 1px solid #dee2e6;
+  background-color: white;
 }
 
-.screener th {
-  border-bottom: none !important;
+/*  sticky third column */
+
+.screener thead th:nth-child(3) {
+  position: sticky;
+  left: 40px;
+  z-index: 2;
 }
 
 .screener tbody td {
+  border-bottom: 1px solid #dee2e6;
   vertical-align: middle;
   font-weight: 500;
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
+}
+
+.text-start {
+  text-align: start;
+}
+
+.text-center {
+  text-align: center;
 }
 
 .text-end {
@@ -76,6 +108,7 @@ body {
   width: 26px;
   height: 26px;
   border-radius: 12px;
+  padding-right: 0.4rem;
 }
 
 @media screen and (min-width: 768px) {

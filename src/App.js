@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import 'bootstrap/dist/css/bootstrap.min.css'
+// import 'bootstrap/dist/css/bootstrap.min.css'
 import './wwwroot/css/Homepage.css'
 import cryptoService from './services/Crypto'
 import Table from './components/Table'

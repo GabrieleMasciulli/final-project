@@ -8,7 +8,7 @@ const Thead = () => {
     <thead>
       {/* <Separator /> */}
       <tr>
-        <td></td>
+        <th></th>
         <th className='text-center'>
           #
           <FontAwesomeIcon icon={faCaretUp} />
