@@ -13,6 +13,7 @@ const Row = ({ crypto }) => {
     circulating_supply,
     price_change_percentage_24h_in_currency: day_change,
     price_change_percentage_7d_in_currency: week_change,
+    sparkline_url,
   } = crypto
 
   const formattedData = (type, value) => {
@@ -53,7 +54,9 @@ const Row = ({ crypto }) => {
           ? `${circulating_supply.toLocaleString()} ${symbol.toUpperCase()}`
           : '?'}
       </td>
-      <td className='text-end'>Last 7 Days</td>
+      <td className='text-end'>
+        <img src={sparkline_url} alt='' width='164' height='54' />
+      </td>
     </tr>
   )
 }

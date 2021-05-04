@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-// import 'bootstrap/dist/css/bootstrap.min.css'
 import './wwwroot/css/Homepage.css'
 import cryptoService from './services/Crypto'
+import LoadingBar from './components/LoadingBar'
 import Navbar from './components/Navbar'
 import Table from './components/Table'
 import Pagination from './components/Pagination'
@@ -15,6 +15,7 @@ function App() {
     rows: 50,
     count: 0,
   })
+  const [loadingProgress, setLoadingProgress] = useState(0)
 
   console.log('Cryptos: ', cryptos)
 
@@ -54,6 +55,7 @@ function App() {
 
   return (
     <div className='page-wrapper'>
+      <LoadingBar />
       <Navbar cryptoCount={pagination.count} />
       <Table cryptos={cryptos} />
       <Pagination

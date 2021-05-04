@@ -12,4 +12,11 @@ const getInfo = (order, number, page) => {
   return request.then(response => response.data)
 }
 
-export default { getInfo, getTotNumberOfCryptos }
+const getSparklines = (order, number, page) => {
+  const request = axios.get(
+    `${baseUrl}/img/generated/sparklines/${order}/${number}/${page}`
+  )
+  return request.then(response => response.data)
+}
+
+export default { getInfo, getTotNumberOfCryptos, getSparklines }
