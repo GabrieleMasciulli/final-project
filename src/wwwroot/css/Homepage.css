@@ -10,7 +10,7 @@
   --color-text-2: rgb(88, 102, 126);
   --table-background-color: #fff;
   --table-divider-color: #eff2f5;
-  --table-row-hover-background-color: #f8fafd;
+  --table-row-hover-background-color: #3d577c;
   --shadow-normal: 0px 1px 2px rgba(128, 138, 157, 0.12),
     0px 8px 32px rgba(128, 138, 157, 0.24);
 }
@@ -22,6 +22,7 @@ body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+  margin: 0;
 }
 
 .page-wrapper {
@@ -36,7 +37,6 @@ body {
 /* Table part */
 
 .screener-wrapper {
-  overflow-x: scroll;
   overflow-y: visible;
   background: linear-gradient(
     rgb(248, 250, 253) 0%,
@@ -66,9 +66,17 @@ body {
 /*  sticky third column */
 
 .screener thead th:nth-child(3) {
+  padding-left: 1rem;
   position: sticky;
-  left: 40px;
+  left: 0;
   z-index: 2;
+}
+
+.screener tbody td:nth-child(3) {
+  padding-left: 1rem;
+  position: sticky;
+  left: 0;
+  z-index: 1;
 }
 
 .screener tbody td {
@@ -77,6 +85,7 @@ body {
   font-weight: 500;
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
+  background-color: white;
 }
 
 .text-start {

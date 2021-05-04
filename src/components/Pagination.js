@@ -56,12 +56,23 @@ const TippyContent = ({ handleClick }) => {
   )
 }
 
-const PaginationRanges = ({ pagination, count, pageChage, rowsChange }) => {
+const PaginationRanges = ({
+  pagination,
+  count,
+  maxPage,
+  pageChage,
+  rowsChange,
+}) => {
   const classes = useStyles()
 
   return (
     <div className='pagination-wrapper'>
-      <div>hello</div>
+      <div className='current-rows'>
+        <p>
+          Showing {pagination.page * pagination.rows - pagination.rows + 1} -{' '}
+          {pagination.page * pagination.rows} rows out of {pagination.count}
+        </p>
+      </div>
       <div className={classes.root}>
         <Pagination
           classes={{ ul: classes.ul }}

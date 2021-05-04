@@ -2,19 +2,21 @@ import React, { useEffect, useState } from 'react'
 // import 'bootstrap/dist/css/bootstrap.min.css'
 import './wwwroot/css/Homepage.css'
 import cryptoService from './services/Crypto'
+import Navbar from './components/Navbar'
 import Table from './components/Table'
 import Pagination from './components/Pagination'
 import Footer from './components/Footer'
 
 function App() {
   const [cryptos, setCryptos] = useState([])
-  const [maxPages, setMaxPages] = useState(139)
+  const [maxPages, setMaxPage] = useState(139)
   const [pagination, setPagination] = useState({
     page: 1,
     rows: 50,
+    count: 0,
   })
 
-  console.log('Prev Cryptos: ', cryptos)
+  console.log('Cryptos: ', cryptos)
 
   const getCryptos = () => {
     cryptoService
@@ -24,7 +26,15 @@ function App() {
       })
   }
 
+  const getCountCryptos = () => {
+    cryptoService.getTotNumberOfCryptos().then(count => {
+      const newPagination = { ...pagination, count: count.tot }
+      setPagination(newPagination)
+    })
+  }
+
   useEffect(getCryptos, [pagination])
+  useEffect(getCountCryptos, [])
 
   //pagination handling
 
@@ -34,12 +44,17 @@ function App() {
   }
 
   const handleRowsChange = e => {
-    const newPagination = { ...pagination, rows: e.target.value }
+    const rowsNumber = e.target.value
+    const newPagination = { ...pagination, rows: rowsNumber, page: 1 }
+    const newMaxPage = Math.ceil(pagination.count / rowsNumber)
+
     setPagination(newPagination)
+    setMaxPage(newMaxPage)
   }
 
   return (
     <div className='page-wrapper'>
+      <Navbar cryptoCount={pagination.count} />
       <Table cryptos={cryptos} />
       <Pagination
         pagination={pagination}
