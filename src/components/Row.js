@@ -2,7 +2,7 @@ import React from 'react'
 import EmptyStar from './EmpyStar'
 
 const Row = ({ crypto }) => {
-  const {
+  let {
     image,
     market_cap_rank,
     name,
@@ -44,9 +44,15 @@ const Row = ({ crypto }) => {
           </div>
         </div>
       </td>
-      <td className='text-end '>{formattedData('$', current_price)}</td>
-      <td className='text-end'>{formattedData('%', day_change)}</td>
-      <td className='text-end'>{formattedData('%', week_change)}</td>
+      <td className='text-end'>{formattedData('$', current_price)}</td>
+      <td className={`text-end ${day_change >= 0 ? 'text-green' : 'text-red'}`}>
+        {formattedData('%', day_change)}
+      </td>
+      <td
+        className={`text-end ${week_change >= 0 ? 'text-green' : 'text-red'}`}
+      >
+        {formattedData('%', week_change)}
+      </td>
       <td className='text-end'>{formattedData('$', market_cap)}</td>
       <td className='text-end'>{formattedData('$', volume)}</td>
       <td className='text-end'>

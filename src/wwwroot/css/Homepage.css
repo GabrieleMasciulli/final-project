@@ -8,6 +8,8 @@
   --color-neutral-6: #58667e;
   --color-text-1: #222531;
   --color-text-2: rgb(88, 102, 126);
+  --up-color: #16c784;
+  --down-color: #ea3943;
   --table-background-color: #fff;
   --table-divider-color: #eff2f5;
   --table-row-hover-background-color: #3d577c;
@@ -23,6 +25,27 @@ body {
   min-height: 100vh;
   flex-direction: column;
   margin: 0;
+}
+
+/* General purpose */
+.text-start {
+  text-align: start;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-end {
+  text-align: end;
+}
+
+.text-green {
+  color: var(--up-color);
+}
+
+.text-red {
+  color: var(--down-color);
 }
 
 .loading-wrapper {
@@ -95,18 +118,6 @@ body {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
   background-color: white;
-}
-
-.text-start {
-  text-align: start;
-}
-
-.text-center {
-  text-align: center;
-}
-
-.text-end {
-  text-align: end;
 }
 
 .screener tbody tr:hover {
