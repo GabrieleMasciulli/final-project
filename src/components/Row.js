@@ -44,7 +44,7 @@ const Row = ({ crypto }) => {
           </div>
         </div>
       </td>
-      <td className='text-end'>{formattedData('$', current_price)}</td>
+      <td className='text-end '>{formattedData('$', current_price)}</td>
       <td className='text-end'>{formattedData('%', day_change)}</td>
       <td className='text-end'>{formattedData('%', week_change)}</td>
       <td className='text-end'>{formattedData('$', market_cap)}</td>

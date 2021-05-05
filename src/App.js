@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import './wwwroot/css/Homepage.css'
 import cryptoService from './services/Crypto'
-import LoadingBar from './components/LoadingBar'
+// import LoadingBar from './components/LoadingBar'
+import SyncLoader from 'react-spinners/SyncLoader'
 import Navbar from './components/Navbar'
 import Table from './components/Table'
 import Pagination from './components/Pagination'
@@ -15,15 +16,17 @@ function App() {
     rows: 50,
     count: 0,
   })
-  const [loadingProgress, setLoadingProgress] = useState(0)
+  const [loading, setLoading] = useState(false)
 
   console.log('Cryptos: ', cryptos)
 
   const getCryptos = () => {
+    setLoading(true)
     cryptoService
       .getInfo('market_cap_desc', pagination.rows, pagination.page)
       .then(data => {
         setCryptos(data)
+        setLoading(false)
       })
   }
 
@@ -55,15 +58,24 @@ function App() {
 
   return (
     <div className='page-wrapper'>
-      <LoadingBar />
+      {/* <LoadingBar /> */}
       <Navbar cryptoCount={pagination.count} />
-      <Table cryptos={cryptos} />
-      <Pagination
-        pagination={pagination}
-        count={maxPages}
-        pageChage={handlePageChange}
-        rowsChange={handleRowsChange}
-      />
+      {loading ? (
+        <div className='loading-wrapper'>
+          <SyncLoader color={'#2196F3'} loading={loading} size={20} />
+        </div>
+      ) : (
+        <div>
+          <Table cryptos={cryptos} />
+          <Pagination
+            pagination={pagination}
+            count={maxPages}
+            pageChage={handlePageChange}
+            rowsChange={handleRowsChange}
+          />
+        </div>
+      )}
+
       <Footer />
     </div>
   )
