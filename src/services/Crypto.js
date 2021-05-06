@@ -19,4 +19,9 @@ const getSparklines = (order, number, page) => {
   return request.then(response => response.data)
 }
 
-export default { getInfo, getTotNumberOfCryptos, getSparklines }
+const getChartData = (id, days) => {
+  const request = axios.get(`${baseUrl}/market_chart/${id}/${days}`)
+  return request.then(response => response.data)
+}
+
+export default { getInfo, getTotNumberOfCryptos, getSparklines, getChartData }
