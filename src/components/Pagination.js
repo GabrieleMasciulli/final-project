@@ -59,7 +59,7 @@ const TippyContent = ({ handleClick }) => {
 const PaginationRanges = ({
   pagination,
   count,
-  maxPage,
+  cryptoCount,
   pageChage,
   rowsChange,
 }) => {
@@ -70,7 +70,7 @@ const PaginationRanges = ({
       <div className='current-rows'>
         <p>
           Showing {pagination.page * pagination.rows - pagination.rows + 1} -{' '}
-          {pagination.page * pagination.rows} rows out of {pagination.count}
+          {pagination.page * pagination.rows} rows out of {cryptoCount}
         </p>
       </div>
       <div className={classes.root}>

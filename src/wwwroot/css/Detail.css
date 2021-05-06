@@ -1,0 +1,247 @@
+.detail-container {
+  background: linear-gradient(
+    rgb(248, 250, 253) 0%,
+    rgba(248, 250, 253, 0) 413px
+  );
+  padding: 0px;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (min-width: 1376px) {
+  .detail-container {
+    max-width: 1408px;
+  }
+}
+
+.detail-container .top-info-container {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1400px;
+  padding-top: 24px;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  margin: 0px;
+}
+
+/* Content, general styling */
+.top-info-container .top-info-content {
+  box-sizing: border-box;
+  margin: 0px;
+}
+
+@media (min-width: 768px) {
+  .top-info-container .top-info-content {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+/* Name of crypto top left content */
+.top-info-content .top-left-wrapper {
+  box-sizing: border-box;
+  margin: 0px;
+}
+
+@media screen and (min-width: 768px) {
+  .top-info-content .top-left-wrapper {
+    padding-top: 8px;
+    padding-right: 24px;
+    padding-bottom: 8px;
+  }
+}
+
+@media (min-width: 768px) {
+  .top-info-content .top-left-wrapper {
+    flex: 0 0 50%;
+  }
+}
+
+@media (min-width: 1376px) {
+  .top-info-content .top-left-wrapper {
+    flex: 0 0 36%;
+  }
+}
+
+/* Crypto price top center content */
+
+.top-info-content .top-center-wrapper {
+  box-sizing: border-box;
+  margin: 0px;
+}
+
+@media (max-width: 767px) {
+  .top-info-content .top-center-wrapper {
+    margin-top: 24px !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .top-info-content .top-center-wrapper {
+    flex: 0 0 50%;
+  }
+}
+
+@media (min-width: 1376px) {
+  .top-info-content .top-center-wrapper {
+    flex: 0 0 34%;
+  }
+}
+
+/* Buttons top right content */
+
+.top-info-content .top-right-wrapper {
+  box-sizing: border-box;
+  margin: 0px;
+}
+
+@media (min-width: 1376px) and (max-width: 1460px) {
+  .top-info-content .top-right-wrapper {
+    flex: 0 0 27%;
+  }
+}
+
+@media (min-width: 768px) {
+  .top-info-content .top-right-wrapper {
+    order: 4;
+    flex: 0 0 50%;
+  }
+}
+
+@media (min-width: 1376px) {
+  .top-info-content .top-right-wrapper {
+    order: 3;
+    flex: 0 0 30%;
+  }
+}
+/* Market Cap, volume and crypto supply info, bottom right content  */
+
+.top-info-content .bottom-right-wrapper {
+  box-sizing: border-box;
+  margin: 0px 0px 8px;
+}
+
+@media screen and (min-width: 768px) {
+  .top-info-content .bottom-right-wrapper {
+    margin-bottom: 16px;
+  }
+}
+
+@media (min-width: 768px) {
+  .top-info-content .bottom-right-wrapper {
+    order: 5;
+    flex: 0 0 100%;
+  }
+}
+
+@media (min-width: 1376px) {
+  .top-info-content .bottom-right-wrapper {
+    order: 5;
+    flex: 0 0 64%;
+  }
+}
+/* Various links related to the crypto, bottom left content */
+
+.top-info-content .bottom-left-wrapper {
+  box-sizing: border-box;
+  margin: 0px;
+}
+
+@media screen and (min-width: 768px) {
+  .top-info-content .bottom-left-wrapper {
+    padding-right: 24px;
+  }
+}
+
+@media (min-width: 768px) {
+  .top-info-content .bottom-left-wrapper {
+    order: 3;
+    flex: 0 0 50%;
+  }
+}
+
+@media (max-width: 768px) {
+  .top-info-content .bottom-left-wrapper {
+    margin-top: 12px !important;
+  }
+}
+
+@media (min-width: 1376px) {
+  .top-info-content .bottom-left-wrapper {
+    order: 4;
+    flex: 0 0 36%;
+  }
+}
+
+/* page content (exlcuding top navbars and bottom footer) */
+
+.page-content-container {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1400px;
+  padding-top: 24px;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  margin: 0px 0px 24px;
+}
+
+/* Crypto infos: chart and Statistics */
+.crypto-detail-container {
+  box-sizing: border-box;
+  margin: 0px 0px 40px;
+}
+
+@media screen and (min-width: 1152px) {
+  .crypto-detail-container {
+    display: flex;
+  }
+}
+
+/* Left side of the page content */
+
+.crypto-detail-container .left-side {
+  max-width: 930px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+
+  box-sizing: border-box;
+  margin: 0px;
+}
+
+@media screen and (min-width: 1152px) {
+  .crypto-detail-container .left-side {
+    margin-right: 32px;
+  }
+}
+
+.left-side .chart-wrapper {
+  box-sizing: border-box;
+  margin: 0px;
+
+  display: block;
+  width: 100%;
+  min-height: 150px;
+  overflow: hidden;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+/* Right side of the page content */
+
+.crypto-detail-container .right-side {
+  box-sizing: border-box;
+  margin: 0px;
+}
+
+@media screen and (min-width: 1152px) {
+  .crypto-detail-container .right-side {
+    flex: 0 0 408px;
+  }
+}

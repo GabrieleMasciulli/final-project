@@ -1,8 +1,16 @@
 import React from 'react'
 import EmptyStar from './EmpyStar'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Redirect,
+} from 'react-router-dom'
 
 const Row = ({ crypto }) => {
   let {
+    id,
     image,
     market_cap_rank,
     name,
@@ -37,19 +45,31 @@ const Row = ({ crypto }) => {
         {formattedData('number', market_cap_rank)}
       </td>
       <td className='text-start'>
-        <div className='logo-wrapper'>
-          <img className='crypto-logo' src={image} alt='' />
-          <div className='name-content'>
-            {name} , {symbol.toUpperCase()}
+        <Link to={`/detail/${id}`}>
+          <div className='logo-wrapper'>
+            <img className='crypto-logo' src={image} alt='' />
+            <div className='name-content'>
+              {name} , {symbol.toUpperCase()}
+            </div>
           </div>
-        </div>
+        </Link>
       </td>
       <td className='text-end'>{formattedData('$', current_price)}</td>
-      <td className={`text-end ${day_change >= 0 ? 'text-green' : 'text-red'}`}>
+      <td
+        className={`text-end ${
+          day_change === null ? '' : day_change < 0 ? 'text-red' : 'text-green'
+        }`}
+      >
         {formattedData('%', day_change)}
       </td>
       <td
-        className={`text-end ${week_change >= 0 ? 'text-green' : 'text-red'}`}
+        className={`text-end ${
+          week_change === null
+            ? ''
+            : week_change < 0
+            ? 'text-red'
+            : 'text-green'
+        }`}
       >
         {formattedData('%', week_change)}
       </td>
