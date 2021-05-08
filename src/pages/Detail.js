@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router'
 import '../wwwroot/css/Detail.css'
 import cryptoService from '../services/Crypto'
+import SyncLoader from 'react-spinners/SyncLoader'
 
 //highchart
 import Highcharts from 'highcharts/highstock'
@@ -17,12 +18,16 @@ const Detail = () => {
     chart: {
       panning: true,
       zoomType: 'x',
+      style: {
+        fontFamily:
+          'Lucida Grande,Lucida Sans Unicode,Arial,Helvetica,sans-serif',
+      },
     },
 
     plotOptions: {
       series: {
         animation: {
-          duration: 2000,
+          duration: 1500,
         },
       },
     },
@@ -32,7 +37,8 @@ const Detail = () => {
       {
         labels: {
           style: {
-            color: '#666',
+            color: '#808a9d',
+            fontSize: '12px',
           },
         },
       },
@@ -41,8 +47,11 @@ const Detail = () => {
     yAxis: {
       opposite: false,
       labels: {
+        // eslint-disable-next-line no-template-curly-in-string
+        format: '$ {value:.2f}',
         style: {
-          color: '#666',
+          color: '#808a9d',
+          fontSize: '12px',
         },
       },
     },
@@ -54,11 +63,12 @@ const Detail = () => {
       followPointer: true,
       followTouchMove: true,
       pointFormat: '{point.x}',
+      valueDecimals: 2,
       formatter() {
         let s = '<b>' + Highcharts.dateFormat('%A, %B %e, %Y', this.x) + '</b>'
 
         this.points.forEach(point => {
-          s += '<br/>Price: $' + point.y
+          s += '<br/>Price: $' + point.y.toFixed(4)
         })
 
         return s
@@ -66,6 +76,11 @@ const Detail = () => {
     },
 
     scrollbar: {
+      enabled: false,
+    },
+
+    rangeSelector: {
+      inputEnabled: false,
       enabled: false,
     },
 
@@ -107,7 +122,9 @@ const Detail = () => {
           <div className='left-side'>
             <div className='chart-wrapper'>
               {loading ? (
-                'loading...'
+                <div className='loading-wrapper'>
+                  <SyncLoader color={'#2196F3'} loading={loading} size={20} />
+                </div>
               ) : (
                 <HighchartsReact
                   highcharts={Highcharts}
@@ -118,7 +135,57 @@ const Detail = () => {
             </div>
           </div>
 
-          <div className='right-side'>right-side</div>
+          <div className='right-side'>
+            <div className='converter-wrapper'>
+              <div className='converter-content'>
+                <div className='converter-crypto'>
+                  <img
+                    className='converter-img'
+                    src='https://s2.coinmarketcap.com/static/img/coins/64x64/6636.png'
+                    alt=''
+                  />
+                  <div className='converter-name'>
+                    <p className='symbol'>DOT</p>
+                    <p className='name'>Polkadot</p>
+                  </div>
+                  <div className='converter-input'>
+                    <input
+                      type='number'
+                      name=''
+                      id=''
+                      pattern='/^-?d+.?d*$/'
+                      maxlength='8'
+                      placeholder='0'
+                    />
+                  </div>
+                </div>
+                <div className='converter-currency'>
+                  <img
+                    className='converter-img'
+                    src='https://s2.coinmarketcap.com/static/cloud/img/fiat-flags/USD.svg'
+                    alt=''
+                  />
+                  <div className='converter-name'>
+                    <p className='symbol'>USD</p>
+                    <p className='name'>United States Dollar</p>
+                  </div>
+                  <div className='converter-input'>
+                    <input
+                      type='number'
+                      name=''
+                      id=''
+                      pattern='/^-?d+.?d*$/'
+                      maxlength='8'
+                      placeholder='0'
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className='price-statistics-wrapper'>
+              price statistics wrapper
+            </div>
+          </div>
         </div>
       </div>
     </div>
