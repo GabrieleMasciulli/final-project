@@ -1,12 +1,6 @@
 import React from 'react'
 import EmptyStar from './EmpyStar'
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  Redirect,
-} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const Row = ({ crypto }) => {
   let {
@@ -45,7 +39,15 @@ const Row = ({ crypto }) => {
         {formattedData('number', market_cap_rank)}
       </td>
       <td className='text-start'>
-        <Link to={`/detail/${id}`}>
+        <Link
+          className='detail-redirect-wrapper'
+          to={{
+            pathname: `/detail/${id}`,
+            state: {
+              crypto: crypto,
+            },
+          }}
+        >
           <div className='logo-wrapper'>
             <img className='crypto-logo' src={image} alt='' />
             <div className='name-content'>

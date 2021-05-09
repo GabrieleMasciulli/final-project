@@ -124,7 +124,13 @@ body {
   background-color: var(--table-row-hover-background-color);
 }
 
-/* table head */
+/* table body */
+
+.detail-redirect-wrapper {
+  text-decoration: none;
+  cursor: pointer;
+  color: rgb(56, 97, 251);
+}
 
 .logo-wrapper {
   box-sizing: border-box;
