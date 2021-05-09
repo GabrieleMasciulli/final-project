@@ -263,6 +263,8 @@
   color: rgb(34, 37, 49);
 }
 
+/* chart utilities */
+
 .chart-content .chart-utils {
   display: flex;
   flex-direction: row;
@@ -278,6 +280,8 @@
     justify-content: flex-start;
   }
 }
+
+/* chart type (price, marketcap, tradingview */
 
 .chart-utils .chart-type {
   box-sizing: border-box;
@@ -382,6 +386,51 @@
   font-size: 12px;
   font-weight: 600;
   color: rgb(88, 102, 126);
+}
+
+/* Chart timespan utility */
+
+.chart-utils .chart-timespan {
+  box-shadow: none;
+  background: rgb(239, 242, 245);
+  padding: 3px;
+  border-radius: 8px;
+  margin: 0px;
+  display: flex;
+  flex-direction: row;
+  -webkit-box-align: center;
+  align-items: center;
+}
+
+.chart-timespan-item {
+  line-height: 15px;
+  padding: 7px 8px;
+  white-space: nowrap;
+  color: rgb(88, 102, 126);
+
+  border-top: 1px solid transparent;
+  border-right: 1px solid transparent;
+  border-left: 1px solid transparent;
+  border-image: initial;
+  border-bottom: none;
+  bottom: 0px;
+  position: relative;
+  list-style: none;
+  cursor: pointer;
+  border-radius: 8px;
+  font-weight: 600;
+  display: flex;
+  flex: 1 1 0%;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  font-size: 12px;
+}
+
+.chart-timespan-item:hover {
+  background-color: rgb(248, 250, 253);
+  font-weight: 600;
 }
 
 /* Right side of the page content */

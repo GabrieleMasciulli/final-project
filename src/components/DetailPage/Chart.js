@@ -1,18 +1,24 @@
 import React, { useState } from 'react'
 import SyncLoader from 'react-spinners/SyncLoader'
 import chartOptionService from '../../services/chartOptions'
+import ChartSelector from './ChartSelector'
+import TimespanSelector from './TimespanSelector'
 
 //highchart
-import Highcharts from 'highcharts/highstock'
+import Highcharts, { time } from 'highcharts/highstock'
 import HighchartsReact from 'highcharts-react-official'
 
 const Chart = ({ crypto, loading, data }) => {
   const [chartType, setChartType] = useState('price')
+  const [timespan, setTimespan] = useState('all')
   const chartOptions = chartOptionService.getOptions(data)
 
-  const handleHover = e => {
-    console.log(e.target.value)
+  const handleChartTypeHover = e => {
     setChartType(e.target.value)
+  }
+
+  const handleTimespanClick = e => {
+    setTimespan(e.target.value)
   }
 
   return (
@@ -27,33 +33,14 @@ const Chart = ({ crypto, loading, data }) => {
       ) : (
         <div className='chart-content'>
           <div className='chart-utils'>
-            <div className='chart-type'>
-              <div className='chart-type-content'>
-                <div className={`slider slider-${chartType}`}></div>
-                <button
-                  value='price'
-                  onMouseEnter={handleHover}
-                  className={chartType === 'price' ? 'landed' : ''}
-                >
-                  <span>Price</span>
-                </button>
-                <button
-                  value='marketcap'
-                  onMouseEnter={handleHover}
-                  className={chartType === 'marketcap' ? 'landed' : ''}
-                >
-                  <span>Market Cap</span>
-                </button>
-                <button
-                  value='tradingview'
-                  onMouseEnter={handleHover}
-                  className={chartType === 'tradingview' ? 'landed' : ''}
-                >
-                  <span>TradingView</span>
-                </button>
-              </div>
-            </div>
-            <div className='chart-timespan'></div>
+            <ChartSelector
+              type={chartType}
+              handleHover={handleChartTypeHover}
+            />
+            <TimespanSelector
+              timespan={timespan}
+              onClick={handleTimespanClick}
+            />
           </div>
           <HighchartsReact
             highcharts={Highcharts}
