@@ -24,4 +24,15 @@ const getChartData = (id, days) => {
   return request.then(response => response.data)
 }
 
-export default { getInfo, getTotNumberOfCryptos, getSparklines, getChartData }
+const getStats = id => {
+  const request = axios.get(`${baseUrl}/stats/${id}`)
+  return request.then(response => response.data)
+}
+
+export default {
+  getInfo,
+  getTotNumberOfCryptos,
+  getSparklines,
+  getChartData,
+  getStats,
+}
