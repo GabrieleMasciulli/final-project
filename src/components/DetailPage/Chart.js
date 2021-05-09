@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-import SyncLoader from 'react-spinners/SyncLoader'
 import chartOptionService from '../../services/chartOptions'
 import ChartSelector from './ChartSelector'
 import TimespanSelector from './TimespanSelector'
+import Loader from '../Loader'
 
 //highchart
-import Highcharts, { time } from 'highcharts/highstock'
+import Highcharts from 'highcharts/highstock'
 import HighchartsReact from 'highcharts-react-official'
 
 const Chart = ({ crypto, loading, data }) => {
@@ -27,9 +27,7 @@ const Chart = ({ crypto, loading, data }) => {
         <h3>{crypto.name} Chart</h3>
       </div>
       {loading ? (
-        <div className='loading-wrapper'>
-          <SyncLoader color={'#2196F3'} loading={loading} size={20} />
-        </div>
+        <Loader />
       ) : (
         <div className='chart-content'>
           <div className='chart-utils'>

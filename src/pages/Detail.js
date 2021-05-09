@@ -2,33 +2,50 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router'
 import '../wwwroot/css/Detail.css'
 import cryptoService from '../services/Crypto'
-import TopInfo from '../components/DetailPage/TopInfo'
-import PageContent from '../components/DetailPage/PageContent'
+import TopInfo from '../components/detailPage/TopInfo'
+import PageContent from '../components/detailPage/PageContent'
 
 const Detail = props => {
   const { crypto } = props.location.state
   const { id } = useParams()
   const [chartData, setChartData] = useState([])
-  const [loading, setLoading] = useState(false)
+  const [stats, setStats] = useState()
+  const [chartLoading, setChartLoading] = useState(true)
+  const [statsLoading, setStatsLoading] = useState(true)
   const [days, setDays] = useState('max')
 
   console.log('Chart data: ', chartData)
+  console.log('Stats: ', stats)
 
   const getChartData = () => {
-    console.log('Getting chart data...')
-    setLoading(true)
+    setChartLoading(true)
     cryptoService.getChartData(id, days).then(data => {
       setChartData(data)
-      setLoading(false)
+      setChartLoading(false)
+    })
+  }
+
+  const getStats = () => {
+    setStatsLoading(true)
+    cryptoService.getStats(id).then(data => {
+      setStats(data)
+      setStatsLoading(false)
     })
   }
 
   useEffect(getChartData, [])
+  useEffect(getStats, [])
 
   return (
     <div className='detail-container'>
       <TopInfo />
-      <PageContent data={chartData} loading={loading} crypto={crypto} />
+      <PageContent
+        data={chartData}
+        chartLoading={chartLoading}
+        statsLoading={statsLoading}
+        crypto={crypto}
+        stats={stats}
+      />
     </div>
   )
 }
