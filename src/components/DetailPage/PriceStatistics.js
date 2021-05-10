@@ -72,8 +72,19 @@ const PriceStatistics = ({ stats }) => {
               <tr>
                 <th scope='row'>24h Low / 24h High</th>
                 <td>
-                  <div>$0.4302/</div>
-                  <div>$0.7204</div>
+                  <div>
+                    {formatService.formatData(
+                      '$',
+                      stats.market_data.low_24h.usd
+                    )}
+                    /
+                  </div>
+                  <div>
+                    {formatService.formatData(
+                      '$',
+                      stats.market_data.high_24h.usd
+                    )}
+                  </div>
                 </td>
               </tr>
               <tr>
@@ -83,7 +94,12 @@ const PriceStatistics = ({ stats }) => {
                   </span>
                 </th>
                 <td>
-                  <span>$40,911,379,951.28</span>
+                  <span>
+                    {formatService.formatData(
+                      '$',
+                      stats.market_data.total_volume.usd
+                    )}
+                  </span>
                   <div>
                     <span className='sc-1v2ivon-0 fJLBDK'>
                       <span className='icon-Caret-up'></span>50.60
