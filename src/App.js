@@ -11,6 +11,7 @@ import Detail from './pages/Detail'
 import './wwwroot/css/Homepage.css'
 import cryptoService from './services/Crypto'
 import Footer from './components/Footer'
+import SignUpForm from './components/profile/SignUp'
 
 function App() {
   const [globalStats, setGlobalStats] = useState(0)
@@ -27,35 +28,40 @@ function App() {
   useEffect(getCountCryptos, [])
 
   return (
-    <div className='page-wrapper'>
-      <Navbar loading={globalLoading} globalStats={globalStats} />
-      <Router>
-        <Switch>
-          <Route
-            exact
-            path='/'
-            render={() => {
-              return <Redirect to='/home' />
-            }}
-          />
-          <Route
-            exact
-            path='/home'
-            render={() => {
-              return (
-                <Home
-                  cryptoCount={globalStats.active_cryptocurrencies}
-                  globalLoading={globalLoading}
-                  globalStats={globalStats}
-                />
-              )
-            }}
-          />
-          <Route exact path='/detail/:id' component={Detail} />
-        </Switch>
-      </Router>
-      <Footer />
-    </div>
+    <>
+      <div className='page-wrapper'>
+        <Navbar loading={globalLoading} globalStats={globalStats} />
+        <Router>
+          <Switch>
+            <Route
+              exact
+              path='/'
+              render={() => {
+                return <Redirect to='/home' />
+              }}
+            />
+            <Route
+              exact
+              path='/home'
+              render={() => {
+                return (
+                  <Home
+                    cryptoCount={globalStats.active_cryptocurrencies}
+                    globalLoading={globalLoading}
+                    globalStats={globalStats}
+                  />
+                )
+              }}
+            />
+            <Route exact path='/detail/:id' component={Detail} />
+          </Switch>
+        </Router>
+        <Footer />
+      </div>
+
+      {/* Login / SignUp Part */}
+      <SignUpForm />
+    </>
   )
 }
 
