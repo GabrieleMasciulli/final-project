@@ -13,11 +13,14 @@ import cryptoService from './services/Crypto'
 import Footer from './components/Footer'
 
 function App() {
-  const [cryptoCount, setCryptoCount] = useState(0)
+  const [globalStats, setGlobalStats] = useState(0)
+  const [globalLoading, setGlobalLoading] = useState(true)
 
   const getCountCryptos = () => {
-    cryptoService.getTotNumberOfCryptos().then(count => {
-      setCryptoCount(count.tot)
+    setGlobalLoading(true)
+    cryptoService.getGlobalStats().then(response => {
+      setGlobalStats(response)
+      setGlobalLoading(false)
     })
   }
 
@@ -25,7 +28,7 @@ function App() {
 
   return (
     <div className='page-wrapper'>
-      <Navbar cryptoCount={cryptoCount} />
+      <Navbar loading={globalLoading} globalStats={globalStats} />
       <Router>
         <Switch>
           <Route
@@ -35,15 +38,19 @@ function App() {
               return <Redirect to='/home' />
             }}
           />
-
           <Route
             exact
             path='/home'
             render={() => {
-              return <Home cryptoCount={cryptoCount} />
+              return (
+                <Home
+                  cryptoCount={globalStats.active_cryptocurrencies}
+                  globalLoading={globalLoading}
+                  globalStats={globalStats}
+                />
+              )
             }}
           />
-
           <Route exact path='/detail/:id' component={Detail} />
         </Switch>
       </Router>
