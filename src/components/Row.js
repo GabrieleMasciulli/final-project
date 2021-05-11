@@ -2,7 +2,7 @@ import React from 'react'
 import EmptyStar from './EmpyStar'
 import { Link } from 'react-router-dom'
 
-const Row = ({ crypto }) => {
+const Row = ({ crypto, globalStats }) => {
   let {
     id,
     image,
@@ -44,6 +44,7 @@ const Row = ({ crypto }) => {
           to={{
             pathname: `/detail/${id}`,
             state: {
+              global: globalStats,
               crypto: crypto,
             },
           }}

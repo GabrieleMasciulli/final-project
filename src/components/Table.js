@@ -2,12 +2,12 @@ import React from 'react'
 import Thead from './Thead'
 import Tbody from './Tbody'
 
-const Table = ({ cryptos }) => {
+const Table = ({ cryptos, globalStats }) => {
   return (
     <div className='screener-wrapper'>
       <table className='screener '>
         <Thead />
-        <Tbody cryptos={cryptos} />
+        <Tbody cryptos={cryptos} globalStats={globalStats} />
       </table>
     </div>
   )

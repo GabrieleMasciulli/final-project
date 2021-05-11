@@ -4,16 +4,17 @@ import Table from '../components/Table'
 import Pagination from '../components/Pagination'
 import cryptoService from '../services/Crypto'
 
-const Home = ({ cryptoCount }) => {
+const Home = ({ cryptoCount, globalLoading, globalStats }) => {
   const [cryptos, setCryptos] = useState([])
   const [loading, setLoading] = useState(false)
-  const [maxPages, setMaxPage] = useState(139)
   const [pagination, setPagination] = useState({
     page: 1,
     rows: 50,
   })
+  const [maxPages, setMaxPage] = useState()
 
-  console.log('Cryptos: ', cryptos)
+  console.log(globalLoading)
+  console.log(globalStats)
 
   const getCryptos = () => {
     console.log('Getting cryptos...')
@@ -45,17 +46,17 @@ const Home = ({ cryptoCount }) => {
 
   return (
     <>
-      {loading ? (
+      {loading || globalLoading ? (
         <div className='loading-wrapper'>
           <SyncLoader color={'#2196F3'} loading={loading} size={20} />
         </div>
       ) : (
         <>
-          <Table cryptos={cryptos} />
+          <Table cryptos={cryptos} globalStats={globalStats} />
           <Pagination
             cryptoCount={cryptoCount}
             pagination={pagination}
-            count={maxPages}
+            count={maxPages || Math.ceil(cryptoCount / 50)}
             pageChage={handlePageChange}
             rowsChange={handleRowsChange}
           />

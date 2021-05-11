@@ -2,10 +2,20 @@ import React from 'react'
 import formatService from '../../services/formatStockData'
 
 //FontAwesome
-import { faCaretUp, faCaretDown } from '@fortawesome/free-solid-svg-icons'
+import {
+  faCaretUp,
+  faCaretDown,
+  faCrown,
+} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-const PriceStatistics = ({ stats }) => {
+const PriceStatistics = ({ stats, globalStats }) => {
+  const vol_over_marketcap =
+    stats.market_data.total_volume.usd / stats.market_data.market_cap.usd
+
+  const market_dominance =
+    (stats.market_data.market_cap.usd / globalStats.total_market_cap.usd) * 100
+
   return (
     <div className='price-statistics-wrapper'>
       <div className='price-statistics-content'>
@@ -102,24 +112,31 @@ const PriceStatistics = ({ stats }) => {
                   </span>
                   <div>
                     <span className='sc-1v2ivon-0 fJLBDK'>
-                      <span className='icon-Caret-up'></span>50.60
+                      <span className='icon-Caret-up'></span>24h change..
                     </span>
                   </div>
                 </td>
               </tr>
               <tr>
-                <th scope='row'>Volume / Market Cap</th>
-                <td>0.652</td>
+                <th scope='row'>Volume / Market Cap🧢 </th>
+                <td>
+                  {formatService.formatData('number', vol_over_marketcap)}
+                </td>
               </tr>
               <tr>
                 <th scope='row'>Market Dominance</th>
                 <td>
-                  <span className=''>2,62</span>
+                  <span className=''>
+                    {formatService.formatData('%', market_dominance)}
+                  </span>
                 </td>
               </tr>
               <tr>
                 <th scope='row'>Market Rank</th>
-                <td>#4</td>
+                <td>
+                  <FontAwesomeIcon icon={faCrown} color='#16c784' />{' '}
+                  {stats.coingecko_rank}
+                </td>
               </tr>
             </tbody>
           </table>

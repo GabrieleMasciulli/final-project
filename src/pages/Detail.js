@@ -6,7 +6,7 @@ import TopInfo from '../components/detailPage/TopInfo'
 import PageContent from '../components/detailPage/PageContent'
 
 const Detail = props => {
-  const { crypto } = props.location.state
+  const { crypto, global } = props.location.state
   const { id } = useParams()
   const [chartData, setChartData] = useState([])
   const [stats, setStats] = useState()
@@ -45,6 +45,7 @@ const Detail = props => {
         statsLoading={statsLoading}
         crypto={crypto}
         stats={stats}
+        globalStats={global}
       />
     </div>
   )

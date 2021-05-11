@@ -29,10 +29,16 @@ const getStats = id => {
   return request.then(response => response.data)
 }
 
+const getGlobalStats = () => {
+  const request = axios.get('/api/global')
+  return request.then(response => response.data)
+}
+
 export default {
   getInfo,
   getTotNumberOfCryptos,
   getSparklines,
   getChartData,
   getStats,
+  getGlobalStats,
 }

@@ -3,10 +3,10 @@ import '../wwwroot/css/Navbar.css'
 import DesktopNav from './DesktopNav'
 import MobileNav from './MobileNav'
 
-const Navbar = ({ cryptoCount }) => {
+const Navbar = ({ loading, globalStats }) => {
   return (
     <div className='navbar-wrapper'>
-      <DesktopNav cryptoCount={cryptoCount} />
+      <DesktopNav loading={loading} stats={globalStats} />
       <MobileNav />
     </div>
   )
