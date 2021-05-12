@@ -11,11 +11,16 @@ import Detail from './pages/Detail'
 import './wwwroot/css/Homepage.css'
 import cryptoService from './services/Crypto'
 import Footer from './components/Footer'
-import SignUpForm from './components/profile/SignUp'
+import SignUpForm from './components/auth/SignUp'
+import LoginForm from './components/auth/Login'
 
 function App() {
   const [globalStats, setGlobalStats] = useState(0)
   const [globalLoading, setGlobalLoading] = useState(true)
+  const [userAction, setUserAction] = useState({
+    wants_to_login: false,
+    wants_to_signup: false,
+  })
 
   const getCountCryptos = () => {
     setGlobalLoading(true)
@@ -23,6 +28,22 @@ function App() {
       setGlobalStats(response)
       setGlobalLoading(false)
     })
+  }
+
+  //user actions concerning authentication
+  const handleSignUpClick = () => {
+    const newUserAction = { wants_to_login: false, wants_to_signup: true }
+    setUserAction(newUserAction)
+  }
+
+  const handleLoginClick = () => {
+    const newUserAction = { wants_to_login: true, wants_to_signup: false }
+    setUserAction(newUserAction)
+  }
+
+  const handleAuthCancel = () => {
+    const newUserAction = { wants_to_login: false, wants_to_signup: false }
+    setUserAction(newUserAction)
   }
 
   useEffect(getCountCryptos, [])
@@ -58,9 +79,8 @@ function App() {
         </Router>
         <Footer />
       </div>
-
-      {/* Login / SignUp Part */}
-      <SignUpForm />
+      {userAction.wants_to_signup ? <SignUpForm /> : ''}
+      {userAction.wants_to_login ? <LoginForm /> : ''}
     </>
   )
 }
