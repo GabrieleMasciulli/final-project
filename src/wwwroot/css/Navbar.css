@@ -1,73 +1,139 @@
 .navbar-wrapper {
-  position: relative;
-}
-
-.upper-info-wrapper {
-  border-bottom: 1px solid rgb(239, 242, 245);
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 16px;
-  padding-top: 0.35rem;
-  padding-bottom: 0.35rem;
-  position: relative;
-  z-index: 931;
-}
-
-.upper-info-content {
   display: flex;
+  flex-direction: row;
   -webkit-box-align: center;
   align-items: center;
+  padding: 5px 15px;
+  max-width: 1400px;
+  margin: 0px auto;
+}
+
+.navbar-wrapper a {
+  color: rgb(56, 97, 251);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.logo-wrapper {
+  width: 168px;
+  height: 28px;
+
+  position: relative;
+  display: inline-block;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+/* navbar center section (links) */
+
+.nav-links-wrapper {
+  display: flex;
+  flex: 1 1 0%;
+  padding-left: 20px;
+}
+
+.nav-links-content {
+  display: block;
+  height: fit-content;
+}
+
+.nav-links-content ul {
   -webkit-box-pack: start;
   justify-content: flex-start;
-
-  width: 100%;
-  max-width: 1400px;
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
-}
-
-.upper-info-content .left-content span {
-  font-size: 11px;
-  color: rgb(88, 102, 126);
-  margin-right: 16px;
-  white-space: nowrap;
-}
-
-.upper-info-content .left-content span a {
-  padding-left: 0.3rem;
-  text-decoration: none;
-  color: rgb(56, 97, 251);
-  font-weight: 500;
-  cursor: pointer;
-}
-
-.upper-info-content .right-content {
-  display: flex;
-  margin-left: auto;
-  -webkit-box-align: center;
-  align-items: center;
-}
-
-.right-content div {
-  height: 27px;
-  margin-right: 6px;
-
-  -webkit-box-align: center;
-  align-items: center;
-  background-color: rgb(255, 255, 255);
-  border-radius: 5px;
-  border: none;
-  color: rgb(34, 37, 49);
-  cursor: pointer;
-  display: inline-flex;
-  font-size: 12px;
-  font-weight: 500;
-  height: 100%;
-  line-height: 12px;
   margin: 0px;
-  padding: 5px;
-  vertical-align: baseline;
+  padding: 0px;
+  display: flex;
+  list-style: none;
+}
+
+.nav-links-content li {
+  position: relative;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  height: unset;
+  flex-basis: unset;
+}
+
+.nav-links-content .link-content {
+  padding: 20px 14px;
+}
+
+.link-content .link {
+  line-height: 1.5;
+  margin: 0px;
+  color: rgb(34, 37, 49);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.link-content .link:hover {
+  color: rgb(56, 97, 251);
+}
+
+.link-content .link span {
+  position: relative;
+  display: inline;
+}
+
+/* right side (signup/login buttons and search box */
+.navbar-wrapper .nav-btn {
+  height: 36px;
   white-space: nowrap;
+}
+
+.navbar-wrapper .login-btn {
+  -webkit-box-align: center;
+  align-items: center;
+  background: transparent;
+  border: 1px solid black;
+  border-radius: 8px;
+  display: inline-flex;
+  color: black;
+  cursor: pointer;
+  -webkit-box-pack: center;
+  justify-content: center;
+  outline: 0px;
+  font-weight: 600;
+  width: auto;
+  height: 32px;
+  font-size: 12px;
+  padding: 0px 16px;
+  margin-right: 10px;
+  line-height: 18px;
+}
+
+.navbar-wrapper .login-btn:hover {
+  border: 1px solid rgb(56, 97, 251);
+  background: rgb(248, 250, 253);
+  color: rgb(56, 97, 251);
+  text-decoration: none;
+}
+
+.navbar-wrapper .signup-btn {
+  -webkit-box-align: center;
+  align-items: center;
+  background: rgb(56, 97, 251);
+  border: 0px;
+  border-radius: 8px;
+  display: inline-flex;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  -webkit-box-pack: center;
+  justify-content: center;
+  outline: 0px;
+  font-weight: 600;
+  width: auto;
+  height: 32px;
+  font-size: 12px;
+  padding: 0px 16px;
+  line-height: 18px;
+}
+
+.navbar-wrapper .signup-btn:hover {
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.08)),
+    rgb(56, 97, 251);
+  color: white;
+  text-decoration: none;
 }
