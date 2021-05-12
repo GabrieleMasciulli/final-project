@@ -1,10 +1,12 @@
-:root {
+body {
+  --info-icon-color: #a6b0c3;
   --color-primary-black: #000;
   --color-primary-blue: #3861fb;
   --color-neutral-6: #58667e;
+  --color-light-neutral-6: #58667e;
 }
 
-.login-link {
+.redirect-link {
   cursor: pointer;
   color: var(--color-primary-blue);
 }
@@ -32,7 +34,6 @@
 
 .auth-content {
   max-height: 90vh;
-  overflow-y: scroll;
   transition: height 0.3s ease-in-out;
   max-width: 100vw;
   position: relative;
@@ -76,7 +77,7 @@
   color: var(--color-neutral-6);
 }
 
-.form-wrapper .email {
+.form-wrapper .input-wrapper {
   display: flex;
   flex-direction: column;
   margin-bottom: 14px;
@@ -104,4 +105,46 @@
   font-size: 14px;
   height: 48px;
   line-height: 21px;
+}
+
+.form-wrapper .input-description {
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 500;
+  color: var(--color-light-neutral-6);
+  margin: 8px 0px;
+}
+
+.input-wrapper span {
+  position: absolute;
+  cursor: pointer;
+  top: 15px;
+  right: 12px;
+}
+.input-wrapper .passw-input-wrapper {
+  position: relative;
+}
+
+.form-wrapper .submit-wrapper {
+  margin-top: 24px;
+}
+
+.submit-wrapper .submit-btn {
+  -webkit-box-align: center;
+  align-items: center;
+  background: rgb(56, 97, 251);
+  border: 0px;
+  border-radius: 8px;
+  display: inline-flex;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  -webkit-box-pack: center;
+  justify-content: center;
+  outline: 0px;
+  font-weight: 600;
+  width: 100%;
+  height: 48px;
+  font-size: 14px;
+  padding: 0px 24px;
+  line-height: 24px;
 }
