@@ -1,6 +1,6 @@
 import React from 'react'
 
-const CloseIcon = () => {
+const CloseIcon = ({ onClick }) => {
   const closeIconStyle = {
     position: 'absolute',
     top: '38px',
@@ -9,6 +9,7 @@ const CloseIcon = () => {
   return (
     <div className='close-wrapper' style={closeIconStyle}>
       <svg
+        onClick={onClick}
         xmlns='http://www.w3.org/2000/svg'
         fill='currentColor'
         height='24px'

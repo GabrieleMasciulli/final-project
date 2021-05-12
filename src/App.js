@@ -5,14 +5,15 @@ import {
   Route,
   Redirect,
 } from 'react-router-dom'
-import Navbar from './components/Navbar'
+import StatsNav from './components/StatsNav'
+import Navbar from './components/navbar/Navbar'
 import Home from './pages/Home'
 import Detail from './pages/Detail'
 import './wwwroot/css/Homepage.css'
 import cryptoService from './services/Crypto'
 import Footer from './components/Footer'
-import SignUpForm from './components/auth/SignUp'
-import LoginForm from './components/auth/Login'
+import SignUp from './components/auth/SignUp'
+import Login from './components/auth/Login'
 
 function App() {
   const [globalStats, setGlobalStats] = useState(0)
@@ -51,8 +52,10 @@ function App() {
   return (
     <>
       <div className='page-wrapper'>
-        <Navbar loading={globalLoading} globalStats={globalStats} />
-        <Router>
+        <StatsNav loading={globalLoading} stats={globalStats} />
+        <Navbar loginClick={handleLoginClick} signupClick={handleSignUpClick} />
+
+        {/* <Router>
           <Switch>
             <Route
               exact
@@ -76,11 +79,12 @@ function App() {
             />
             <Route exact path='/detail/:id' component={Detail} />
           </Switch>
-        </Router>
+        </Router> */}
         <Footer />
       </div>
-      {userAction.wants_to_signup ? <SignUpForm /> : ''}
-      {userAction.wants_to_login ? <LoginForm /> : ''}
+
+      <Login cancel={handleAuthCancel} visible={userAction.wants_to_login} />
+      <SignUp cancel={handleAuthCancel} visible={userAction.wants_to_signup} />
     </>
   )
 }
