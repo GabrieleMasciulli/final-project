@@ -24,7 +24,8 @@ function App() {
     wants_to_signup: false,
   })
   const [user, setUser] = useState({
-    isAuthenticated: false,
+    isAuthenticated: AuthService.getCurrentUser() ? true : false,
+    data: AuthService.getCurrentUser() || null,
   })
 
   const getCountCryptos = () => {
@@ -56,10 +57,9 @@ function App() {
   const handleUserLogin = () => {
     const newUser = {
       isAuthenticated: true,
-      user: AuthService.getCurrentUser(),
+      data: AuthService.getCurrentUser(),
     }
-    console.log(newUser)
-    setUser('user: ', newUser)
+    setUser(newUser)
   }
 
   return (
