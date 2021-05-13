@@ -4,13 +4,18 @@ import React from 'react'
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-const PasswInput = ({ type }) => {
+const PasswInput = ({ type, value, onChange }) => {
   return (
     <div className='input-wrapper'>
       <div className='label'>Password</div>
 
       <div className='passw-input-wrapper'>
-        <input type='password' placeholder='Enter your password...'></input>
+        <input
+          value={value}
+          onChange={onChange}
+          type='password'
+          placeholder='Enter your password...'
+        ></input>
         <span>
           <FontAwesomeIcon fill='#a6b0c3' icon={faEye} />
         </span>

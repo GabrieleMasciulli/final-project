@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import SyncLoader from 'react-spinners/SyncLoader'
-import Table from '../components/Table'
+import Table from '../components/homePage/Table'
 import Pagination from '../components/Pagination'
 import cryptoService from '../services/Crypto'
 

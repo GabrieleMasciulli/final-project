@@ -1,7 +1,7 @@
 import React from 'react'
-import svg from '../wwwroot/img/Row separator.svg'
+import svg from '../../wwwroot/img/full width separator.svg'
 
-const Separator = () => {
+const FullWidthSeparator = () => {
   return (
     <tr>
       <td>
@@ -11,4 +11,4 @@ const Separator = () => {
   )
 }
 
-export default Separator
+export default FullWidthSeparator

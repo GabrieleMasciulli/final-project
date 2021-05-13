@@ -1,9 +1,9 @@
 import React from 'react'
 
-const SubmitBtn = ({ type }) => {
+const SubmitBtn = ({ type, handleClick }) => {
   return (
     <div className='submit-wrapper'>
-      <button className='submit-btn'>
+      <button onClick={handleClick} className='submit-btn'>
         {type === 'signup' ? 'Create an account' : 'Log in'}
       </button>
     </div>

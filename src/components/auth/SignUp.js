@@ -25,6 +25,7 @@ const SignUp = ({ cancel, visible }) => {
 
           <MailInput />
           <PasswInput type={type} />
+
           <SubmitBtn type={type} />
         </div>
       </div>

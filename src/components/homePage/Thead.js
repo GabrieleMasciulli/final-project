@@ -1,12 +1,11 @@
 import React from 'react'
-import Info from './Info'
+import Info from '../designItems/Info'
 import { faCaretUp } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const Thead = () => {
   return (
     <thead>
-      {/* <Separator /> */}
       <tr>
         <th></th>
         <th className='text-center'>

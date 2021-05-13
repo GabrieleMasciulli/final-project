@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import chartOptionService from '../../services/chartOptions'
 import ChartSelector from './ChartSelector'
 import TimespanSelector from './TimespanSelector'
-import Loader from '../Loader'
+import Loader from '../designItems/Loader'
 
 //highchart
 import Highcharts from 'highcharts/highstock'

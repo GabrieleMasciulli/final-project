@@ -1,5 +1,5 @@
 import React from 'react'
-import svg from '../wwwroot/img/info.svg'
+import svg from '../../wwwroot/img/info.svg'
 
 const style = {
   marginLeft: '4px',

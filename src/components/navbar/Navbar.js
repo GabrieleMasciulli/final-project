@@ -4,7 +4,7 @@ import logo from '../../wwwroot/img/logo_size.jpeg'
 import NavItem from './NavItem'
 import SearchBar from './SearchBar'
 
-const Navbar = ({ loginClick, signupClick }) => {
+const Navbar = ({ loginClick, signupClick, user }) => {
   return (
     <div className='navbar-wrapper'>
       <a href='/' title='Go to homepage' className='logo-link'>
@@ -25,12 +25,18 @@ const Navbar = ({ loginClick, signupClick }) => {
         </nav>
       </div>
 
-      <button onClick={loginClick} className='nav-btn login-btn'>
-        Log in
-      </button>
-      <button onClick={signupClick} className='nav-btn signup-btn'>
-        Sign up
-      </button>
+      {user.isAuthenticated ? (
+        ''
+      ) : (
+        <>
+          <button onClick={loginClick} className='nav-btn login-btn'>
+            Log in
+          </button>
+          <button onClick={signupClick} className='nav-btn signup-btn'>
+            Sign up
+          </button>
+        </>
+      )}
 
       <SearchBar />
     </div>

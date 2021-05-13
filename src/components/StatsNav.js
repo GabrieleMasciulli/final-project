@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react'
-import DollarIcon from './DollarIcon'
-import SunIcon from './SunIcon'
+import DollarIcon from './designItems/DollarIcon'
+import SunIcon from './designItems/SunIcon'
 import '../wwwroot/css/StatsNav.css'
 
 //services

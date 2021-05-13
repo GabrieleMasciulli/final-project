@@ -1,5 +1,5 @@
 import React from 'react'
-import EmptyStar from './EmpyStar'
+import EmptyStar from '../designItems/EmpyStar'
 import { Link } from 'react-router-dom'
 
 const Row = ({ crypto, globalStats }) => {

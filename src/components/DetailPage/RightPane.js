@@ -1,7 +1,7 @@
 import React from 'react'
 import Converter from './Converter'
 import PriceStatistics from './PriceStatistics'
-import Loader from '../Loader'
+import Loader from '../designItems/Loader'
 
 const RightPane = ({ loading, stats, globalStats }) => {
   return (
