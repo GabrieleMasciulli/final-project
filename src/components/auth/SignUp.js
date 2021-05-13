@@ -8,7 +8,7 @@ import CloseIcon from './CloseIcon'
 const SignUp = ({ cancel, visible }) => {
   const contentStyle = {
     width: '480px',
-    height: '380px',
+    height: '430px',
   }
   const type = 'signup'
 

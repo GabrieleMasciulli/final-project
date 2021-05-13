@@ -52,10 +52,12 @@ function App() {
   return (
     <>
       <div className='page-wrapper'>
-        <StatsNav loading={globalLoading} stats={globalStats} />
-        <Navbar loginClick={handleLoginClick} signupClick={handleSignUpClick} />
-
-        {/* <Router>
+        <Router>
+          <StatsNav loading={globalLoading} stats={globalStats} />
+          <Navbar
+            loginClick={handleLoginClick}
+            signupClick={handleSignUpClick}
+          />
           <Switch>
             <Route
               exact
@@ -79,7 +81,7 @@ function App() {
             />
             <Route exact path='/detail/:id' component={Detail} />
           </Switch>
-        </Router> */}
+        </Router>
         <Footer />
       </div>
 

@@ -2,6 +2,7 @@ import React from 'react'
 import '../../wwwroot/css/Navbar.css'
 import logo from '../../wwwroot/img/logo_size.jpeg'
 import NavItem from './NavItem'
+import SearchBar from './SearchBar'
 
 const Navbar = ({ loginClick, signupClick }) => {
   return (
@@ -30,6 +31,8 @@ const Navbar = ({ loginClick, signupClick }) => {
       <button onClick={signupClick} className='nav-btn signup-btn'>
         Sign up
       </button>
+
+      <SearchBar />
     </div>
   )
 }
