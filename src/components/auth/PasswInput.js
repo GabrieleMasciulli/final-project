@@ -4,7 +4,7 @@ import React from 'react'
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-const PasswInput = ({ type, value, onChange }) => {
+const PasswInput = ({ value, onChange, error }) => {
   return (
     <div className='input-wrapper'>
       <div className='label'>Password</div>
@@ -16,19 +16,18 @@ const PasswInput = ({ type, value, onChange }) => {
           type='password'
           placeholder='Enter your password...'
         ></input>
+        {error === 'invalid' ? (
+          <div className='error-message'>
+            Password should contain both letter and number, with maximum length
+            of 8 characters
+          </div>
+        ) : (
+          ''
+        )}
         <span>
           <FontAwesomeIcon fill='#a6b0c3' icon={faEye} />
         </span>
       </div>
-
-      {type === 'signup' ? (
-        <div className='input-description'>
-          Password should contain both letter and number, with minimum length of
-          8 characters
-        </div>
-      ) : (
-        ''
-      )}
     </div>
   )
 }

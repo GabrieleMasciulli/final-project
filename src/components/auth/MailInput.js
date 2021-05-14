@@ -1,6 +1,6 @@
 import React from 'react'
 
-const MailInput = ({ onChange, value }) => {
+const MailInput = ({ onChange, value, error }) => {
   return (
     <div className='input-wrapper'>
       <div className='label'>Email Address</div>
@@ -10,6 +10,11 @@ const MailInput = ({ onChange, value }) => {
         placeholder='Enter your email address...'
         type='email'
       ></input>
+      {error === 'invalid' ? (
+        <div className='error-message'>This is not a valid email.</div>
+      ) : (
+        ''
+      )}
     </div>
   )
 }

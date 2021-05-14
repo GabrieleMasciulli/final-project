@@ -101,11 +101,13 @@ function App() {
           ) : (
             <>
               <Login
+                changeToSignup={handleSignUpClick}
                 cancel={handleAuthCancel}
                 visible={userAction.wants_to_login}
                 setUser={handleUserLogin}
               />
               <SignUp
+                changeToLogin={handleLoginClick}
                 cancel={handleAuthCancel}
                 visible={userAction.wants_to_signup}
               />

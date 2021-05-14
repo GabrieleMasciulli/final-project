@@ -6,14 +6,14 @@ import SubmitBtn from './SubmitBtn'
 import CloseIcon from './CloseIcon'
 import AuthService from '../../services/auth.service'
 
-const Login = ({ cancel, visible, setUser }) => {
+const Login = ({ cancel, visible, setUser, changeToSignup }) => {
   const [email, setemail] = useState('')
   const [password, setPassword] = useState('')
   const [message, setMessage] = useState('')
 
   const contentStyle = {
     width: '480px',
-    height: '380px',
+    height: 'auto',
   }
   const type = 'login'
 
@@ -54,7 +54,9 @@ const Login = ({ cancel, visible, setUser }) => {
           <div className='title'>Log In</div>
           <div className='top-info'>
             New to QCoinCap?
-            <span className='redirect-link'>Create an account</span>
+            <span onClick={changeToSignup} className='redirect-link'>
+              Create an account
+            </span>
           </div>
 
           <MailInput value={email} onChange={onChangeEmail} />

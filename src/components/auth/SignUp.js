@@ -1,15 +1,22 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../../wwwroot/css/Auth.css'
 import MailInput from './MailInput'
 import PasswInput from './PasswInput'
+import UsernameInput from './UsernameInput'
 import SubmitBtn from './SubmitBtn'
 import CloseIcon from './CloseIcon'
 import AuthService from '../../services/auth.service'
+import authValidation from '../../services/authValidation'
 
-const SignUp = ({ cancel, visible }) => {
+const SignUp = ({ cancel, visible, changeToLogin }) => {
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [errors, setErrors] = useState({
+    email: null,
+    username: null,
+    password: null,
+  })
   const [message, setMessage] = useState('')
   const [successful, setSuccessful] = useState(false)
 
@@ -29,28 +36,43 @@ const SignUp = ({ cancel, visible }) => {
   }
 
   const handleSigup = e => {
-    AuthService.register(email, username, password).then(
-      response => {
-        setMessage(response.data.message)
-        setSuccessful(true)
-      },
-      error => {
-        const resMessage =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-          error.message ||
-          error.toString()
-
-        setMessage(resMessage)
-        setSuccessful(false)
-      }
+    const newErrors = {
+      email: authValidation.validateEmail(email),
+      username: authValidation.validateUsername(username),
+      password: authValidation.validatePassword(password),
+    }
+    setErrors(newErrors)
+    const validationResult = authValidation.validateRegistration(
+      email,
+      username,
+      password
     )
+    if (validationResult === 'valid') {
+      AuthService.register(email, username, password).then(
+        response => {
+          console.log(response)
+          // setMessage(response.data.message)
+          // setSuccessful(true)
+        },
+        error => {
+          const resMessage =
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString()
+          setMessage(resMessage)
+          setSuccessful(false)
+        }
+      )
+    } else {
+      console.log('invalid')
+    }
   }
 
   const contentStyle = {
     width: '480px',
-    height: '430px',
+    height: 'auto',
   }
   const type = 'signup'
 
@@ -62,14 +84,25 @@ const SignUp = ({ cancel, visible }) => {
           <div className='title'>Create an account</div>
           <div className='top-info'>
             Already have an account?
-            <span className='redirect-link'>Log In</span>
+            <span onClick={changeToLogin} className='redirect-link'>
+              Log In
+            </span>
           </div>
 
-          <MailInput value={email} onChange={onChangeEmail} />
+          <MailInput
+            value={email}
+            onChange={onChangeEmail}
+            error={errors.email}
+          />
+          <UsernameInput
+            value={username}
+            onChange={onChangeUsername}
+            error={errors.username}
+          />
           <PasswInput
             value={password}
             onChange={onChangePassword}
-            type={type}
+            error={errors.password}
           />
 
           <SubmitBtn handleClick={handleSigup} type={type} />
