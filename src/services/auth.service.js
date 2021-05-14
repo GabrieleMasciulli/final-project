@@ -12,9 +12,9 @@ const register = (email, username, password) => {
   return request.then(response => response.data)
 }
 
-const login = (username, password) => {
+const login = (email, password) => {
   const request = axios.post(`${baseUrl}/signin`, {
-    email: username,
+    email: email,
     password: password,
   })
 

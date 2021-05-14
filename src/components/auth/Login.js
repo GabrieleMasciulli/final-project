@@ -11,8 +11,6 @@ const Login = ({ cancel, visible, setUser }) => {
   const [password, setPassword] = useState('')
   const [message, setMessage] = useState('')
 
-  console.log(message)
-
   const contentStyle = {
     width: '480px',
     height: '380px',
@@ -30,8 +28,6 @@ const Login = ({ cancel, visible, setUser }) => {
   }
 
   const handleLogin = e => {
-    e.preventDefault()
-
     setMessage('')
 
     // have to add validation here

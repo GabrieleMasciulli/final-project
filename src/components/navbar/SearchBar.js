@@ -12,7 +12,7 @@ const SearchBar = () => {
       className='show-search-tooltip'
       arrow={false}
       allowHTML='true'
-      placement='bottom'
+      placement='bottom-end'
       content={<SearchDropdown />}
     >
       <div className='searchbar-wrapper' aria-expanded='true'>
