@@ -3,8 +3,9 @@ import '../../wwwroot/css/Navbar.css'
 import logo from '../../wwwroot/img/logo_size.jpeg'
 import NavItem from './NavItem'
 import SearchBar from './SearchBar'
+import Profile from './Profile'
 
-const Navbar = ({ loginClick, signupClick, user }) => {
+const Navbar = ({ loginClick, signupClick, user, logoutClick }) => {
   return (
     <div className='navbar-wrapper'>
       <a href='/' title='Go to homepage' className='logo-link'>
@@ -26,7 +27,7 @@ const Navbar = ({ loginClick, signupClick, user }) => {
       </div>
 
       {user.isAuthenticated ? (
-        ''
+        <Profile handleLogout={logoutClick} />
       ) : (
         <>
           <button onClick={loginClick} className='nav-btn login-btn'>

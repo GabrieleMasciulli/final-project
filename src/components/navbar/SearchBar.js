@@ -2,7 +2,7 @@ import React from 'react'
 import Tippy from '@tippyjs/react'
 import 'tippy.js/dist/tippy.css'
 import SearchDropdown from './SearchDropdown'
-// import SearchDropdown from './SearchDropdown'
+
 
 const SearchBar = () => {
   return (

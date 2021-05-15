@@ -1,13 +1,13 @@
 import React from 'react'
-import DropdownItem from './DropdownItem'
+import SearchDropdownItem from './SearchDropdownItem'
 
 const SearchDropdown = () => {
   return (
     <div className='search-dropdown-wrapper '>
       <div className='search-dropdown-content'>
-        <DropdownItem id='bitcoin' />
-        <DropdownItem id='ethereum' />
-        <DropdownItem id='dogecoin' />
+        <SearchDropdownItem id='bitcoin' />
+        <SearchDropdownItem id='ethereum' />
+        <SearchDropdownItem id='dogecoin' />
       </div>
     </div>
   )

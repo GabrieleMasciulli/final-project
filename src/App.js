@@ -62,6 +62,15 @@ function App() {
     setUser(newUser)
   }
 
+  const handleLogout = () => {
+    AuthService.logout()
+    const newUser = {
+      isAuthenticated: false,
+      data: null,
+    }
+    setUser(newUser)
+  }
+
   return (
     <>
       <div className='page-wrapper'>
@@ -71,6 +80,7 @@ function App() {
             user={user}
             loginClick={handleLoginClick}
             signupClick={handleSignUpClick}
+            logoutClick={handleLogout}
           />
           <Switch>
             <Route
