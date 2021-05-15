@@ -10,6 +10,7 @@ import StatsNav from './components/StatsNav'
 import Navbar from './components/navbar/Navbar'
 import Home from './pages/Home'
 import Detail from './pages/Detail'
+import Portfolio from './pages/Portfolio'
 import cryptoService from './services/Crypto'
 import Footer from './components/Footer'
 import SignUp from './components/auth/SignUp'
@@ -104,6 +105,8 @@ function App() {
               }}
             />
             <Route exact path='/detail/:id' component={Detail} />
+
+            <Route exact path='/portfolio' component={Portfolio} />
           </Switch>
 
           {user.isAuthenticated ? (

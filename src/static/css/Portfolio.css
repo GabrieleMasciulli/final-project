@@ -1,0 +1,153 @@
+.portfolio-page-wrapper {
+  background-image: linear-gradient(
+    rgb(248, 250, 253) 0%,
+    rgba(248, 250, 253, 0) 413px
+  );
+  padding: 0px;
+  max-width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.portfolio-page-content {
+  visibility: visible;
+  padding-top: 24px;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+@media (min-width: 1376px) {
+  .portfolio-page-content {
+    max-width: 1402px;
+    margin: 0px auto;
+  }
+}
+
+@media (max-width: 1152px) {
+  .portfolio-page-content {
+    overflow: hidden;
+  }
+}
+
+/* page's top infos */
+.portfolio-top-info {
+  box-sizing: border-box;
+  margin: 0px;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+}
+
+.portfolio-top-info .info-content {
+  box-sizing: border-box;
+  margin: 0px;
+  flex: 1 1 0%;
+}
+
+.portfolio-top-info .info-content div {
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.portfolio-top-info .info-content p {
+  line-height: 1.5;
+  margin: 8px 0px 0px;
+  color: rgb(88, 102, 126);
+  font-size: 14px;
+}
+
+/* add transaction button */
+.transaction-btn {
+  -webkit-box-align: center;
+  align-items: center;
+  background: rgb(56, 97, 251);
+  border: 0px;
+  border-radius: 8px;
+  display: inline-flex;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  -webkit-box-pack: center;
+  justify-content: center;
+  outline: 0px;
+  font-weight: 600;
+  width: auto;
+  height: 40px;
+  font-size: 14px;
+  padding: 0px 24px;
+  line-height: 24px;
+}
+
+/* plus svg inside add transaction btn */
+.transaction-btn svg {
+  margin-right: 6px;
+}
+
+/* add transaction window */
+
+.add-transaction-wrapper {
+  display: flex;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  top: 0px;
+  left: 0px;
+  background: rgba(10, 30, 66, 0.4);
+  z-index: 1102;
+}
+
+.add-transaction-content {
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+}
+
+@media (max-width: 767.98px) {
+  .add-transaction-content {
+    position: fixed;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    -webkit-box-pack: start;
+    justify-content: flex-start;
+    -webkit-box-align: center;
+    align-items: center;
+    top: 0px;
+    left: 0px;
+    border-radius: 0px;
+  }
+}
+
+.transaction-top-info {
+  display: flex;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  align-items: center;
+  padding: 16px 32px 0px;
+  width: 100%;
+}
+
+/* select coin top name */
+.transaction-top-info div {
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  flex: 1 1 0%;
+  font-size: 24px;
+  font-weight: bold;
+  padding: 16px 0px;
+}
+
+.transaction-top-info svg {
+  cursor: pointer;
+  box-sizing: border-box;
+  margin: 0px;
+
+  color: rgb(207, 214, 228);
+}

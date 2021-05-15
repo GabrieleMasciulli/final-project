@@ -1,5 +1,5 @@
 import React from 'react'
-import '../wwwroot/css/Footer.css'
+import '../static/css/Footer.css'
 
 const Column = ({ title, items }) => {
   return (
