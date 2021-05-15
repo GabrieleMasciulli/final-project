@@ -157,3 +157,21 @@ body {
   color: rgb(255, 23, 73);
   margin: 8px 0px;
 }
+
+.form-wrapper .success {
+  font-size: 22px;
+  line-height: 34px;
+  font-weight: 700;
+  color: var(--color-primary-black);
+}
+
+.form-wrapper .success svg {
+  color: #16c784;
+  margin-right: 15px;
+}
+
+.form-wrapper .success p {
+  font-size: 16px;
+  margin: 0;
+  text-align: center;
+}

@@ -18,7 +18,7 @@ const PasswInput = ({ value, onChange, error }) => {
         ></input>
         {error === 'invalid' ? (
           <div className='error-message'>
-            Password should contain both letter and number, with maximum length
+            Password should contain both letter and number, with minimum length
             of 8 characters
           </div>
         ) : (

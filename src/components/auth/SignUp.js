@@ -7,6 +7,8 @@ import SubmitBtn from './SubmitBtn'
 import CloseIcon from './CloseIcon'
 import AuthService from '../../services/auth.service'
 import authValidation from '../../services/authValidation'
+import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const SignUp = ({ cancel, visible, changeToLogin }) => {
   const [username, setUsername] = useState('')
@@ -36,6 +38,8 @@ const SignUp = ({ cancel, visible, changeToLogin }) => {
   }
 
   const handleSigup = e => {
+    setMessage('')
+
     const newErrors = {
       email: authValidation.validateEmail(email),
       username: authValidation.validateUsername(username),
@@ -51,8 +55,8 @@ const SignUp = ({ cancel, visible, changeToLogin }) => {
       AuthService.register(email, username, password).then(
         response => {
           console.log(response)
-          // setMessage(response.data.message)
-          // setSuccessful(true)
+          setMessage(response.message)
+          setSuccessful(true)
         },
         error => {
           const resMessage =
@@ -65,8 +69,6 @@ const SignUp = ({ cancel, visible, changeToLogin }) => {
           setSuccessful(false)
         }
       )
-    } else {
-      console.log('invalid')
     }
   }
 
@@ -80,33 +82,45 @@ const SignUp = ({ cancel, visible, changeToLogin }) => {
     <div className={`auth-wrapper ${visible ? 'opened' : ''}`}>
       <div className='auth-content' style={contentStyle}>
         <CloseIcon onClick={cancel} />
-        <div className='form-wrapper'>
-          <div className='title'>Create an account</div>
-          <div className='top-info'>
-            Already have an account?
-            <span onClick={changeToLogin} className='redirect-link'>
-              Log In
-            </span>
+        {!successful ? (
+          <div className='form-wrapper'>
+            <div className='title'>Create an account</div>
+            <div className='top-info'>
+              Already have an account?
+              <span onClick={changeToLogin} className='redirect-link'>
+                Log In
+              </span>
+            </div>
+
+            <MailInput
+              value={email}
+              onChange={onChangeEmail}
+              error={errors.email}
+            />
+            <UsernameInput
+              value={username}
+              onChange={onChangeUsername}
+              error={errors.username}
+            />
+            <PasswInput
+              value={password}
+              onChange={onChangePassword}
+              error={errors.password}
+            />
+
+            <SubmitBtn handleClick={handleSigup} type={type} />
           </div>
-
-          <MailInput
-            value={email}
-            onChange={onChangeEmail}
-            error={errors.email}
-          />
-          <UsernameInput
-            value={username}
-            onChange={onChangeUsername}
-            error={errors.username}
-          />
-          <PasswInput
-            value={password}
-            onChange={onChangePassword}
-            error={errors.password}
-          />
-
-          <SubmitBtn handleClick={handleSigup} type={type} />
-        </div>
+        ) : (
+          <div className='form-wrapper'>
+            <div className='success'>
+              <FontAwesomeIcon icon={faCheckCircle} />
+              {message}
+              <p onClick={changeToLogin} className='redirect-link'>
+                Click to Log In
+              </p>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   )

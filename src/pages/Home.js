@@ -13,11 +13,11 @@ const Home = ({ cryptoCount, globalLoading, globalStats }) => {
   })
   const [maxPages, setMaxPage] = useState()
 
-  console.log(globalLoading)
-  console.log(globalStats)
+  // console.log(globalLoading)
+  // console.log(globalStats)
 
   const getCryptos = () => {
-    console.log('Getting cryptos...')
+    // console.log('Getting cryptos...')
     setLoading(true)
     cryptoService
       .getInfo('market_cap_desc', pagination.rows, pagination.page)

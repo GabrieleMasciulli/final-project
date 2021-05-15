@@ -14,8 +14,8 @@ const Detail = props => {
   const [statsLoading, setStatsLoading] = useState(true)
   const [days, setDays] = useState('max')
 
-  console.log('Chart data: ', chartData)
-  console.log('Stats: ', stats)
+  // console.log('Chart data: ', chartData)
+  // console.log('Stats: ', stats)
 
   const getChartData = () => {
     setChartLoading(true)
