@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import '../../wwwroot/css/Auth.css'
+import '../../static/css/Auth.css'
 import MailInput from './MailInput'
 import PasswInput from './PasswInput'
 import SubmitBtn from './SubmitBtn'

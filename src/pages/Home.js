@@ -9,7 +9,7 @@ const Home = ({ cryptoCount, globalLoading, globalStats }) => {
   const [loading, setLoading] = useState(false)
   const [pagination, setPagination] = useState({
     page: 1,
-    rows: 50,
+    rows: 20,
   })
   const [maxPages, setMaxPage] = useState()
 
@@ -56,7 +56,7 @@ const Home = ({ cryptoCount, globalLoading, globalStats }) => {
           <Pagination
             cryptoCount={cryptoCount}
             pagination={pagination}
-            count={maxPages || Math.ceil(cryptoCount / 50)}
+            count={maxPages || Math.ceil(cryptoCount / 20)}
             pageChage={handlePageChange}
             rowsChange={handleRowsChange}
           />

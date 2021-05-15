@@ -1,6 +1,6 @@
 import React from 'react'
-import '../../wwwroot/css/Navbar.css'
-import logo from '../../wwwroot/img/logo_size.jpeg'
+import '../../static/css/Navbar.css'
+import logo from '../../static/img/logo_size.jpeg'
 import NavItem from './NavItem'
 import SearchBar from './SearchBar'
 import Profile from './Profile'

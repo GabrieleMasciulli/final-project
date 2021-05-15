@@ -50,13 +50,32 @@
   background-position: left center;
   position: relative;
   display: inline-block;
-  background-image: url('../img/logo_transparent.png');
+  background-image: url('../img/logo_size.jpeg');
   background-repeat: no-repeat;
   background-size: 200px;
 }
 
+@media (max-width: 1280px) {
+  .footer-left {
+    margin-bottom: 35px;
+    flex: 1 1 100% !important;
+  }
+}
+
 .footer-right {
   flex: 1 1 50%;
+}
+
+@media (min-width: 992px) and (max-width: 1280px) {
+  .footer-right {
+    flex: 1 1 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-row {
+    overflow: hidden;
+  }
 }
 
 .footer-right .column {
@@ -64,6 +83,12 @@
   width: 25%;
   padding-right: 10px;
   box-sizing: border-box;
+}
+@media (max-width: 768px) {
+  .footer-right .column {
+    width: 50%;
+    padding-bottom: 35px;
+  }
 }
 .footer-right .column span {
   display: inline-block;
@@ -93,8 +118,19 @@
   cursor: pointer;
 }
 
+.footer-meta {
+  padding-top: 66px;
+  width: 100%;
+}
+
 @media (min-width: 768px) {
   .footer-meta {
     display: flex;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-meta {
+    padding-top: 50px;
   }
 }

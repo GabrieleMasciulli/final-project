@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router'
-import '../wwwroot/css/Detail.css'
+import '../static/css/Detail.css'
 import cryptoService from '../services/Crypto'
 import TopInfo from '../components/detailPage/TopInfo'
 import PageContent from '../components/detailPage/PageContent'

@@ -1,5 +1,5 @@
 import React from 'react'
-import svg from '../../wwwroot/img/Row separator.svg'
+import svg from '../../static/img/Row separator.svg'
 
 const Separator = () => {
   return (

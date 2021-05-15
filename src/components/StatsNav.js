@@ -2,7 +2,7 @@
 import React from 'react'
 import DollarIcon from './designItems/DollarIcon'
 import SunIcon from './designItems/SunIcon'
-import '../wwwroot/css/StatsNav.css'
+import '../static/css/StatsNav.css'
 
 //services
 import statsFormatter from '../services/formatStockData'

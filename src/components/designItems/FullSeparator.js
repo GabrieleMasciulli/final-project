@@ -1,5 +1,5 @@
 import React from 'react'
-import svg from '../../wwwroot/img/full width separator.svg'
+import svg from '../../static/img/full width separator.svg'
 
 const FullWidthSeparator = () => {
   return (
