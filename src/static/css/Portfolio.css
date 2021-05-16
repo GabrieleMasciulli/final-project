@@ -151,3 +151,174 @@
 
   color: rgb(207, 214, 228);
 }
+
+/* add transaction search content with results */
+
+.transaction-search-content {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 16px;
+  width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .transaction-search-content {
+    width: 496px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .transaction-search-content {
+    padding: 0px 32px 32px;
+  }
+}
+
+/* add transaction searchbar */
+
+.transaction-searchbar-wrappper {
+  position: relative;
+}
+
+.transaction-searchbar-wrappper .search-icon {
+  height: 18px;
+  left: 8px;
+  margin-top: -9px;
+  position: absolute;
+  text-align: center;
+  top: 50%;
+}
+
+.search-icon svg {
+  box-sizing: border-box;
+  margin: 0px;
+  height: 18px;
+  width: 18px;
+  color: rgb(166, 176, 195);
+}
+
+.transaction-searchbar-wrappper input {
+  border: 1px solid rgb(239, 242, 245);
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: rgb(0, 0, 0);
+  max-width: 100%;
+  outline: 0px;
+  padding: 0px 16px 0px 32px;
+  width: 100%;
+  font-size: 12px;
+  height: 32px;
+  line-height: 18px;
+  background-color: rgb(239, 242, 245);
+}
+
+/* search results */
+
+.transaction-searchbar-wrappper .search-results-wrapper {
+  height: 400px;
+  overflow-y: hidden;
+}
+
+@media (max-width: 767.98px) {
+  .transaction-searchbar-wrappper .search-results-wrapper {
+    height: 508px;
+  }
+}
+
+.transaction-searchbar-wrappper .search-results-content {
+  box-sizing: border-box;
+  margin: 0px;
+  display: flex;
+  flex-direction: column;
+}
+
+.search-results-content .space {
+  color: rgb(128, 138, 157);
+  margin-bottom: 16px;
+  padding: 0px 10px;
+}
+
+.search-results-content .item-wrapper {
+  height: 48px;
+  -webkit-box-align: center;
+  align-items: center;
+  background: transparent;
+  border: 0px;
+  border-radius: 8px;
+  display: inline-flex;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+  -webkit-box-pack: center;
+  justify-content: center;
+  outline: 0px;
+  font-weight: 600;
+  width: 100%;
+  font-size: 14px;
+  line-height: 24px;
+  padding: 10px;
+}
+
+.search-results-content .item-wrapper:hover {
+  background: rgb(248, 250, 253);
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+}
+
+.item-wrapper .item-content {
+  display: flex;
+  flex-direction: row;
+  -webkit-box-align: center;
+  align-items: center;
+  width: 100%;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+}
+
+.item-content .left-side {
+  box-sizing: border-box;
+  margin: 0px;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+}
+
+.left-side .coin-logo {
+  height: 24px;
+  width: 24px;
+  border-radius: 12px;
+}
+
+/* crypto's name and symbol */
+.left-side .crypto-info-content {
+  box-sizing: border-box;
+  margin: 0px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+@media screen and (min-width: 768px) {
+  .left-side .crypto-info-content {
+    flex-direction: row;
+    -webkit-box-align: center;
+    align-items: center;
+  }
+}
+
+.left-side .crypto-info-content p {
+  font-size: 14px;
+  margin: 0px 0px 0px 12px;
+}
+
+@media screen and (min-width: 768px) {
+  .left-side .crypto-info-content p {
+    margin: 0px 0px 0px 5px;
+    line-height: 24px;
+  }
+}
+
+.crypto-info-content .symbol {
+  color: rgb(128, 138, 157);
+  line-height: 24px;
+  margin: 0px 0px 0px 6px;
+  font-size: 14px;
+}
