@@ -2,12 +2,12 @@ import React from 'react'
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-const ResultItem = ({ handleClick, name, symbol, img }) => {
+const ResultItem = ({ value, name, symbol, logo, onClick }) => {
   return (
-    <button onClick={handleClick} className='item-wrapper'>
+    <button value={value} onClick={onClick} className='item-wrapper'>
       <div className='item-content'>
         <div className='left-side'>
-          <img className='coin-logo' src={img} alt={name}></img>
+          <img className='coin-logo' src={logo} alt={name}></img>
           <div className='crypto-info-content'>
             <p>{name}</p>
             <div className='symbol'>{symbol}</div>
