@@ -11,9 +11,9 @@ import {
 const ProfileDropdown = ({ handleLogout }) => {
   return (
     <div className='profile-dropdown-content'>
-      <DropdownItem name='Watchlist' svg={faStar} />
-      <DropdownItem name='Portfolio' svg={faChartPie} />
-      <DropdownItem name='Settings' svg={faCog} />
+      <DropdownItem name='Watchlist' svg={faStar} url='#' />
+      <DropdownItem name='Portfolio' svg={faChartPie} url='portfolio' />
+      <DropdownItem name='Settings' svg={faCog} url='#' />
       <DropdownItem
         name='Logout'
         svg={faSignOutAlt}

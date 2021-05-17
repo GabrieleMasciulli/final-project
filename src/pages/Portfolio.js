@@ -10,6 +10,8 @@ const Portfolio = () => {
   const [searchInput, setSearchInput] = useState('')
   const [results, setResults] = useState([])
   const [tradeType, setTradeType] = useState('buy')
+  const [price, setPrice] = useState(0)
+  const [quantity, setQuantity] = useState(0)
   const [userAction, setUserAction] = useState({
     wants_to_trade: false,
     selected_coin: null,
@@ -63,8 +65,18 @@ const Portfolio = () => {
   }
 
   // trade part
-  const handleTradeTypeClick = e => {
+  const handleTradeTypeChange = e => {
     setTradeType(e.target.id)
+  }
+
+  const handlePriceChange = e => {
+    const price = e.target.value
+    setPrice(price)
+  }
+
+  const handleQuantityChange = e => {
+    const quantity = e.target.value
+    setQuantity(quantity)
   }
 
   return (
@@ -82,7 +94,11 @@ const Portfolio = () => {
           type={tradeType}
           cancel={handleCancel}
           coin={userAction.selected_coin}
-          onTradeTypeClick={handleTradeTypeClick}
+          onTradeTypeChange={handleTradeTypeChange}
+          price={price}
+          onPriceChange={handlePriceChange}
+          quantity={quantity}
+          onQuantityChange={handleQuantityChange}
         />
       ) : (
         ''

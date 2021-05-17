@@ -331,12 +331,12 @@
   background-color: rgb(235, 239, 242);
 }
 
-.profile-dropdown-item a {
+.profile-dropdown-link {
   color: inherit;
   text-decoration: none;
 }
 
-.profile-dropdown-item a svg {
+.profile-dropdown-link svg {
   color: #16c784 !important;
   color: var(--text-color);
   font-size: 15px;

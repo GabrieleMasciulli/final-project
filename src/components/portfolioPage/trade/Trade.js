@@ -1,9 +1,16 @@
 import React from 'react'
 import CloseIcon from '../../designItems/CloseIconV2'
-import { faCalendarWeek, faCoins } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Additions from './Additions'
 
-const Trade = ({ cancel, onTradeTypeClick, type }) => {
+const Trade = ({
+  cancel,
+  onTradeTypeChange,
+  type,
+  quantity,
+  price,
+  onPriceChange,
+  onQuantityChange,
+}) => {
   return (
     <div className='add-transaction-wrapper'>
       <div className='add-transaction-content'>
@@ -16,14 +23,14 @@ const Trade = ({ cancel, onTradeTypeClick, type }) => {
           <ul className='trade-type'>
             <li
               id='buy'
-              onClick={onTradeTypeClick}
+              onClick={onTradeTypeChange}
               className={type === 'buy' ? 'selected' : ''}
             >
               Buy
             </li>
             <li
               id='sell'
-              onClick={onTradeTypeClick}
+              onClick={onTradeTypeChange}
               className={type === 'sell' ? 'selected' : ''}
             >
               Sell
@@ -36,6 +43,8 @@ const Trade = ({ cancel, onTradeTypeClick, type }) => {
                 <div className='quantity'>
                   <p>Quantity</p>
                   <input
+                    value={quantity}
+                    onChange={onQuantityChange}
                     className='quantity-input'
                     type='number'
                     placeholder='0.00'
@@ -46,35 +55,22 @@ const Trade = ({ cancel, onTradeTypeClick, type }) => {
                   <p>Price per coin</p>
                   <div className='price-input-wrapper'>
                     <span className='input-prefix'>$</span>
-                    <input className='price-input' type='number' />
+                    <input
+                      value={price}
+                      onChange={onPriceChange}
+                      className='price-input'
+                      type='number'
+                      min='0'
+                    />
                   </div>
                 </div>
               </div>
 
-              <div className='trade-additions-wrapper'>
-                <button>
-                  <span>
-                    <FontAwesomeIcon icon={faCalendarWeek} />
-                    {new Date().toUTCString()}
-                  </span>
-                </button>
-                <button>
-                  <span>
-                    <FontAwesomeIcon icon={faCoins} />
-                    Fee
-                  </span>
-                </button>
-                <button>
-                  <span>
-                    <FontAwesomeIcon icon={faCalendarWeek} />
-                    Notes
-                  </span>
-                </button>
-              </div>
+              <Additions />
 
               <div className='total-spent-wrapper'>
                 <p>Total Spent</p>
-                <div>$</div>
+                <div>${price * quantity}</div>
               </div>
 
               <div className='add-trade-wrapper'>
