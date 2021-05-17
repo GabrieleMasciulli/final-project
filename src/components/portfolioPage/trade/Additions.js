@@ -6,14 +6,19 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-const Additions = () => {
+const Additions = ({ date, onDateChange }) => {
   return (
     <div className='trade-additions-wrapper'>
       <button className='date'>
         <span>
           <FontAwesomeIcon icon={faCalendarWeek} />
         </span>
-        <input type='date' />
+        <input
+          value={date}
+          onChange={onDateChange}
+          type='date'
+          className='date-picker'
+        />
       </button>
       <button className='fee'>
         <span>
