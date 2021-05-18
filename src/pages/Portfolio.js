@@ -20,7 +20,7 @@ const Portfolio = () => {
       setResults(results)
     })
   }
-  useEffect(getFirstResultsHook, [])
+  useEffect(getFirstResultsHook, [userAction])
 
   const getFilteredResultsHook = () => {
     if (searchInput.length >= 3) {
@@ -58,6 +58,7 @@ const Portfolio = () => {
       wants_to_trade: true,
       selected_coin: e.currentTarget.value,
     }
+
     setUserAction(newUserAction)
   }
 

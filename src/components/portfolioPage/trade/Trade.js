@@ -4,7 +4,10 @@ import Additions from './Additions'
 import Type from './Type'
 import Inputs from './Inputs'
 import portfolioService from '../../../services/portfolio.service'
+import cryptoService from '../../../services/Crypto'
 import authService from '../../../services/auth.service'
+import tradeValidation from '../../../services/tradeValidation'
+import TradeSuccess from '../../designItems/Success'
 
 const Trade = ({ cancel, coin }) => {
   const [user, setUser] = useState()
@@ -12,6 +15,20 @@ const Trade = ({ cancel, coin }) => {
   const [price, setPrice] = useState('')
   const [quantity, setQuantity] = useState('')
   const [date, setDate] = useState('')
+  const [message, setMessage] = useState('')
+  const [successful, setSuccessful] = useState(false)
+  const [errors, setErrors] = useState({
+    timestamp: null,
+    date: null,
+    price: null,
+    quantity: null,
+  })
+
+  //getting initial price of selected coin
+  const getInitialPrice = () => {
+    cryptoService.getSimplePrice(coin).then(price => setPrice(price.usd))
+  }
+  useEffect(getInitialPrice, [])
 
   const getCurrentUser = () => {
     setUser(authService.getCurrentUser())
@@ -38,24 +55,45 @@ const Trade = ({ cancel, coin }) => {
   }
 
   const handleAddTrade = () => {
-    //client side validation required...
+    setMessage('')
 
-    const dateTimestamp = parseInt((new Date(date).getTime() / 1000).toFixed(0))
-    const transaction = {
-      user_id: user.id,
-      type: 'long',
-      coin_id: coin,
-      transaction: {
-        type: tradeType,
-        date: dateTimestamp,
-        quantity: quantity,
-        price: quantity,
-      },
+    const timestamp = parseInt(new Date(date).getTime().toFixed(0))
+
+    const newErrors = {
+      price: tradeValidation.validatePrice(price),
+      quantity: tradeValidation.validateQuantity(quantity),
+      date: tradeValidation.validateDate(date),
+      timestamp: tradeValidation.validateTimestamp(timestamp),
     }
+    setErrors(newErrors)
 
-    portfolioService
-      .postTransaction(transaction)
-      .then(response => console.log (response))
+    const validationResult = tradeValidation.validateTrade(
+      quantity,
+      price,
+      date,
+      timestamp
+    )
+
+    if (validationResult === 'valid') {
+      const transaction = {
+        user_id: user.id,
+        type: 'long',
+        coin_id: coin,
+        transaction: {
+          type: tradeType,
+          date: timestamp,
+          quantity: quantity,
+          price: quantity,
+        },
+      }
+      portfolioService.postTransaction(transaction).then(response => {
+        setMessage(response.message)
+        setSuccessful(true)
+        setTimeout(() => {
+          cancel()
+        }, 2500)
+      })
+    }
   }
 
   return (
@@ -67,28 +105,44 @@ const Trade = ({ cancel, coin }) => {
         </div>
 
         <div className='trade-content'>
-          <Type type={tradeType} handleClick={handleTradeTypeChange} />
-          <div className='trade-details-wrapper'>
-            <div className='trade-details-content'>
-              <Inputs
-                price={price}
-                onPriceChange={handlePriceChange}
-                quantity={quantity}
-                onQuantityChange={handleQuantityChange}
-              />
+          {!successful ? (
+            <>
+              <Type type={tradeType} handleClick={handleTradeTypeChange} />
+              <div className='trade-details-wrapper'>
+                <div className='trade-details-content'>
+                  <Inputs
+                    coin={coin}
+                    priceError={errors.price}
+                    price={price}
+                    onPriceChange={handlePriceChange}
+                    quantityError={errors.quantity}
+                    quantity={quantity}
+                    onQuantityChange={handleQuantityChange}
+                  />
 
-              <Additions date={date} onDateChange={handleDateChange} />
+                  <Additions
+                    date={date}
+                    dateError={{
+                      date: errors.date,
+                      timestamp: errors.timestamp,
+                    }}
+                    onDateChange={handleDateChange}
+                  />
 
-              <div className='total-spent-wrapper'>
-                <p>Total Spent</p>
-                <div>${price * quantity}</div>
+                  <div className='total-spent-wrapper'>
+                    <p>Total Spent</p>
+                    <div>${price * quantity}</div>
+                  </div>
+
+                  <div className='add-trade-wrapper'>
+                    <button onClick={handleAddTrade}>AddTransaction</button>
+                  </div>
+                </div>
               </div>
-
-              <div className='add-trade-wrapper'>
-                <button onClick={handleAddTrade}>AddTransaction</button>
-              </div>
-            </div>
-          </div>
+            </>
+          ) : (
+            <TradeSuccess wrapper={''} message={message} />
+          )}
         </div>
       </div>
     </div>

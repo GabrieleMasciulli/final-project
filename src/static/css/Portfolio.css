@@ -637,3 +637,33 @@ input[type='date']::-webkit-calendar-picker-indicator {
   line-height: 24px;
   margin-top: 32px;
 }
+
+/* client side validation error messages */
+
+.trade-details-content .error-message {
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 500;
+  color: rgb(255, 23, 73);
+  margin: 8px 0px;
+}
+
+/* trade success message */
+
+.add-transaction-content .success {
+  font-size: 22px;
+  line-height: 34px;
+  font-weight: 700;
+  color: var(--color-primary-black);
+}
+
+.add-transaction-content .success svg {
+  color: #16c784;
+  margin-right: 15px;
+}
+
+.add-transaction-content .success p {
+  font-size: 16px;
+  margin: 0;
+  text-align: center;
+}

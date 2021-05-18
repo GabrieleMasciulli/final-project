@@ -1,6 +1,14 @@
 import React from 'react'
 
-const Inputs = ({ quantity, onQuantityChange, price, onPriceChange }) => {
+const Inputs = ({
+  coin,
+  quantity,
+  onQuantityChange,
+  price,
+  onPriceChange,
+  quantityError,
+  priceError,
+}) => {
   return (
     <div className='trade-inputs-wrapper'>
       <div className='quantity'>
@@ -13,6 +21,11 @@ const Inputs = ({ quantity, onQuantityChange, price, onPriceChange }) => {
           placeholder='0.00'
           min='0'
         />
+        {quantityError === 'invalid' ? (
+          <div className='error-message'>Enter a valid quantity.</div>
+        ) : (
+          ''
+        )}
       </div>
       <div className='price'>
         <p>Price per coin</p>
@@ -26,6 +39,11 @@ const Inputs = ({ quantity, onQuantityChange, price, onPriceChange }) => {
             min='0'
           />
         </div>
+        {priceError === 'invalid' ? (
+          <div className='error-message'>Enter a valid price.</div>
+        ) : (
+          ''
+        )}
       </div>
     </div>
   )
