@@ -2,6 +2,11 @@
 import axios from 'axios'
 const baseUrl = '/api/cryptos'
 
+const getSimplePrice = id => {
+  const request = axios.get(`${baseUrl}/price/${id}`)
+  return request.then(response => response.data)
+}
+
 const getTotNumberOfCryptos = () => {
   const request = axios.get(baseUrl)
   return request.then(response => response.data)
@@ -35,6 +40,7 @@ const getGlobalStats = () => {
 }
 
 export default {
+  getSimplePrice,
   getInfo,
   getTotNumberOfCryptos,
   getSparklines,
