@@ -7,6 +7,7 @@ import SubmitBtn from './SubmitBtn'
 import CloseIcon from '../designItems/CloseIcon'
 import AuthService from '../../services/auth.service'
 import authValidation from '../../services/authValidation'
+import LoginSuccess from '../designItems/Success'
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
@@ -103,12 +104,7 @@ const Login = ({ cancel, visible, setUser, changeToSignup }) => {
             <div className='error-message text-center'>{message}</div>
           </div>
         ) : (
-          <div className='form-wrapper'>
-            <div className='success'>
-              <FontAwesomeIcon icon={faCheckCircle} />
-              {message}
-            </div>
-          </div>
+          <LoginSuccess wrapper={'form-wrapper'} message={message} />
         )}
       </div>
     </div>

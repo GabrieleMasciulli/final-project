@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import '../../static/css/Auth.css'
 import MailInput from './MailInput'
 import PasswInput from './PasswInput'
