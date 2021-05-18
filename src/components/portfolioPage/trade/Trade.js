@@ -84,7 +84,7 @@ const Trade = ({ cancel, coin }) => {
           type: tradeType,
           date: timestamp,
           quantity: quantity,
-          price: quantity,
+          price: price,
         },
       }
       portfolioService.postTransaction(transaction).then(response => {
