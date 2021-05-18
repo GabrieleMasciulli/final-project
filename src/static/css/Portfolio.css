@@ -1,3 +1,10 @@
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  border-spacing: 0px;
+}
+
 .portfolio-page-wrapper {
   background-image: linear-gradient(
     rgb(248, 250, 253) 0%,
@@ -84,249 +91,196 @@
   margin-right: 6px;
 }
 
-/* add transaction window */
-
-.add-transaction-wrapper {
+.tracker-wrapper {
+  box-sizing: border-box;
+  margin: 32px 0px 0px;
   display: flex;
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  -webkit-box-pack: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  align-items: center;
-  top: 0px;
-  left: 0px;
-  background: rgba(10, 30, 66, 0.4);
-  z-index: 1102;
+  flex-direction: row;
 }
 
-.add-transaction-content {
-  background-color: rgb(255, 255, 255);
-  border-radius: 10px;
+/* User Assets right panel */
+
+.assets-wrapper {
+  --colors-neutral2: #eff2f5;
+  flex: 1 1 0%;
+  border: 1px solid var(--colors-neutral2);
+  border-radius: 16px;
 }
 
-@media (max-width: 767.98px) {
-  .add-transaction-content {
-    position: fixed;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    -webkit-box-pack: start;
-    justify-content: flex-start;
-    -webkit-box-align: center;
-    align-items: center;
-    top: 0px;
-    left: 0px;
-    border-radius: 0px;
-  }
-}
-
-.transaction-top-info {
+/* top name ('Your Assets') */
+.assets-wrapper .top-name {
   display: flex;
   -webkit-box-pack: justify;
   justify-content: space-between;
   -webkit-box-align: center;
   align-items: center;
-  padding: 16px 32px 0px;
+}
+
+.assets-wrapper .top-name p {
+  line-height: 1.5;
+  margin: 0px;
+  padding: 24px 24px 24px 0px;
+  color: rgb(34, 37, 49);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+@media screen and (min-width: 1152px) {
+  .assets-wrapper .top-name p {
+    padding-left: 24px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .assets-wrapper .top-name p {
+    padding-left: 0px;
+  }
+}
+
+/* assets table */
+
+.assets-wrapper .assets-table {
+  margin: auto;
+  font-size: 14px;
   width: 100%;
 }
 
-/* select coin top name */
-.transaction-top-info div {
+.assets-table thead {
+  position: relative;
+  z-index: 120;
+}
+
+.assets-table thead th {
+  padding-left: 24px;
+  background-color: var(--table-background-color);
+  height: 38px;
+  border-top: 1px solid var(--table-divider-color);
+  padding: 11px 10px;
+  z-index: 99;
+  font-size: 12px;
+  border-bottom: 1px solid var(--table-divider-color);
+}
+
+.assets-table .thead-text p {
+  white-space: nowrap;
+  line-height: 1.5;
+  margin: 0px;
+  color: rgb(34, 37, 49);
+  font-size: 12px;
+}
+
+.assets-table tbody {
+  cursor: pointer;
+}
+
+.assets-table tr:hover {
+  background-color: #f8fafd;
+}
+
+.assets-table td {
+  height: 80px;
+  background-color: transparent;
+  padding-left: 24px;
+  border-bottom: 1px solid var(--table-divider-color);
+  padding: 10px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.assets-table a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.assets-table .asset-td1 {
+  box-sizing: border-box;
+  margin: 0px;
   display: flex;
   -webkit-box-align: center;
   align-items: center;
-  flex: 1 1 0%;
-  font-size: 24px;
-  font-weight: bold;
-  padding: 16px 0px;
 }
 
-.transaction-top-info svg {
-  cursor: pointer;
-  box-sizing: border-box;
-  margin: 0px;
-
-  color: rgb(207, 214, 228);
+.assets-table .coin-logo {
+  height: 26px;
+  width: 26px;
+  border-radius: 12px;
 }
 
-/* add transaction search content with results */
-
-.transaction-search-content {
-  box-sizing: border-box;
-  margin: 0px;
-  padding: 16px;
-  width: 100%;
-}
-
-@media screen and (min-width: 768px) {
-  .transaction-search-content {
-    width: 496px;
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .transaction-search-content {
-    padding: 0px 32px 32px;
-  }
-}
-
-/* add transaction searchbar */
-
-.transaction-searchbar-wrappper {
-  position: relative;
-}
-
-.transaction-searchbar-wrappper .search-icon {
-  height: 18px;
-  left: 8px;
-  margin-top: -9px;
-  position: absolute;
-  text-align: center;
-  top: 50%;
-}
-
-.search-icon svg {
-  box-sizing: border-box;
-  margin: 0px;
-  height: 18px;
-  width: 18px;
-  color: rgb(166, 176, 195);
-}
-
-.transaction-searchbar-wrappper input {
-  border: 1px solid rgb(239, 242, 245);
-  border-radius: 8px;
-  box-sizing: border-box;
-  color: rgb(0, 0, 0);
-  max-width: 100%;
-  outline: 0px;
-  padding: 0px 16px 0px 32px;
-  width: 100%;
-  font-size: 12px;
-  height: 32px;
-  line-height: 18px;
-  background-color: rgb(239, 242, 245);
-}
-
-/* search results */
-
-.transaction-search-content::-webkit-scrollbar {
-  display: none;
-}
-
-.transaction-search-content {
-  height: 400px;
-  -ms-overflow-style: none; /* for Internet Explorer, Edge */
-  scrollbar-width: none; /* for Firefox */
-  overflow-y: scroll;
-}
-
-@media (max-width: 767.98px) {
-  .transaction-searchbar-wrappper .search-results-wrapper {
-    height: 508px;
-  }
-}
-
-.transaction-searchbar-wrappper .search-results-content {
+.assets-table .coin-infos {
   box-sizing: border-box;
   margin: 0px;
   display: flex;
   flex-direction: column;
-}
-
-.search-results-content .space {
-  color: rgb(128, 138, 157);
-  margin-bottom: 16px;
-  padding: 0px 10px;
-}
-
-.search-results-content .item-wrapper {
-  height: 48px;
-  -webkit-box-align: center;
-  align-items: center;
-  background: transparent;
-  border: 0px;
-  border-radius: 8px;
-  display: inline-flex;
-  color: rgb(0, 0, 0);
-  cursor: pointer;
-  -webkit-box-pack: center;
-  justify-content: center;
-  outline: 0px;
-  font-weight: 600;
-  width: 100%;
-  font-size: 14px;
-  line-height: 24px;
-  padding: 10px;
-}
-
-.search-results-content .item-wrapper:hover {
-  background: rgb(248, 250, 253);
-  color: rgb(0, 0, 0);
-  text-decoration: none;
-}
-
-.item-wrapper .item-content {
-  display: flex;
-  flex-direction: row;
-  -webkit-box-align: center;
-  align-items: center;
-  width: 100%;
-  -webkit-box-pack: justify;
-  justify-content: space-between;
-}
-
-.item-content .left-side {
-  box-sizing: border-box;
-  margin: 0px;
-  display: flex;
-  -webkit-box-align: center;
-  align-items: center;
-}
-
-.left-side .coin-logo {
-  height: 24px;
-  width: 24px;
-  border-radius: 12px;
-}
-
-/* crypto's name and symbol */
-.left-side .crypto-info-content {
-  box-sizing: border-box;
-  margin: 0px;
-  display: flex;
-  flex-direction: row;
   align-items: flex-start;
 }
 
 @media screen and (min-width: 768px) {
-  .left-side .crypto-info-content {
+  .assets-table .coin-infos {
     flex-direction: row;
     -webkit-box-align: center;
     align-items: center;
   }
 }
 
-.left-side .crypto-info-content p {
+.assets-table .coin-name {
+  white-space: break-spaces;
+  color: rgb(34, 37, 49);
   font-size: 14px;
   margin: 0px 0px 0px 12px;
+  line-height: 16px;
 }
 
 @media screen and (min-width: 768px) {
-  .left-side .crypto-info-content p {
+  .assets-table .coin-name {
     margin: 0px 0px 0px 5px;
     line-height: 24px;
   }
 }
 
-.crypto-info-content .symbol {
+.assets-table .coin-symbol {
+  display: flex;
+  flex-direction: row;
+  -webkit-box-align: center;
+  align-items: center;
+}
+
+.assets-table .coin-symbol p {
   color: rgb(128, 138, 157);
-  line-height: 24px;
   margin: 0px 0px 0px 6px;
+  font-size: 14px;
+  line-height: 24px;
+}
+
+.assets-table p {
+  white-space: break-spaces;
+  line-height: 1.5;
+  margin: 0px;
+  color: rgb(34, 37, 49);
   font-size: 14px;
 }
 
+.assets-table .asset-holdings,
+.assets-table .asset-profit-loss {
+  box-sizing: border-box;
+  margin: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
 
+.assets-table .asset-holdings p {
+  line-height: 1.5;
+  margin: 0px;
+  color: rgb(88, 102, 126);
+  font-size: 12px;
+}
+
+.assets-table .asset-profit-loss span {
+  padding: 0px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.assets-table .asset-actions div {
+  padding-right: 14px;
+}

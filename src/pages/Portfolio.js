@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import '../static/css/Portfolio.css'
+import '../static/css/TradeCryptoSearch.css'
+import Tracker from '../components/portfolioPage/tracker/Tracker'
 import TopInfo from '../components/portfolioPage/addTransaction/TopInfo'
 import AddTransaction from '../components/portfolioPage/addTransaction/AddTransaction'
 import Trade from '../components/portfolioPage/trade/Trade'
@@ -80,6 +82,7 @@ const Portfolio = () => {
       <div className='portfolio-page-wrapper'>
         <div className='portfolio-page-content'>
           <TopInfo addTransaction={() => setAddTransaction(!addTransaction)} />
+          <Tracker />
         </div>
       </div>
     </div>
