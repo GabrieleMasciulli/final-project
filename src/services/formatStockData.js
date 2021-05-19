@@ -1,10 +1,20 @@
 /* eslint-disable import/no-anonymous-default-export */
 const formatData = (type, value) => {
+  if (value === null) return '?'
+
   let result = ``
+
   if (type === 'number') {
     result = value !== null ? value.toFixed(2) : ''
   } else if (type === '$') {
-    result = value !== null ? `$${value.toLocaleString()}` : '?'
+    const number = Math.abs(value)
+
+    result = `$${formatDecimals(number)}`
+  } else if (type === 'profit') {
+    const number = Math.abs(value)
+    const formattedNumber = formatDecimals(number)
+
+    result = value > 0 ? `+ $${formattedNumber}` : `- $${formattedNumber}`
   } else if (type === '%') {
     result = value !== null ? `${Math.abs(value.toFixed(2))} %` : '?'
   }
@@ -26,4 +36,19 @@ const getTrend = value => {
   return value >= 0 ? 'text-green' : 'text-red'
 }
 
-export default { formatData, getTrend, formatStats }
+const formatDecimals = number => {
+  if (number < 1) {
+    const decimal_zeros = -Math.floor(Math.log10(number) + 1)
+    const fixed = decimal_zeros + 4
+    return number.toFixed(fixed)
+  } else {
+    return number.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+  }
+}
+
+export default {
+  formatData,
+  getTrend,
+  formatStats,
+  formatDecimals,
+}
