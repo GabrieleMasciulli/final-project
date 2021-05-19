@@ -38,7 +38,7 @@ const StatsNav = ({ loading, stats }) => {
               </span>
               <span>
                 Upcoming ICOs:
-                <a href='#'>{stats.ended_icos}</a>
+                <a href='#'>{stats.upcoming_icos}</a>
               </span>
               <span>
                 Ongoing ICOs:
