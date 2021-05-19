@@ -1,18 +1,23 @@
 import React from 'react'
 import Thead from './Thead'
 import Tbody from './Tbody'
+import Loader from '../../designItems/Loader'
 
-const Assets = () => {
+const Assets = ({ assets, loading }) => {
   return (
     <div className='assets-wrapper'>
       <div className='top-name'>
         <p>Your Assets</p>
       </div>
 
-      <table className='assets-table'>
-        <Thead />
-        <Tbody />
-      </table>
+      {loading ? (
+        <Loader />
+      ) : (
+        <table className='assets-table'>
+          <Thead />
+          <Tbody assets={assets} loading={loading} />
+        </table>
+      )}
     </div>
   )
 }
