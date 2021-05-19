@@ -8,7 +8,7 @@ const postTransaction = newTransaction => {
 }
 
 const getPositions = user => {
-  const request = axios.get(baseUrl)
+  const request = axios.get(`${baseUrl}/assets`, { params: { user } })
   return request.then(response => response.data)
 }
 
