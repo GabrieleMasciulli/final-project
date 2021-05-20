@@ -4,12 +4,10 @@ import Tbody from './Tbody'
 
 const Table = ({ cryptos, globalStats }) => {
   return (
-    <div className='screener-wrapper'>
-      <table className='screener '>
-        <Thead />
-        <Tbody cryptos={cryptos} globalStats={globalStats} />
-      </table>
-    </div>
+    <table className='screener '>
+      <Thead />
+      <Tbody cryptos={cryptos} globalStats={globalStats} />
+    </table>
   )
 }
 

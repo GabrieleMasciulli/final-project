@@ -29,7 +29,7 @@ function App() {
     data: AuthService.getCurrentUser() || null,
   })
 
-  const getCountCryptos = () => {
+  const getGlobalStats = () => {
     setGlobalLoading(true)
     cryptoService.getGlobalStats().then(response => {
       setGlobalStats(response)
@@ -37,7 +37,7 @@ function App() {
     })
   }
 
-  useEffect(getCountCryptos, [])
+  useEffect(getGlobalStats, [])
 
   //user actions concerning authentication
   const handleSignUpClick = () => {
@@ -83,6 +83,7 @@ function App() {
             signupClick={handleSignUpClick}
             logoutClick={handleLogout}
           />
+          <div class='homepage-separator'></div>
           <Switch>
             <Route
               exact

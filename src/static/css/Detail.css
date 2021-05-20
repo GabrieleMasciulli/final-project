@@ -103,6 +103,81 @@
   }
 }
 
+.top-left-wrapper .basic-info-wrapper {
+  box-sizing: border-box;
+  margin: 0px 0px 16px;
+  display: flex;
+  align-items: flex-start;
+  align-items: center;
+  word-break: break-word;
+}
+
+.top-left-wrapper .basic-info-wrapper img {
+  margin-right: 12px;
+}
+
+.top-left-wrapper .basic-info-wrapper h2 {
+  font-size: 32px;
+  line-height: 42px;
+  margin-right: 8px;
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  color: rgb(34, 37, 49);
+  margin: 0px;
+}
+
+.top-left-wrapper .basic-info-wrapper small {
+  word-break: initial;
+  background-color: var(--color-light-neutral-2);
+  color: var(--color-light-neutral-6);
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 18px;
+  margin-left: 12px;
+  margin-right: 6px;
+}
+
+.top-left-wrapper button {
+  -webkit-box-align: center;
+  align-items: center;
+  background: transparent;
+  border: 1px solid rgb(207, 214, 228);
+  border-radius: 8px;
+  display: inline-flex;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+  -webkit-box-pack: center;
+  justify-content: center;
+  outline: 0px;
+  font-weight: 600;
+  width: auto;
+  height: 32px;
+  font-size: 12px;
+  padding: 0px 16px;
+  line-height: 18px;
+}
+
+.top-left-wrapper .rank-wrapper {
+  box-sizing: border-box;
+  margin: 0px;
+  display: flex;
+}
+
+.top-left-wrapper .rank-wrapper div {
+  background-color: var(--color-light-neutral-5);
+  color: #fff;
+  margin-right: 8px;
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 18px;
+  white-space: nowrap;
+}
+
 /* Crypto price top center content */
 
 .top-info-content .top-center-wrapper {
@@ -126,6 +201,81 @@
   .top-info-content .top-center-wrapper {
     flex: 0 0 34%;
   }
+}
+.top-center-wrapper h1 {
+  color: var(--text-color-sub);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+  margin-bottom: 4px;
+  text-align: right;
+}
+
+@media (min-width: 1376px) {
+  .top-center-wrapper h1 {
+    text-align: left;
+  }
+}
+
+.top-center-wrapper .price-value-wrapper {
+  box-sizing: border-box;
+  margin: 0px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+@media (min-width: 1376px) {
+  .top-center-wrapper .price-value-wrapper {
+    justify-content: flex-start;
+  }
+}
+
+.top-center-wrapper .price-value-wrapper div {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 42px;
+  margin-right: 16px;
+}
+
+.top-center-wrapper .price-value-wrapper span {
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 10px;
+  white-space: nowrap;
+  border-radius: 8px;
+}
+
+.top-center-wrapper .bitcoin-conversion-wrapper {
+  box-sizing: border-box;
+  margin: 0px;
+
+  margin-top: 6px;
+  margin-bottom: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+@media (min-width: 1376px) {
+  .top-center-wrapper .bitcoin-conversion-wrapper {
+    align-items: flex-start;
+  }
+}
+
+.top-center-wrapper .bitcoin-conversion-wrapper p {
+  margin: 0;
+  margin-top: 4px;
+  line-height: 1;
+  font-size: 14px;
+  color: var(--color-light-neutral-5);
+}
+
+.top-center-wrapper .bitcoin-conversion-wrapper span {
+  white-space: nowrap;
+  border-radius: 8px;
+  padding: 0px;
+  margin-left: 12px;
 }
 
 /* Buttons top right content */

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import SyncLoader from 'react-spinners/SyncLoader'
+import TopInfo from '../components/homePage/TopInfo'
 import Table from '../components/homePage/Table'
 import Pagination from '../components/Pagination'
 import cryptoService from '../services/Crypto'
@@ -51,7 +52,9 @@ const Home = ({ cryptoCount, globalLoading, globalStats }) => {
           <SyncLoader color={'#2196F3'} loading={loading} size={20} />
         </div>
       ) : (
-        <>
+        <div className='screener-wrapper'>
+          <TopInfo />
+
           <Table cryptos={cryptos} globalStats={globalStats} />
           <Pagination
             cryptoCount={cryptoCount}
@@ -60,7 +63,7 @@ const Home = ({ cryptoCount, globalLoading, globalStats }) => {
             pageChage={handlePageChange}
             rowsChange={handleRowsChange}
           />
-        </>
+        </div>
       )}
     </>
   )

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router'
 import '../static/css/Detail.css'
 import cryptoService from '../services/Crypto'
-import TopInfo from '../components/detailPage/TopInfo'
+import TopInfo from '../components/detailPage/topInfo/TopInfo'
 import PageContent from '../components/detailPage/PageContent'
 
 const Detail = props => {
