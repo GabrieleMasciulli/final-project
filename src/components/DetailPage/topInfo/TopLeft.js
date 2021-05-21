@@ -1,6 +1,6 @@
 import React from 'react'
 
-const TopLeft = () => {
+const TopLeft = ({ data }) => {
   return (
     <div className='top-left-wrapper'>
       <div className='basic-info-wrapper'>
@@ -11,7 +11,8 @@ const TopLeft = () => {
           alt='ETH'
         ></img>
         <h2>
-          Ethereum<small>ETH</small>
+          {data.name}
+          <small>{data.symbol.toUpperCase()}</small>
         </h2>
         {/* <span className='add-watchlist-wrapper'>
           <button>

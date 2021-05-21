@@ -5,19 +5,24 @@ const formatData = (type, value) => {
   let result = ``
 
   if (type === 'number') {
-    result = value !== null ? value.toFixed(2) : ''
+    const number = Math.abs(value)
+    const formattedNumber = formatDecimals(number)
+
+    result = `${formattedNumber}`
   } else if (type === '$') {
     const number = Math.abs(value)
+    const formattedNumber = formatDecimals(number)
 
-    result = `$${formatDecimals(number)}`
+    result = `$${formattedNumber}`
   } else if (type === 'profit') {
     const number = Math.abs(value)
     const formattedNumber = formatDecimals(number)
 
     result = value > 0 ? `+ $${formattedNumber}` : `- $${formattedNumber}`
   } else if (type === '%') {
-    result = value !== null ? `${Math.abs(value.toFixed(2))} %` : '?'
+    result = `${Math.abs(value.toFixed(2))} %`
   }
+
   return result
 }
 

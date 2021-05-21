@@ -36,7 +36,7 @@ const TopInfo = () => {
     trend = marketcap_change > 0 ? 'increase' : 'decrease'
   }
 
-  console.log(globalStats)
+  // console.log(globalStats)
 
   const getGlobalStats = () => {
     setGlobalLoading(true)

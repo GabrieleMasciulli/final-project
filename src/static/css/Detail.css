@@ -246,6 +246,22 @@
   border-radius: 8px;
 }
 
+.price-value-wrapper .up-trend {
+  background-color: var(--up-color);
+  color: white;
+}
+
+.price-value-wrapper .down-trend {
+  background-color: var(--down-color);
+  color: white;
+}
+
+.price-value-wrapper .down-trend svg,
+.price-value-wrapper .up-trend svg {
+  margin-right: 3px;
+  vertical-align: -0.15em;
+}
+
 .top-center-wrapper .bitcoin-conversion-wrapper {
   box-sizing: border-box;
   margin: 0px;
@@ -276,6 +292,111 @@
   border-radius: 8px;
   padding: 0px;
   margin-left: 12px;
+}
+
+.bitcoin-conversion-wrapper .up-trend {
+  color: var(--up-color);
+}
+
+.bitcoin-conversion-wrapper .down-trend {
+  color: var(--down-color);
+}
+
+.bitcoin-conversion-wrapper .up-trend svg,
+.bitcoin-conversion-wrapper .down-trend svg {
+  margin-right: 3px;
+  vertical-align: -0.15em;
+}
+
+/* day low/high stats with bar */
+
+.low-high-wrapper {
+  display: flex;
+  align-items: center;
+}
+@media (min-width: 768px) {
+  .low-high-wrapper {
+    margin: 14px 0 8px 0;
+    justify-content: flex-end;
+  }
+}
+
+@media (min-width: 1376px) {
+  .low-high-wrapper {
+    margin: 14px 0 20px 0;
+    justify-content: flex-start;
+  }
+}
+
+.low-high-wrapper .low-wrapper {
+  box-sizing: border-box;
+  margin: 0px 16px 0px 0px;
+  white-space: nowrap;
+}
+
+.low-high-wrapper .high-wrapper {
+  box-sizing: border-box;
+  margin: 0px 0px 0px 16px;
+  white-space: nowrap;
+}
+
+.low-high-wrapper .low-wrapper .text,
+.low-high-wrapper .high-wrapper .text {
+  color: var(--color-light-neutral-6);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+}
+
+.low-high-wrapper .low-wrapper .price,
+.low-high-wrapper .high-wrapper .price {
+  color: var(--color-primary-black);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 22px;
+}
+
+.low-high-wrapper .low-high-bar {
+  box-sizing: border-box;
+  margin: 0px;
+  width: 100%;
+  max-width: 170px;
+}
+
+.low-high-bar .background-bar {
+  height: 6px;
+  display: inline-block;
+  position: relative;
+  background: var(--control-dropdown-background-color);
+  border-radius: 4px;
+  line-height: 5;
+  width: 100%;
+}
+
+.low-high-bar .front-bar {
+  display: inherit;
+  background-color: var(--theme-light-color);
+  height: 100%;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  border-top-left-radius: inherit;
+  border-bottom-left-radius: inherit;
+  color: var(--theme-light-color);
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  transition: width 3s ease-in-out 0s;
+}
+
+.low-high-bar .front-bar svg {
+  position: absolute;
+  top: -1px;
+  right: -8px;
+  width: 16px;
+  color: var(--theme-light-color);
+  box-sizing: border-box;
+  margin: 0px;
+  height: 24px;
 }
 
 /* Buttons top right content */

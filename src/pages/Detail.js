@@ -38,7 +38,7 @@ const Detail = props => {
 
   return (
     <div className='detail-container'>
-      <TopInfo />
+      <TopInfo data={stats} loading={statsLoading} />
       <PageContent
         data={chartData}
         chartLoading={chartLoading}
