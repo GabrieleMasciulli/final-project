@@ -135,7 +135,7 @@ const PriceStatistics = ({ stats, globalStats }) => {
                 <th scope='row'>Market Rank</th>
                 <td>
                   <FontAwesomeIcon icon={faCrown} color='#16c784' />{' '}
-                  {stats.coingecko_rank}
+                  {stats.market_cap_rank}
                 </td>
               </tr>
             </tbody>

@@ -7,7 +7,7 @@ const NavItem = ({ name, url }) => {
       <Link
         className='detail-redirect-wrapper'
         to={{
-          pathname: `/${url}`,
+          pathname: `${url}`,
         }}
       >
         <div className='link-content' aria-expanded='false'>

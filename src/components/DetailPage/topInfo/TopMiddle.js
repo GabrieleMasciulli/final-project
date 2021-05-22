@@ -20,9 +20,17 @@ const TopMiddle = ({ data }) => {
     'number',
     data.market_data.current_price.btc
   )
+  const price_in_eth = formatService.formatData(
+    'number',
+    data.market_data.current_price.eth
+  )
   const day_change_in_btc = formatService.formatData(
     '%',
     data.market_data.price_change_percentage_24h_in_currency.btc
+  )
+  const day_change_in_eth = formatService.formatData(
+    '%',
+    data.market_data.price_change_percentage_24h_in_currency.eth
   )
   const low_24h = formatService.formatData('$', data.market_data.low_24h.usd)
   const high_24h = formatService.formatData('$', data.market_data.high_24h.usd)
@@ -44,17 +52,37 @@ const TopMiddle = ({ data }) => {
         </span>
       </div>
       <div className='bitcoin-conversion-wrapper'>
-        <p>
-          {price_in_btc} BTC
-          <span className={trend}>
-            {trend === 'up-trend' ? (
-              <FontAwesomeIcon icon={faCaretUp} />
-            ) : (
-              <FontAwesomeIcon icon={faCaretDown} />
-            )}
-            {day_change_in_btc}
-          </span>
-        </p>
+        {data.id !== 'bitcoin' ? (
+          <p>
+            {price_in_btc} BTC
+            <span className={trend}>
+              {trend === 'up-trend' ? (
+                <FontAwesomeIcon icon={faCaretUp} />
+              ) : (
+                <FontAwesomeIcon icon={faCaretDown} />
+              )}
+              {day_change_in_btc}
+            </span>
+          </p>
+        ) : (
+          ''
+        )}
+
+        {data.id !== 'ethereum' ? (
+          <p>
+            {price_in_eth} ETH
+            <span className={trend}>
+              {trend === 'up-trend' ? (
+                <FontAwesomeIcon icon={faCaretUp} />
+              ) : (
+                <FontAwesomeIcon icon={faCaretDown} />
+              )}
+              {day_change_in_eth}
+            </span>
+          </p>
+        ) : (
+          ''
+        )}
       </div>
 
       <div className='low-high-wrapper'>

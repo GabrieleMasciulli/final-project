@@ -6,7 +6,7 @@ const LowHighBar = ({ low, high, current }) => {
   const high_minus_low = high - low
   const high_minus_current = high - current
   const bar_width = 100 - (100 * high_minus_current) / high_minus_low
-  console.log(bar_width)
+
   const style = {
     width: `${bar_width}%`,
   }

@@ -45,7 +45,8 @@ const formatDecimals = number => {
   if (number < 1) {
     const decimal_zeros = -Math.floor(Math.log10(number) + 1)
     const fixed = decimal_zeros + 4
-    return number.toFixed(fixed)
+
+    return number.toFixed(fixed === Infinity ? 0 : fixed)
   } else {
     return number.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
   }

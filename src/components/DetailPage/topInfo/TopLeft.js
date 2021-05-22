@@ -4,12 +4,7 @@ const TopLeft = ({ data }) => {
   return (
     <div className='top-left-wrapper'>
       <div className='basic-info-wrapper'>
-        <img
-          src='https://s2.coinmarketcap.com/static/img/coins/64x64/1027.png'
-          height='32'
-          width='32'
-          alt='ETH'
-        ></img>
+        <img src={data.image.small} height='32' width='32' alt='ETH'></img>
         <h2>
           {data.name}
           <small>{data.symbol.toUpperCase()}</small>
@@ -21,7 +16,7 @@ const TopLeft = ({ data }) => {
         </span> */}
       </div>
       <div className='rank-wrapper'>
-        <div>Rank #2</div>
+        <div>Rank #{data.market_cap_rank}</div>
       </div>
     </div>
   )
