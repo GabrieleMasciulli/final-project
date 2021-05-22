@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import '../../static/css/Navbar.css'
 import logo from '../../static/img/logo_size.jpeg'
 import NavItem from './NavItem'
@@ -8,11 +9,18 @@ import Profile from './Profile'
 const Navbar = ({ loginClick, signupClick, user, logoutClick }) => {
   return (
     <div className='navbar-wrapper'>
-      <a href='/' title='Go to homepage' className='logo-link'>
+      <Link
+        title='Go to homepage'
+        className='logo-link'
+        to={{
+          pathname: '/',
+        }}
+      >
         <div className='logo-wrapper'>
           <img src={logo} alt='' width='180' />
         </div>
-      </a>
+      </Link>
+
       <div className='nav-links-wrapper'>
         <nav className='nav-links-content'>
           <ul>
