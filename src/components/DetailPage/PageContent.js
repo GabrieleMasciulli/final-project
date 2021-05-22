@@ -9,11 +9,19 @@ const PageConntent = ({
   statsLoading,
   data,
   globalStats,
+  onChartDayChange,
+  currentDays,
 }) => {
   return (
     <div className='page-content-container'>
       <div className='crypto-detail-container'>
-        <LeftPane crypto={crypto} loading={chartLoading} data={data} />
+        <LeftPane
+          currentDays={currentDays}
+          crypto={crypto}
+          loading={chartLoading}
+          data={data}
+          onChartDayChange={onChartDayChange}
+        />
         <RightPane
           loading={statsLoading}
           stats={stats}

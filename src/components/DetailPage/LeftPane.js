@@ -1,10 +1,16 @@
 import React from 'react'
 import Chart from './Chart'
 
-const LeftPane = ({ crypto, loading, data }) => {
+const LeftPane = ({ crypto, loading, data, onChartDayChange, currentDays }) => {
   return (
     <div className='left-side'>
-      <Chart loading={loading} data={data} crypto={crypto} />
+      <Chart
+        currentDays={currentDays}
+        loading={loading}
+        data={data}
+        crypto={crypto}
+        onDayChange={onChartDayChange}
+      />
     </div>
   )
 }

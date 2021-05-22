@@ -8,17 +8,13 @@ import Loader from '../designItems/Loader'
 import Highcharts from 'highcharts/highstock'
 import HighchartsReact from 'highcharts-react-official'
 
-const Chart = ({ crypto, loading, data }) => {
+const Chart = ({ crypto, loading, data, onDayChange, currentDays }) => {
   const [chartType, setChartType] = useState('price')
-  const [timespan, setTimespan] = useState('all')
+
   const chartOptions = chartOptionService.getOptions(data)
 
   const handleChartTypeHover = e => {
     setChartType(e.target.value)
-  }
-
-  const handleTimespanClick = e => {
-    setTimespan(e.target.value)
   }
 
   return (
@@ -35,10 +31,7 @@ const Chart = ({ crypto, loading, data }) => {
               type={chartType}
               handleHover={handleChartTypeHover}
             />
-            <TimespanSelector
-              timespan={timespan}
-              onClick={handleTimespanClick}
-            />
+            <TimespanSelector current={currentDays} onClick={onDayChange} />
           </div>
           <HighchartsReact
             highcharts={Highcharts}

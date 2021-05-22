@@ -972,7 +972,8 @@
   font-size: 12px;
 }
 
-.chart-timespan-item:hover {
+.chart-timespan-item:hover,
+.chart-timespan .selected {
   background-color: rgb(248, 250, 253);
   font-weight: 600;
 }

@@ -14,7 +14,8 @@ const Detail = props => {
   const [statsLoading, setStatsLoading] = useState(true)
   const [days, setDays] = useState('max')
 
-  // console.log('Chart data: ', chartData)
+  console.log('Chart data: ', chartData)
+
   // console.log('Stats: ', stats)
 
   const getChartData = () => {
@@ -33,13 +34,20 @@ const Detail = props => {
     })
   }
 
-  useEffect(getChartData, [])
+  useEffect(getChartData, [days])
   useEffect(getStats, [])
+
+  const handleDaysChange = e => {
+    const newDays = e.target.value === 0 ? 'max' : e.target.value
+    setDays(newDays)
+  }
 
   return (
     <div className='detail-container'>
       <TopInfo data={stats} loading={statsLoading} />
       <PageContent
+        currentDays={days}
+        onChartDayChange={handleDaysChange}
         data={chartData}
         chartLoading={chartLoading}
         statsLoading={statsLoading}

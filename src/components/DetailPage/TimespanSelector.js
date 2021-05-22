@@ -1,6 +1,6 @@
 import React from 'react'
 
-const TimespanSelector = ({ onClick }) => {
+const TimespanSelector = ({ onClick, current }) => {
   const today = new Date()
   const YTD = Math.ceil(
     (today - new Date(today.getFullYear(), 0, 1)) / 86400000
@@ -13,7 +13,7 @@ const TimespanSelector = ({ onClick }) => {
     { text: '3M', days: 90 },
     { text: '1Y', days: 365 },
     { text: 'YTD', days: YTD },
-    { text: 'ALL', days: 'max' },
+    { text: 'ALL', days: 0 },
   ]
   return (
     <div>
@@ -23,7 +23,13 @@ const TimespanSelector = ({ onClick }) => {
             key={item.text}
             value={item.days}
             onClick={onClick}
-            className='chart-timespan-item'
+            className={`chart-timespan-item ${
+              current === 'max' && item.days === 0
+                ? 'selected'
+                : current === item.days
+                ? 'selected'
+                : ''
+            }`}
           >
             {item.text}
           </li>

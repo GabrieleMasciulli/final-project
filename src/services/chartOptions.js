@@ -53,7 +53,20 @@ const getOptions = data => {
       pointFormat: '{point.x}',
       valueDecimals: 2,
       formatter() {
-        let s = '<b>' + Highcharts.dateFormat('%A, %B %e, %Y', this.x) + '</b>'
+        let unix_timestamp = this.x
+        var date = new Date(unix_timestamp)
+        var hours = date.getHours()
+        var minutes = '0' + date.getMinutes()
+        var seconds = '0' + date.getSeconds()
+        var formattedTime =
+          hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2)
+
+        let s =
+          '<b>' +
+          Highcharts.dateFormat('%A, %B %e, %Y', this.x) +
+          ' at ' +
+          formattedTime +
+          '</b>'
 
         this.points.forEach(point => {
           s += '<br/>Price: $' + point.y.toFixed(4)

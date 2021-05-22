@@ -5,8 +5,6 @@ import formatService from '../../../services/formatStockData'
 import LowHighBar from '../../designItems/LowHighBar'
 
 const TopMiddle = ({ data }) => {
-  console.log(data)
-
   const current_price = formatService.formatData(
     '$',
     data.market_data.current_price.usd

@@ -54,7 +54,7 @@ const BottomLeft = ({ data }) => {
         <div className='title'>Tags: </div>
         <ul>
           {data.categories.map(tag => (
-            <TagListItem text={tag} />
+            <TagListItem key={tag} text={tag} />
           ))}
         </ul>
       </div>
