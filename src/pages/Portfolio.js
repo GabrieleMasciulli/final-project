@@ -18,7 +18,7 @@ const Portfolio = () => {
   const duplicates = new Set()
 
   const getFirstResultsHook = () => {
-    searchService.getFirst().then(results => {
+    searchService.getFirst(100).then(results => {
       setResults(results)
     })
   }

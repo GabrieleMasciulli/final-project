@@ -2,7 +2,7 @@ import React from 'react'
 import EmptyStar from '../designItems/EmpyStar'
 import { Link } from 'react-router-dom'
 
-const Row = ({ crypto, globalStats }) => {
+const Row = ({ crypto }) => {
   let {
     id,
     image,
@@ -43,10 +43,6 @@ const Row = ({ crypto, globalStats }) => {
           className='detail-redirect-wrapper'
           to={{
             pathname: `/detail/${id}`,
-            state: {
-              global: globalStats,
-              crypto: crypto,
-            },
           }}
         >
           <div className='logo-wrapper'>

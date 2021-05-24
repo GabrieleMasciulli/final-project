@@ -2,8 +2,8 @@
 import axios from 'axios'
 const baseUrl = '/api/search'
 
-const getFirst = () => {
-  const request = axios.get(`${baseUrl}/first`)
+const getFirst = limit => {
+  const request = axios.get(`${baseUrl}/first/${limit}`)
   return request.then(response => response.data)
 }
 

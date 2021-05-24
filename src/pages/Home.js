@@ -55,7 +55,7 @@ const Home = ({ cryptoCount, globalLoading, globalStats }) => {
         <div className='screener-wrapper'>
           <TopInfo />
 
-          <Table cryptos={cryptos} globalStats={globalStats} />
+          <Table cryptos={cryptos} />
           <Pagination
             cryptoCount={cryptoCount}
             pagination={pagination}

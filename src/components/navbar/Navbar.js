@@ -7,6 +7,7 @@ import SearchBar from './SearchBar'
 import Profile from './Profile'
 
 const Navbar = ({ loginClick, signupClick, user, logoutClick }) => {
+
   return (
     <div className='navbar-wrapper'>
       <Link

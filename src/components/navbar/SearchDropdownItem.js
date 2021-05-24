@@ -5,7 +5,7 @@ const DropdownItem = ({ id }) => {
   return (
     <Link
       to={{
-        pathname: '#',
+        pathname: `/detail/${id}`,
         state: {},
       }}
     >

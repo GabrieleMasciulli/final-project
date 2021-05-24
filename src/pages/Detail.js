@@ -5,18 +5,29 @@ import cryptoService from '../services/Crypto'
 import TopInfo from '../components/detailPage/topInfo/TopInfo'
 import PageContent from '../components/detailPage/PageContent'
 
-const Detail = props => {
-  const { crypto, global } = props.location.state
+const Detail = () => {
   const { id } = useParams()
+  const [crypto, setCrypto] = useState()
+  const [globalStats, setGlobalStats] = useState(0)
   const [chartData, setChartData] = useState([])
   const [stats, setStats] = useState()
   const [chartLoading, setChartLoading] = useState(true)
   const [statsLoading, setStatsLoading] = useState(true)
+  const [cryptoLoading, setCryptoLoading] = useState(true)
+  const [globalLoading, setGlobalLoading] = useState(true)
   const [days, setDays] = useState('max')
 
-  console.log('Chart data: ', chartData)
-
+  // console.log('Chart data: ', chartData)
   // console.log('Stats: ', stats)
+
+  const getGlobalStats = () => {
+    setGlobalLoading(true)
+    cryptoService.getGlobalStats().then(response => {
+      setGlobalStats(response)
+      setGlobalLoading(false)
+    })
+  }
+  useEffect(getGlobalStats, [])
 
   const getChartData = () => {
     setChartLoading(true)
@@ -25,6 +36,7 @@ const Detail = props => {
       setChartLoading(false)
     })
   }
+  useEffect(getChartData, [days])
 
   const getStats = () => {
     setStatsLoading(true)
@@ -33,16 +45,23 @@ const Detail = props => {
       setStatsLoading(false)
     })
   }
-
-  useEffect(getChartData, [days])
   useEffect(getStats, [])
+
+  const getCryptoDetails = () => {
+    setCryptoLoading(true)
+    cryptoService.getInfoFromId(id).then(crypto => {
+      setCrypto(crypto)
+      setCryptoLoading(false)
+    })
+  }
+  useEffect(getCryptoDetails, [])
 
   const handleDaysChange = e => {
     const newDays = e.target.value === 0 ? 'max' : e.target.value
     setDays(newDays)
   }
 
-  return (
+  return !cryptoLoading ? (
     <div className='detail-container'>
       <TopInfo data={stats} loading={statsLoading} />
       <PageContent
@@ -51,11 +70,14 @@ const Detail = props => {
         data={chartData}
         chartLoading={chartLoading}
         statsLoading={statsLoading}
+        globalLoading={globalLoading}
         crypto={crypto}
         stats={stats}
-        globalStats={global}
+        globalStats={globalStats}
       />
     </div>
+  ) : (
+    'loading'
   )
 }
 

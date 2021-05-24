@@ -6,6 +6,7 @@ const PageConntent = ({
   crypto,
   stats,
   chartLoading,
+  globalLoading,
   statsLoading,
   data,
   globalStats,
@@ -23,6 +24,7 @@ const PageConntent = ({
           onChartDayChange={onChartDayChange}
         />
         <RightPane
+          globalLoading={globalLoading}
           loading={statsLoading}
           stats={stats}
           globalStats={globalStats}
