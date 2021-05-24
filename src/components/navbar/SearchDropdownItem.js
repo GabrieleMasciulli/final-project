@@ -1,27 +1,22 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const DropdownItem = ({ id }) => {
+const DropdownItem = ({ coin }) => {
+  const name = coin.name
+  const logo = coin.logo
+  const symbol = coin.symbol
+
   return (
     <Link
       to={{
-        pathname: `/detail/${id}`,
-        state: {},
+        pathname: `/detail/${coin.coingecko_id}`,
       }}
     >
       <div className='search-item-wrapper'>
         <div className='search-item-content'>
-          <img
-            src='https://s2.coinmarketcap.com/static/img/coins/64x64/233.png'
-            alt={id}
-          />
-          <p className='item-name'>Name</p>
-          <p className='item-symbol'>BTC</p>
-        </div>
-        <div className='search-item-content'>
-          <div className='rank-area'>
-            <p>#2079</p>
-          </div>
+          <img src={logo} alt={name} />
+          <p className='item-name'>{name}</p>
+          <p className='item-symbol'>{symbol}</p>
         </div>
       </div>
     </Link>

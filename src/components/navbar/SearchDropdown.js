@@ -1,13 +1,13 @@
 import React from 'react'
 import SearchDropdownItem from './SearchDropdownItem'
 
-const SearchDropdown = () => {
+const SearchDropdown = ({ results }) => {
   return (
     <div className='search-dropdown-wrapper '>
       <div className='search-dropdown-content'>
-        <SearchDropdownItem id='bitcoin' />
-        <SearchDropdownItem id='ethereum' />
-        <SearchDropdownItem id='dogecoin' />
+        {results.map(result => (
+          <SearchDropdownItem key={result.coingecko_id} coin={result} />
+        ))}
       </div>
     </div>
   )

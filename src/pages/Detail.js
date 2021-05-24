@@ -4,6 +4,7 @@ import '../static/css/Detail.css'
 import cryptoService from '../services/Crypto'
 import TopInfo from '../components/detailPage/topInfo/TopInfo'
 import PageContent from '../components/detailPage/PageContent'
+import Loader from '../components/designItems/Loader'
 
 const Detail = () => {
   const { id } = useParams()
@@ -27,7 +28,7 @@ const Detail = () => {
       setGlobalLoading(false)
     })
   }
-  useEffect(getGlobalStats, [])
+  useEffect(getGlobalStats, [id])
 
   const getChartData = () => {
     setChartLoading(true)
@@ -36,7 +37,7 @@ const Detail = () => {
       setChartLoading(false)
     })
   }
-  useEffect(getChartData, [days])
+  useEffect(getChartData, [days, id])
 
   const getStats = () => {
     setStatsLoading(true)
@@ -45,7 +46,7 @@ const Detail = () => {
       setStatsLoading(false)
     })
   }
-  useEffect(getStats, [])
+  useEffect(getStats, [id])
 
   const getCryptoDetails = () => {
     setCryptoLoading(true)
@@ -54,7 +55,7 @@ const Detail = () => {
       setCryptoLoading(false)
     })
   }
-  useEffect(getCryptoDetails, [])
+  useEffect(getCryptoDetails, [id])
 
   const handleDaysChange = e => {
     const newDays = e.target.value === 0 ? 'max' : e.target.value
@@ -77,7 +78,7 @@ const Detail = () => {
       />
     </div>
   ) : (
-    'loading'
+    <Loader />
   )
 }
 
