@@ -7,7 +7,6 @@ import SearchBar from './SearchBar'
 import Profile from './Profile'
 
 const Navbar = ({ loginClick, signupClick, user, logoutClick }) => {
-
   return (
     <div className='navbar-wrapper'>
       <Link
@@ -27,7 +26,7 @@ const Navbar = ({ loginClick, signupClick, user, logoutClick }) => {
           <ul>
             <NavItem name='Cryptocurrencies' url='/' />
             <NavItem name='Exchanges' url='#' />
-            <NavItem name='Portfolio' url='portfolio' />
+            <NavItem name='Portfolio' url='/portfolio' />
             <NavItem name='Watchlist' url='#' />
             <NavItem name='Some Link' url='#' />
             <NavItem name='Some other Link' url='#' />
