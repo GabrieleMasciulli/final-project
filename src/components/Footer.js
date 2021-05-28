@@ -57,6 +57,12 @@ const Footer = ({ crypto }) => {
           <Column title='Services' items={items[2]} />
         </div>
         <div className='footer-meta'>
+          <a href='https://www.buymeacoffee.com/masciu'>
+            <img
+              src='https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=masciu&button_colour=3a88fe&font_colour=ffffff&font_family=Lato&outline_colour=ffffff&coffee_colour=FFDD00'
+              alt=''
+            ></img>
+          </a>
           @{new Date().getFullYear()} QcoinCap. All rights reserved.
         </div>
       </div>

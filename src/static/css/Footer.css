@@ -119,8 +119,18 @@
 }
 
 .footer-meta {
+  justify-content: center;
+  align-items: center;
   padding-top: 66px;
   width: 100%;
+}
+
+.footer-meta a {
+  margin-right: 15px;
+}
+
+.footer-meta img {
+  width: 200px;
 }
 
 @media (min-width: 768px) {
