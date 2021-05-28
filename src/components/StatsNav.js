@@ -3,8 +3,7 @@ import React from 'react'
 import DollarIcon from './designItems/DollarIcon'
 import SunIcon from './designItems/SunIcon'
 import '../static/css/StatsNav.css'
-
-//services
+import { Link } from 'react-router-dom'
 import statsFormatter from '../services/formatStockData'
 
 const StatsNav = ({ loading, stats }) => {
@@ -18,7 +17,14 @@ const StatsNav = ({ loading, stats }) => {
             <div className='left-content'>
               <span>
                 Cryptos:
-                <a href='/'>{stats.active_cryptocurrencies}</a>
+                <Link
+                  className='detail-redirect-wrapper'
+                  to={{
+                    pathname: '/',
+                  }}
+                >
+                  {stats.active_cryptocurrencies}
+                </Link>
               </span>
               <span>
                 Market Cap🧢  :
