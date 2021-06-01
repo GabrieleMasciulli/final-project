@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Assets from './Assets'
 import portfolioService from '../../../services/portfolio.service'
 import authService from '../../../services/auth.service'
+import Balance from './Balance'
 
 const Tracker = () => {
   const user = authService.getCurrentUser()
@@ -22,7 +23,7 @@ const Tracker = () => {
 
   return (
     <div className='tracker-wrapper'>
-      <div className='chart-balance-wrapper'></div>
+      <Balance />
       <Assets loading={loading} assets={assets} />
     </div>
   )
