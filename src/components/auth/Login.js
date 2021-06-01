@@ -8,8 +8,6 @@ import CloseIcon from '../designItems/CloseIcon'
 import AuthService from '../../services/auth.service'
 import authValidation from '../../services/authValidation'
 import LoginSuccess from '../designItems/Success'
-import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const Login = ({ cancel, visible, setUser, changeToSignup }) => {
   const history = useHistory()
