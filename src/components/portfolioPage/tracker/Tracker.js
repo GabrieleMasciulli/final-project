@@ -9,7 +9,7 @@ const Tracker = () => {
   const [assets, setAssets] = useState([])
   const [loading, setLoading] = useState(false)
 
-  console.log('Assets: ', assets)
+  // console.log('Assets: ', assets)
 
   const getAssets = () => {
     setLoading(true)

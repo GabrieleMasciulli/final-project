@@ -12,7 +12,13 @@ const getPositions = user => {
   return request.then(response => response.data)
 }
 
+const getCurrentBalance = user => {
+  const request = axios.get(`${baseUrl}/balance`, { params: { user } })
+  return request.then(response => response.data)
+}
+
 export default {
   postTransaction,
   getPositions,
+  getCurrentBalance,
 }

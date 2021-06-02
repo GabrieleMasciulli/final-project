@@ -67,7 +67,7 @@
   justify-content: space-between;
 }
 
-.financials-wrapper .price {
+.financials-wrapper .value {
   color: var(--text-color);
   font-size: 32px;
   font-weight: 700;
@@ -82,11 +82,18 @@
   border-radius: 8px;
   font-size: 14px;
   font-weight: 600;
-  background-color: rgb(22, 199, 132);
   color: white;
   height: 32px;
   padding: 0px 8px;
   white-space: nowrap;
+}
+
+.financials-wrapper .change-wrapper-up {
+  background-color: var(--up-color);
+}
+
+.financials-wrapper .change-wrapper-down {
+  background-color: var(--down-color);
 }
 
 .balance-content .change-up {
@@ -167,4 +174,8 @@
   justify-content: center;
   -webkit-box-align: center;
   align-items: center;
+}
+
+.pie-holdings-percentage {
+  color: var(--color-light-neutral-6) !important;
 }

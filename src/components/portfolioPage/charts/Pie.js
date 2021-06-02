@@ -82,7 +82,11 @@ const Pie = () => {
           const piePercentage =
             options.w.globals.seriesPercent[indexInSeries][0]
 
-          return `${symbol} <span>${piePercentage.toFixed(2)}%</span>`
+          return `${symbol} 
+          <span style="
+          color: var(--color-light-neutral-6);">
+          ${piePercentage.toFixed(2)}%
+          </span>`
         },
       },
     },

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import ChartSelector from './ChartSelector'
 import PieChart from './Pie'
 
