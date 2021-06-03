@@ -17,7 +17,7 @@ const Additions = ({ date, onDateChange, dateError }) => {
           <input
             value={date}
             onChange={onDateChange}
-            type='date'
+            type='datetime-local'
             className='date-picker'
           />
         </button>
