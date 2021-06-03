@@ -48,7 +48,7 @@ const Pie = () => {
               name: {
                 show: true,
                 color: '#909090',
-                fontSize: '10px',
+                fontSize: '14px',
                 fontWeight: 100,
                 formatter: function (symbol) {
                   return symbol + ' Total'
@@ -119,7 +119,8 @@ const Pie = () => {
         options={options.chartOptions}
         series={options.series}
         type='donut'
-        width='340'
+        width='380'
+        height='400'
       />
     </div>
   ) : (
