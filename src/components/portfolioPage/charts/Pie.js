@@ -1,10 +1,29 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Chart from 'react-apexcharts'
+import portfolioService from '../../../services/portfolio.service'
+import authService from '../../../services/auth.service'
+import formatService from '../../../services/formatStockData'
 
 const Pie = () => {
+  const user = authService.getCurrentUser()
+  const [loading, setLoading] = useState(true)
+  const [data, setData] = useState([])
+
+  console.log(data)
+
+  const getPieData = () => {
+    setLoading(true)
+    portfolioService.getPieChartData(user.id).then(response => {
+      setData(response)
+      setLoading(false)
+    })
+  }
+
+  useEffect(getPieData, [])
+
   const options = {
     chartOptions: {
-      labels: ['ETH', 'BTC', 'SHIB', 'ADA'],
+      labels: data.labels,
       chart: {
         toolbar: { show: true },
       },
@@ -91,10 +110,10 @@ const Pie = () => {
       },
     },
 
-    series: [318.36, 360.0, 77, 81.34],
+    series: data.series,
   }
 
-  return (
+  return !loading ? (
     <div className='donut'>
       <Chart
         options={options.chartOptions}
@@ -103,6 +122,8 @@ const Pie = () => {
         width='340'
       />
     </div>
+  ) : (
+    ''
   )
 }
 

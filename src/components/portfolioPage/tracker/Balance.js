@@ -18,7 +18,6 @@ const Balance = () => {
   const getBalanceData = () => {
     setLoading(true)
     portfolioService.getCurrentBalance(user.id).then(data => {
-      console.log(data)
       setData(data)
       setLoading(false)
     })
