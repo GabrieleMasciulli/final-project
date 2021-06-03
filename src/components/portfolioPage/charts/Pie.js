@@ -48,7 +48,7 @@ const Pie = () => {
               name: {
                 show: true,
                 color: '#909090',
-                fontSize: '12px',
+                fontSize: '10px',
                 fontWeight: 100,
                 formatter: function (symbol) {
                   return symbol + ' Total'
@@ -60,8 +60,8 @@ const Pie = () => {
                 fontSize: '16px',
                 fontWeight: 600,
                 offsetY: 3,
-                formatter: function (holdings) {
-                  return `$${holdings}`
+                formatter: function (holding) {
+                  return `${formatService.formatData('$', holding)}`
                 },
               },
             },

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+
 import '../../../static/css/Trade.css'
 import CloseIcon from '../../designItems/CloseIconV2'
 import Additions from './Additions'
@@ -92,6 +93,7 @@ const Trade = ({ cancel, coin }) => {
         setSuccessful(true)
         setTimeout(() => {
           cancel()
+          window.location.reload()
         }, 2500)
       })
     }
