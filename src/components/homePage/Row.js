@@ -18,26 +18,12 @@ const Row = ({ crypto }) => {
     sparkline_url,
   } = crypto
 
-  const formattedData = (type, value) => {
-    let result = ``
-    if (type === 'number') {
-      result = value !== null ? value : ''
-    } else if (type === '$') {
-      result = value !== null ? `$${value.toLocaleString()}` : '?'
-    } else if (type === '%') {
-      result = value !== null ? `${value.toFixed(2)} %` : '?'
-    }
-    return result
-  }
-
   return (
     <tr>
       <td className='text-center'>
         <EmptyStar />
       </td>
-      <td className='text-center'>
-        {formattedData('number', market_cap_rank)}
-      </td>
+      <td className='text-center'>{market_cap_rank}</td>
       <td className='text-start'>
         <Link
           className='detail-redirect-wrapper'
@@ -53,32 +39,32 @@ const Row = ({ crypto }) => {
           </div>
         </Link>
       </td>
-      <td className='text-end'>{formattedData('$', current_price)}</td>
+      <td className='text-end'>{current_price}</td>
       <td
         className={`text-end ${
-          day_change === null ? '' : day_change < 0 ? 'text-red' : 'text-green'
+          day_change === 'No data'
+            ? ''
+            : day_change < 0
+            ? 'text-red'
+            : 'text-green'
         }`}
       >
-        {formattedData('%', day_change)}
+        {day_change}
       </td>
       <td
         className={`text-end ${
-          week_change === null
+          week_change === 'No data'
             ? ''
             : week_change < 0
             ? 'text-red'
             : 'text-green'
         }`}
       >
-        {formattedData('%', week_change)}
+        {week_change}
       </td>
-      <td className='text-end'>{formattedData('$', market_cap)}</td>
-      <td className='text-end'>{formattedData('$', volume)}</td>
-      <td className='text-end'>
-        {circulating_supply !== null
-          ? `${circulating_supply.toLocaleString()} ${symbol.toUpperCase()}`
-          : '?'}
-      </td>
+      <td className='text-end'>{market_cap}</td>
+      <td className='text-end'>{volume}</td>
+      <td className='text-end'>{`${circulating_supply} ${symbol}`}</td>
       <td className='text-end'>
         <img src={sparkline_url} alt='' width='164' height='54' />
       </td>
