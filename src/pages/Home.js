@@ -4,6 +4,7 @@ import TopInfo from '../components/homePage/TopInfo'
 import Table from '../components/homePage/Table'
 import Pagination from '../components/Pagination'
 import cryptoService from '../services/Crypto'
+import formatterService from '../services/formatStockData'
 
 const Home = ({ cryptoCount, globalLoading, globalStats }) => {
   const [cryptos, setCryptos] = useState([])
@@ -14,6 +15,7 @@ const Home = ({ cryptoCount, globalLoading, globalStats }) => {
   })
   const [maxPages, setMaxPage] = useState()
 
+  // console.log(cryptos)
   // console.log(globalLoading)
   // console.log(globalStats)
 
@@ -23,7 +25,8 @@ const Home = ({ cryptoCount, globalLoading, globalStats }) => {
     cryptoService
       .getInfo('market_cap_desc', pagination.rows, pagination.page)
       .then(data => {
-        setCryptos(data)
+        const formatHomepageTable = formatterService.formatHomepageTable(data)
+        setCryptos(formatHomepageTable)
         setLoading(false)
       })
   }
