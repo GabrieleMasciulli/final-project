@@ -12,10 +12,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 const Profile = ({ handleLogout }) => {
   const [showDropdown, setShowDropdown] = useState(false)
 
-  const handleClick = () => {}
+  const handleProfileClick = () => {
+    const newShowDropdown = !showDropdown
+    setShowDropdown(newShowDropdown)
+  }
   return (
     <div className='navbar-profile-wrapper'>
       <Tippy
+        onHide={handleProfileClick}
         trigger='click'
         interactive='true'
         className='show-profile-tooltip'
@@ -24,7 +28,7 @@ const Profile = ({ handleLogout }) => {
         placement='bottom-end'
         content={<ProfileDropdown handleLogout={handleLogout} />}
       >
-        <button className='profile-button'>
+        <button onClick={handleProfileClick} className='profile-button'>
           <FontAwesomeIcon icon={faUserAlt} />
           {showDropdown ? (
             <FontAwesomeIcon icon={faAngleUp} />
