@@ -66,7 +66,7 @@ const TopInfo = () => {
               ) : (
                 <FontAwesomeIcon icon={faCaretDown} />
               )}
-              <span class='icon-Caret-down'></span> {marketcap_change}%
+              <span className='icon-Caret-down'></span> {marketcap_change}%
             </span>{' '}
             {trend} over the last day.
           </p>

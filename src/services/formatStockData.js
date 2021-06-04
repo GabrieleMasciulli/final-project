@@ -82,7 +82,7 @@ const formatHomepageTable = arr => {
       symbol: crypto.symbol.toUpperCase(),
       current_price: priceValue(crypto.current_price),
       market_cap: priceValue(crypto.market_cap),
-      market_cap_rank: noValueIfNull(crypto.noValueIfNull),
+      market_cap_rank: noValueIfNull(crypto.market_cap_rank),
       fully_diluted_valuation: priceValue(crypto.fully_diluted_valuation),
       total_volume: priceValue(crypto.total_volume),
       high_24h: priceValue(crypto.high_24h),
