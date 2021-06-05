@@ -33,6 +33,9 @@ const formatDecimals = number => {
 }
 
 const formatThousands = number => {
+  if (number < 1) {
+    return number
+  }
   return number.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
 }
 
@@ -124,9 +127,6 @@ const formatHomepageTable = arr => {
 const formatGlobalStats = stats => {
   return {
     ...stats,
-    active_cryptocurrencies: localeStringConverter(
-      stats.active_cryptocurrencies
-    ),
     ended_icos: localeStringConverter(stats.ended_icos),
     upcoming_icos: localeStringConverter(stats.upcoming_icos),
     total_market_cap: priceValue(stats.total_market_cap.usd),
@@ -134,11 +134,28 @@ const formatGlobalStats = stats => {
   }
 }
 
+const formatAssetsData = assets => {
+  const alteredData = assets.map(asset => {
+    return {
+      ...asset,
+      day_change_in_currency: priceValue(asset.day_change_in_currency),
+      holding_in_currency: priceValue(asset.holding_in_currency),
+      last_price: priceValue(asset.last_price),
+      percentage_day_change: percentageValue(asset.percentage_day_change),
+      percentage_profit_change: percentageValue(asset.percentage_profit_change),
+      profit_in_currency: profitValue(asset.profit_in_currency),
+    }
+  })
+  console.log(alteredData)
+
+  return alteredData
+}
+
 export default {
   formatData,
   getTrend,
   formatStats,
-  formatDecimals,
   formatHomepageTable,
   formatGlobalStats,
+  formatAssetsData,
 }
