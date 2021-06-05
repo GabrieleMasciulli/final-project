@@ -3,18 +3,6 @@ const formatData = (type, value) => {
   if (value === null || value === undefined) return 'No data'
 }
 
-const formatStats = (type, value) => {
-  if (value === null || undefined) return 'No data'
-
-  if (type === 'volume' || type === 'marketcap') {
-    return `$${Math.trunc(value).toLocaleString()}`
-  }
-
-  if (type === 'market_dominance') {
-    return value.toFixed(2)
-  }
-}
-
 const getTrend = value => {
   return value >= 0 ? 'text-green' : 'text-red'
 }
@@ -146,16 +134,26 @@ const formatAssetsData = assets => {
       profit_in_currency: profitValue(asset.profit_in_currency),
     }
   })
-  console.log(alteredData)
 
+  // console.log(alteredData)
   return alteredData
+}
+
+const formatBalanceData = balance => {
+  const alteredBalance = {
+    holdings: priceValue(balance.holdings),
+    day_change_percentage: percentageValue(balance.day_change_percentage),
+    day_change_in_currency: profitValue(balance.day_change_in_currency),
+  }
+
+  return alteredBalance
 }
 
 export default {
   formatData,
   getTrend,
-  formatStats,
   formatHomepageTable,
   formatGlobalStats,
   formatAssetsData,
+  formatBalanceData,
 }
