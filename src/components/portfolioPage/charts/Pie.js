@@ -9,7 +9,7 @@ const Pie = () => {
   const [loading, setLoading] = useState(true)
   const [data, setData] = useState([])
 
-  console.log(data)
+  // console.log(data)
 
   const getPieData = () => {
     setLoading(true)
