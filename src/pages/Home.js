@@ -6,7 +6,7 @@ import Pagination from '../components/Pagination'
 import cryptoService from '../services/Crypto'
 import formatterService from '../services/formatStockData'
 
-const Home = ({ cryptoCount, globalLoading, globalStats }) => {
+const Home = ({ cryptoCount }) => {
   const [cryptos, setCryptos] = useState([])
   const [loading, setLoading] = useState(false)
   const [pagination, setPagination] = useState({
@@ -50,7 +50,7 @@ const Home = ({ cryptoCount, globalLoading, globalStats }) => {
 
   return (
     <>
-      {loading || globalLoading ? (
+      {loading ? (
         <div className='loading-wrapper'>
           <SyncLoader color={'#2196F3'} loading={loading} size={20} />
         </div>
