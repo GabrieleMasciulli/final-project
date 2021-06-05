@@ -3,17 +3,12 @@ import Converter from './Converter'
 import PriceStatistics from './PriceStatistics'
 import Loader from '../designItems/Loader'
 
-const RightPane = ({ loading, stats, globalStats, globalLoading }) => {
+const RightPane = ({ loading, stats }) => {
   return (
     <div className='right-side'>
       <Converter />
-      {loading ? (
-        <Loader />
-      ) : globalLoading ? (
-        <Loader />
-      ) : (
-        <PriceStatistics stats={stats} globalStats={globalStats} />
-      )}
+
+      {loading ? <Loader /> : <PriceStatistics stats={stats} />}
     </div>
   )
 }

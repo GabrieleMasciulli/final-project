@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router'
 import '../static/css/Detail.css'
 import cryptoService from '../services/Crypto'
+import formatService from '../services/formatStockData'
 import TopInfo from '../components/detailPage/topInfo/TopInfo'
 import PageContent from '../components/detailPage/PageContent'
 import Loader from '../components/designItems/Loader'
@@ -9,26 +10,15 @@ import Loader from '../components/designItems/Loader'
 const Detail = () => {
   const { id } = useParams()
   const [crypto, setCrypto] = useState()
-  const [globalStats, setGlobalStats] = useState(0)
   const [chartData, setChartData] = useState([])
   const [stats, setStats] = useState()
   const [chartLoading, setChartLoading] = useState(true)
   const [statsLoading, setStatsLoading] = useState(true)
   const [cryptoLoading, setCryptoLoading] = useState(true)
-  const [globalLoading, setGlobalLoading] = useState(true)
   const [days, setDays] = useState('max')
 
   // console.log('Chart data: ', chartData)
   // console.log('Stats: ', stats)
-
-  const getGlobalStats = () => {
-    setGlobalLoading(true)
-    cryptoService.getGlobalStats().then(response => {
-      setGlobalStats(response)
-      setGlobalLoading(false)
-    })
-  }
-  useEffect(getGlobalStats, [id])
 
   const getChartData = () => {
     setChartLoading(true)
@@ -42,7 +32,8 @@ const Detail = () => {
   const getStats = () => {
     setStatsLoading(true)
     cryptoService.getStats(id).then(data => {
-      setStats(data)
+      const formattedStats = formatService.formatStatsData(data)
+      setStats(formattedStats)
       setStatsLoading(false)
     })
   }
@@ -68,13 +59,11 @@ const Detail = () => {
       <PageContent
         currentDays={days}
         onChartDayChange={handleDaysChange}
+        crypto={crypto}
         data={chartData}
         chartLoading={chartLoading}
-        statsLoading={statsLoading}
-        globalLoading={globalLoading}
-        crypto={crypto}
         stats={stats}
-        globalStats={globalStats}
+        statsLoading={statsLoading}
       />
     </div>
   ) : (

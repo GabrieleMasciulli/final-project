@@ -14,7 +14,9 @@ const Row = ({ crypto }) => {
     total_volume: volume,
     circulating_supply,
     price_change_percentage_24h_in_currency: day_change,
+    daily_trend,
     price_change_percentage_7d_in_currency: week_change,
+    weekly_trend,
     sparkline_url,
   } = crypto
 
@@ -42,22 +44,22 @@ const Row = ({ crypto }) => {
       <td className='text-end'>{current_price}</td>
       <td
         className={`text-end ${
-          day_change === 'No data'
+          daily_trend === 'No data'
             ? ''
-            : day_change < 0
-            ? 'text-red'
-            : 'text-green'
+            : daily_trend === 'up'
+            ? 'text-green'
+            : 'text-red'
         }`}
       >
         {day_change}
       </td>
       <td
         className={`text-end ${
-          week_change === 'No data'
+          weekly_trend === 'No data'
             ? ''
-            : week_change < 0
-            ? 'text-red'
-            : 'text-green'
+            : weekly_trend === 'up'
+            ? 'text-green'
+            : 'text-red'
         }`}
       >
         {week_change}

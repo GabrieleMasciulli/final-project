@@ -1,14 +1,4 @@
 /* eslint-disable import/no-anonymous-default-export */
-const formatData = (type, value) => {
-  if (value === null || value === undefined) return 'No data'
-}
-
-const getTrend = value => {
-  return value >= 0 ? 'text-green' : 'text-red'
-}
-
-// ---------------------------------------------
-
 const formatDecimals = number => {
   if (number < 1) {
     const decimal_zeros = -Math.floor(Math.log10(number) + 1)
@@ -59,7 +49,9 @@ const profitValue = val => {
   const number = Math.abs(val)
   const formattedNumber = formatDecimals(number)
 
-  return val > 0 ? `+ $${formattedNumber}` : `- $${formattedNumber}`
+  return val > 0
+    ? `+ $${formatThousands(formattedNumber)}`
+    : `- $${formatThousands(formattedNumber)}`
 }
 
 const percentageValue = val => {
@@ -149,11 +141,47 @@ const formatBalanceData = balance => {
   return alteredBalance
 }
 
+const formatStatsData = stats => {
+  const alteredStats = {
+    ...stats,
+    symbol: stats.symbol.toUpperCase(),
+    current_price: priceValue(stats.market_data.current_price.usd),
+    price_change_24h: profitValue(stats.market_data.price_change_24h),
+    price_change_percentage_24h: percentageValue(
+      stats.market_data.price_change_percentage_24h
+    ),
+    low_24h: priceValue(stats.market_data.low_24h.usd),
+    high_24h: priceValue(stats.market_data.high_24h.usd),
+    total_volume: priceValue(stats.market_data.total_volume.usd),
+    vol_over_marketcap: numberWithFormattedDecimals(stats.vol_over_marketcap),
+    market_dominance: percentageValue(stats.market_dominance),
+    marketcap: priceValue(stats.market_data.market_cap.usd),
+    marketcap_daily_percentage_change: percentageValue(
+      stats.market_data.market_cap_change_percentage_24h
+    ),
+    volume: priceValue(stats.market_data.total_volume.usd),
+    price_in_btc: numberWithFormattedDecimals(
+      stats.market_data.current_price.btc
+    ),
+    price_in_eth: numberWithFormattedDecimals(
+      stats.market_data.current_price.eth
+    ),
+    day_change_in_btc: percentageValue(
+      stats.market_data.price_change_percentage_24h_in_currency.btc
+    ),
+    day_change_in_eth: percentageValue(
+      stats.market_data.price_change_percentage_24h_in_currency.eth
+    ),
+  }
+
+  return alteredStats
+}
+
 export default {
-  formatData,
-  getTrend,
+  priceValue,
   formatHomepageTable,
   formatGlobalStats,
   formatAssetsData,
   formatBalanceData,
+  formatStatsData,
 }

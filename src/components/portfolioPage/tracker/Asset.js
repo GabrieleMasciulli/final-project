@@ -1,9 +1,9 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/alt-text */
 import React from 'react'
-import formatService from '../../../services/formatStockData'
 import { faCaretUp, faCaretDown } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Loader from '../../designItems/Loader'
 
 const Asset = ({
   loading,
@@ -14,18 +14,9 @@ const Asset = ({
   holdingInCurrency,
   profit,
   profitChange,
+  dailyTrend,
+  profitTrend,
 }) => {
-  const dayChangeTrend = formatService.getTrend(dayChange)
-  const totProfitChangeTrend = formatService.getTrend(profitChange)
-  // const formattedDayChange = formatService.formatData('%', dayChange)
-  // const formattedProfitChange = formatService.formatData('%', profitChange)
-
-  // const formattedHoldingInCurrency = formatService.formatData(
-  //   '$',
-  //   holdingInCurrency
-  // )
-  // const formattedProfit = formatService.formatData('profit', profit)
-
   return !loading ? (
     <tr>
       <td>
@@ -44,9 +35,12 @@ const Asset = ({
       <td align='right'>
         <p>{price}</p>
       </td>
-      <td align='right' className={dayChangeTrend}>
+      <td
+        align='right'
+        className={dailyTrend === 'up' ? 'text-green' : 'text-red'}
+      >
         <span>
-          {dayChange >= 0 ? (
+          {dailyTrend === 'up' ? (
             <FontAwesomeIcon icon={faCaretUp} />
           ) : (
             <FontAwesomeIcon icon={faCaretDown} />
@@ -65,8 +59,8 @@ const Asset = ({
       <td>
         <div className='asset-profit-loss'>
           <p>{profit}</p>
-          <span className={totProfitChangeTrend}>
-            {profitChange >= 0 ? (
+          <span className={profitTrend === 'up' ? 'text-green' : 'text-red'}>
+            {profitTrend === 'up' ? (
               <FontAwesomeIcon icon={faCaretUp} />
             ) : (
               <FontAwesomeIcon icon={faCaretDown} />
@@ -80,7 +74,7 @@ const Asset = ({
       </td>
     </tr>
   ) : (
-    'loading...'
+    <Loader />
   )
 }
 

@@ -6,10 +6,8 @@ const PageConntent = ({
   crypto,
   stats,
   chartLoading,
-  globalLoading,
   statsLoading,
   data,
-  globalStats,
   onChartDayChange,
   currentDays,
 }) => {
@@ -23,12 +21,7 @@ const PageConntent = ({
           data={data}
           onChartDayChange={onChartDayChange}
         />
-        <RightPane
-          globalLoading={globalLoading}
-          loading={statsLoading}
-          stats={stats}
-          globalStats={globalStats}
-        />
+        <RightPane loading={statsLoading} stats={stats} />
       </div>
     </div>
   )

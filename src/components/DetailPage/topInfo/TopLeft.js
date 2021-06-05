@@ -7,7 +7,7 @@ const TopLeft = ({ data }) => {
         <img src={data.image.small} height='32' width='32' alt='ETH'></img>
         <h2>
           {data.name}
-          <small>{data.symbol.toUpperCase()}</small>
+          <small>{data.symbol}</small>
         </h2>
         {/* <span className='add-watchlist-wrapper'>
           <button>

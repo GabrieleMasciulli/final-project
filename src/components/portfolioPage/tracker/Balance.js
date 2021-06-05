@@ -3,6 +3,7 @@ import '../../../static/css/Balance.css'
 import Charts from '../charts/Charts'
 import { faCaretUp, faCaretDown } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Loader from '../../designItems/Loader'
 
 import portfolioService from '../../../services/portfolio.service'
 import authService from '../../../services/auth.service'
@@ -17,8 +18,9 @@ const Balance = () => {
 
   const getBalanceData = () => {
     setLoading(true)
-    portfolioService.getCurrentBalance(user.id).then(data => {
-      setData(data)
+    portfolioService.getCurrentBalance(user.id).then(response => {
+      const formattedData = formatService.formatBalanceData(response)
+      setData(formattedData)
       setLoading(false)
     })
   }
@@ -30,28 +32,26 @@ const Balance = () => {
       <div className='balance-content'>
         <p className='balance-title'>Current Balance</p>
         <div className='financials-wrapper'>
-          <div className='value'>
-            {formatService.formatData('$', data.holdings)}
-          </div>
+          <div className='value'>{data.holdings}</div>
           <div
             className={`change-wrapper ${
-              data.day_change_percentage >= 0
+              data.daily_trend === 'up'
                 ? 'change-wrapper-up'
                 : 'change-wrapper-down'
             }`}
           >
             <FontAwesomeIcon
-              icon={data.day_change_percentage >= 0 ? faCaretUp : faCaretDown}
+              icon={data.daily_trend === 'up' ? faCaretUp : faCaretDown}
             />
-            {formatService.formatData('%', data.day_change_percentage)}
+            {data.day_change_percentage}
           </div>
         </div>
         <p
           className={`${
-            data.day_change_in_currency >= 0 ? 'change-up' : 'change-down'
+            data.daily_trend === 'up' ? 'change-up' : 'change-down'
           }`}
         >
-          {formatService.formatData('profit', data.day_change_in_currency)}
+          {data.day_change_in_currency}
           &nbsp;(24h)
         </p>
 
@@ -59,7 +59,7 @@ const Balance = () => {
       </div>
     </div>
   ) : (
-    'loading...'
+    <Loader />
   )
 }
 

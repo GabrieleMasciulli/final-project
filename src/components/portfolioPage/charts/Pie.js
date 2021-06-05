@@ -61,7 +61,7 @@ const Pie = () => {
                 fontWeight: 600,
                 offsetY: 3,
                 formatter: function (holding) {
-                  return `${formatService.formatData('$', holding)}`
+                  return `${formatService.priceValue(holding)}`
                 },
               },
             },

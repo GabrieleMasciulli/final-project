@@ -1,26 +1,17 @@
 import React from 'react'
-import formatService from '../../../services/formatStockData'
 import { faCaretUp, faCaretDown } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const BottomRight = ({ data }) => {
-  const marketcap = formatService.formatData(
-    '$',
-    data.market_data.market_cap.usd
-  )
-  const marketcap_change = formatService.formatData(
-    '%',
-    data.market_data.market_cap_change_percentage_24h
-  )
-  const marketcap_trend = marketcap_change >= 0 ? 'change-up' : 'change-down'
-  const volume = formatService.formatData(
-    '$',
-    data.market_data.total_volume.usd
-  )
-  const volume_over_marketcap = formatService.formatData(
-    'number',
-    data.market_data.total_volume.usd / data.market_data.market_cap.usd
-  )
+  console.log(data)
+
+  const {
+    marketcap,
+    marketcap_daily_percentage_change,
+    marketcap_daily_trend,
+    volume,
+    vol_over_marketcap,
+  } = data
 
   return (
     <div className='bottom-right-wrapper'>
@@ -30,15 +21,15 @@ const BottomRight = ({ data }) => {
             <div className='title'>Market Cap</div>
             <div className='stats-data'>
               <div className='price'>{marketcap}</div>
-              {marketcap_trend === 'change-up' ? (
+              {marketcap_daily_trend === 'up' ? (
                 <span className='change change-up'>
                   <FontAwesomeIcon icon={faCaretUp} />
-                  {marketcap_change}
+                  {marketcap_daily_percentage_change}
                 </span>
               ) : (
                 <span className='change-down'>
                   <FontAwesomeIcon icon={faCaretDown} />
-                  {marketcap_change}
+                  {marketcap_daily_percentage_change}
                 </span>
               )}
             </div>
@@ -49,22 +40,22 @@ const BottomRight = ({ data }) => {
             <div className='title'>Volume</div>
             <div className='stats-data'>
               <div className='price'>{volume}</div>
-              {marketcap_trend === 'change-up' ? (
+              {marketcap_daily_trend === 'up' ? (
                 <span className='change change-up'>
                   <FontAwesomeIcon icon={faCaretUp} />
-                  {marketcap_change}
+                  {marketcap_daily_percentage_change}
                 </span>
               ) : (
                 <span className='change-down'>
                   <FontAwesomeIcon icon={faCaretDown} />
-                  {marketcap_change}
+                  {marketcap_daily_percentage_change}
                 </span>
               )}
             </div>
 
             <div className='stats-data-second'>
               <div className='title'>Volume / Market Cap</div>
-              <div className='price'>{volume_over_marketcap}</div>
+              <div className='price'>{vol_over_marketcap}</div>
             </div>
           </div>
         </div>

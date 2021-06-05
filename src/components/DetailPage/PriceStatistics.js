@@ -1,7 +1,4 @@
 import React from 'react'
-import formatService from '../../services/formatStockData'
-
-//FontAwesome
 import {
   faCaretUp,
   faCaretDown,
@@ -9,35 +6,38 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-const PriceStatistics = ({ stats, globalStats }) => {
-  const vol_over_marketcap =
-    stats.market_data.total_volume.usd / stats.market_data.market_cap.usd
-
-  const market_dominance =
-    (stats.market_data.market_cap.usd / globalStats.total_market_cap.usd) * 100
-
+const PriceStatistics = ({ stats }) => {
+  const {
+    symbol,
+    name,
+    current_price,
+    price_change_24h,
+    daily_trend,
+    price_change_percentage_24h,
+    low_24h,
+    high_24h,
+    total_volume,
+    vol_over_marketcap,
+    market_dominance,
+    market_cap_rank,
+  } = stats
   return (
     <div className='price-statistics-wrapper'>
       <div className='price-statistics-content'>
-        <h2>{stats.symbol.toUpperCase()} Market Stats</h2>
+        <h2>{symbol} Market Stats</h2>
         <div
           className='statistics-table-wrapper'
           itemScope
           itemType='https://schema.org/Table'
         >
           <table>
-            <caption itemProp='content'>{stats.name} Price Today</caption>
+            <caption itemProp='content'>{name} Price Today</caption>
             <tbody>
               <tr>
                 <th scope='row'>
-                  <strong>{stats.name} Price</strong>
+                  <strong>{name} Price</strong>
                 </th>
-                <td>
-                  {formatService.formatData(
-                    '$',
-                    stats.market_data.current_price.usd
-                  )}
-                </td>
+                <td>{current_price}</td>
               </tr>
               <tr>
                 <th scope='row'>
@@ -46,35 +46,23 @@ const PriceStatistics = ({ stats, globalStats }) => {
                   </span>
                 </th>
                 <td>
-                  <span>
-                    {formatService.formatData(
-                      '$',
-                      stats.market_data.price_change_24h
-                    )}
-                  </span>
+                  <span>{price_change_24h}</span>
                   <div>
                     <span
                       className={`text-end ${
-                        stats.market_data.price_change_24h === null
-                          ? ''
-                          : stats.market_data.price_change_24h < 0
-                          ? 'bear-percentage'
-                          : 'bull-percentage'
+                        daily_trend === 'up'
+                          ? 'bull-percentage'
+                          : 'bear-percentage'
                       }`}
                     >
                       <span>
-                        {stats.market_data.price_change_24h === null ? (
-                          '?'
-                        ) : stats.market_data.price_change_24h < 0 ? (
-                          <FontAwesomeIcon icon={faCaretDown} />
-                        ) : (
+                        {daily_trend === 'up' ? (
                           <FontAwesomeIcon icon={faCaretUp} />
+                        ) : (
+                          <FontAwesomeIcon icon={faCaretDown} />
                         )}
                       </span>
-                      {formatService.formatData(
-                        '%',
-                        stats.market_data.price_change_percentage_24h
-                      )}
+                      {price_change_percentage_24h}
                     </span>
                   </div>
                 </td>
@@ -82,19 +70,8 @@ const PriceStatistics = ({ stats, globalStats }) => {
               <tr>
                 <th scope='row'>24h Low / 24h High</th>
                 <td>
-                  <div>
-                    {formatService.formatData(
-                      '$',
-                      stats.market_data.low_24h.usd
-                    )}
-                    /
-                  </div>
-                  <div>
-                    {formatService.formatData(
-                      '$',
-                      stats.market_data.high_24h.usd
-                    )}
-                  </div>
+                  <div>{low_24h}/</div>
+                  <div>{high_24h}</div>
                 </td>
               </tr>
               <tr>
@@ -104,12 +81,7 @@ const PriceStatistics = ({ stats, globalStats }) => {
                   </span>
                 </th>
                 <td>
-                  <span>
-                    {formatService.formatData(
-                      '$',
-                      stats.market_data.total_volume.usd
-                    )}
-                  </span>
+                  <span>{total_volume}</span>
                   <div>
                     <span className='sc-1v2ivon-0 fJLBDK'>
                       <span className='icon-Caret-up'></span>24h change..
@@ -119,23 +91,19 @@ const PriceStatistics = ({ stats, globalStats }) => {
               </tr>
               <tr>
                 <th scope='row'>Volume / Market Cap🧢 </th>
-                <td>
-                  {formatService.formatData('number', vol_over_marketcap)}
-                </td>
+                <td>{vol_over_marketcap}</td>
               </tr>
               <tr>
                 <th scope='row'>Market Dominance</th>
                 <td>
-                  <span className=''>
-                    {formatService.formatData('%', market_dominance)}
-                  </span>
+                  <span className=''>{market_dominance}</span>
                 </td>
               </tr>
               <tr>
                 <th scope='row'>Market Rank</th>
                 <td>
                   <FontAwesomeIcon icon={faCrown} color='#16c784' />{' '}
-                  {stats.market_cap_rank}
+                  {market_cap_rank}
                 </td>
               </tr>
             </tbody>
