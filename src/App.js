@@ -16,9 +16,10 @@ import Footer from './components/Footer'
 import SignUp from './components/auth/SignUp'
 import Login from './components/auth/Login'
 import AuthService from './services/auth.service'
+import formatService from './services/formatStockData'
 
 function App() {
-  const [globalStats, setGlobalStats] = useState(0)
+  const [globalStats, setGlobalStats] = useState([])
   const [globalLoading, setGlobalLoading] = useState(true)
   const [userAction, setUserAction] = useState({
     wants_to_login: false,
@@ -29,10 +30,13 @@ function App() {
     data: AuthService.getCurrentUser() || null,
   })
 
+  console.log(globalStats)
+
   const getGlobalStats = () => {
     setGlobalLoading(true)
     cryptoService.getGlobalStats().then(response => {
-      setGlobalStats(response)
+      const formattedGlobals = formatService.formatGlobalStats(response)
+      setGlobalStats(formattedGlobals)
       setGlobalLoading(false)
     })
   }
@@ -83,7 +87,7 @@ function App() {
             signupClick={handleSignUpClick}
             logoutClick={handleLogout}
           />
-          <div class='homepage-separator'></div>
+          <div className='homepage-separator'></div>
           <Switch>
             <Route
               exact
