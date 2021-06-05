@@ -4,7 +4,6 @@ import DollarIcon from './designItems/DollarIcon'
 import SunIcon from './designItems/SunIcon'
 import '../static/css/StatsNav.css'
 import { Link } from 'react-router-dom'
-import statsFormatter from '../services/formatStockData'
 
 const StatsNav = ({ loading, stats }) => {
   return !loading ? (
@@ -26,18 +25,13 @@ const StatsNav = ({ loading, stats }) => {
             <span>
               Market Cap🧢  :
               <a href='#'>
-                {statsFormatter.formatStats(
-                  'marketcap',
-                  stats.total_market_cap.usd
-                )}
+                {stats.total_market_cap}
                 🤑
               </a>
             </span>
             <span>
               24h Vol:
-              <a href='#'>
-                {statsFormatter.formatStats('volume', stats.total_volume.usd)}
-              </a>
+              <a href='#'>{stats.total_volume}</a>
             </span>
             <span>
               Upcoming ICOs:
