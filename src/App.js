@@ -30,7 +30,7 @@ function App() {
     data: AuthService.getCurrentUser() || null,
   })
 
-  console.log(globalStats)
+  // console.log(globalStats)
 
   const getGlobalStats = () => {
     setGlobalLoading(true)
@@ -102,9 +102,7 @@ function App() {
               render={() => {
                 return (
                   <Home
-                    cryptoCount={globalStats.active_cryptocurrencies}
-                    globalLoading={globalLoading}
-                    globalStats={globalStats}
+                    cryptoCount={parseInt(globalStats.active_cryptocurrencies)}
                   />
                 )
               }}
