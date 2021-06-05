@@ -17,14 +17,14 @@ const Asset = ({
 }) => {
   const dayChangeTrend = formatService.getTrend(dayChange)
   const totProfitChangeTrend = formatService.getTrend(profitChange)
-  const formattedDayChange = formatService.formatData('%', dayChange)
-  const formattedProfitChange = formatService.formatData('%', profitChange)
+  // const formattedDayChange = formatService.formatData('%', dayChange)
+  // const formattedProfitChange = formatService.formatData('%', profitChange)
 
-  const formattedHoldingInCurrency = formatService.formatData(
-    '$',
-    holdingInCurrency
-  )
-  const formattedProfit = formatService.formatData('profit', profit)
+  // const formattedHoldingInCurrency = formatService.formatData(
+  //   '$',
+  //   holdingInCurrency
+  // )
+  // const formattedProfit = formatService.formatData('profit', profit)
 
   return !loading ? (
     <tr>
@@ -42,7 +42,7 @@ const Asset = ({
         </a>
       </td>
       <td align='right'>
-        <p>${price}</p>
+        <p>{price}</p>
       </td>
       <td align='right' className={dayChangeTrend}>
         <span>
@@ -51,12 +51,12 @@ const Asset = ({
           ) : (
             <FontAwesomeIcon icon={faCaretDown} />
           )}
-          {formattedDayChange}
+          {dayChange}
         </span>
       </td>
       <td align='right'>
         <div className='asset-holdings'>
-          {formattedHoldingInCurrency}
+          {holdingInCurrency}
           <p>
             {holdingInCrypto} {coin.symbol}
           </p>
@@ -64,14 +64,14 @@ const Asset = ({
       </td>
       <td>
         <div className='asset-profit-loss'>
-          <p>{formattedProfit}</p>
+          <p>{profit}</p>
           <span className={totProfitChangeTrend}>
             {profitChange >= 0 ? (
               <FontAwesomeIcon icon={faCaretUp} />
             ) : (
               <FontAwesomeIcon icon={faCaretDown} />
             )}
-            {formattedProfitChange}
+            {profitChange}
           </span>
         </div>
       </td>
