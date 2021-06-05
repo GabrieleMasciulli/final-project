@@ -28,12 +28,16 @@ const formatDecimals = number => {
 
     return number.toFixed(fixed === Infinity ? 0 : fixed)
   } else {
-    return number.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+    return number.toFixed(2)
   }
 }
 
+const formatThousands = number => {
+  return number.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+}
+
 const isNull = val => {
-  return val === null ? true : false
+  return val === null || val === undefined ? true : false
 }
 
 const numberWithFormattedDecimals = val => {
@@ -55,7 +59,7 @@ const priceValue = val => {
   const number = Math.abs(val)
   const formattedNumber = formatDecimals(number)
 
-  return `$${formattedNumber}`
+  return `$${formatThousands(formattedNumber)}`
 }
 
 const profitValue = val => {
@@ -76,7 +80,7 @@ const localeStringConverter = val => {
 }
 
 const formatHomepageTable = arr => {
-  const filteredData = arr.map(crypto => {
+  const formattedData = arr.map(crypto => {
     return {
       ...crypto,
       symbol: crypto.symbol.toUpperCase(),
@@ -114,7 +118,20 @@ const formatHomepageTable = arr => {
     }
   })
 
-  return filteredData
+  return formattedData
+}
+
+const formatGlobalStats = stats => {
+  return {
+    ...stats,
+    active_cryptocurrencies: localeStringConverter(
+      stats.active_cryptocurrencies
+    ),
+    ended_icos: localeStringConverter(stats.ended_icos),
+    upcoming_icos: localeStringConverter(stats.upcoming_icos),
+    total_market_cap: priceValue(stats.total_market_cap.usd),
+    total_volume: priceValue(stats.total_volume.usd),
+  }
 }
 
 export default {
@@ -123,4 +140,5 @@ export default {
   formatStats,
   formatDecimals,
   formatHomepageTable,
+  formatGlobalStats,
 }
