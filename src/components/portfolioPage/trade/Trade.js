@@ -11,7 +11,7 @@ import authService from '../../../services/auth.service'
 import tradeValidation from '../../../services/tradeValidation'
 import TradeSuccess from '../../designItems/Success'
 
-const Trade = ({ cancel, coin }) => {
+const Trade = ({ cancel, coin, isSuccedeed }) => {
   const [user, setUser] = useState()
   const [tradeType, setTradeType] = useState('buy')
   const [price, setPrice] = useState('')
@@ -93,7 +93,8 @@ const Trade = ({ cancel, coin }) => {
         setSuccessful(true)
         setTimeout(() => {
           cancel()
-          window.location.reload()
+          isSuccedeed()
+          setSuccessful(false)
         }, 2500)
       })
     }

@@ -14,6 +14,7 @@ const Portfolio = () => {
   const [userAction, setUserAction] = useState({
     wants_to_trade: false,
     selected_coin: null,
+    trades_added: 0,
   })
   const duplicates = new Set()
 
@@ -41,12 +42,17 @@ const Portfolio = () => {
 
   const handleCancel = () => {
     const newUserAction = {
+      ...userAction,
       wants_to_trade: false,
       selected_coin: null,
     }
-    setSearchInput('')
+
+    if (searchInput !== '') {
+      setSearchInput('')
+    } else {
+      setUserAction(newUserAction)
+    }
     setAddTransaction(false)
-    setUserAction(newUserAction)
   }
 
   const handleSearchChange = e => {
@@ -57,10 +63,19 @@ const Portfolio = () => {
   const handleResultClick = e => {
     setAddTransaction(false)
     const newUserAction = {
+      ...userAction,
       wants_to_trade: true,
       selected_coin: e.currentTarget.value,
     }
 
+    setUserAction(newUserAction)
+  }
+
+  const handleTradeSuccess = () => {
+    const newUserAction = {
+      ...userAction,
+      trades_added: userAction.trades_added + 1,
+    }
     setUserAction(newUserAction)
   }
 
@@ -75,14 +90,18 @@ const Portfolio = () => {
           handleClick={handleResultClick}
         />
       ) : userAction.wants_to_trade ? (
-        <Trade cancel={handleCancel} coin={userAction.selected_coin} />
+        <Trade
+          cancel={handleCancel}
+          coin={userAction.selected_coin}
+          isSuccedeed={handleTradeSuccess}
+        />
       ) : (
         ''
       )}
       <div className='portfolio-page-wrapper'>
         <div className='portfolio-page-content'>
           <TopInfo addTransaction={() => setAddTransaction(!addTransaction)} />
-          <Tracker />
+          <Tracker newTrades={userAction.trades_added} />
         </div>
       </div>
     </div>
