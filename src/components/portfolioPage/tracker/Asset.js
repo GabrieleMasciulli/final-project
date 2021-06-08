@@ -5,6 +5,8 @@ import { faCaretUp, faCaretDown } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Loader from '../../designItems/Loader'
 
+import AssetActions from './AssetActions'
+
 const Asset = ({
   loading,
   coin,
@@ -69,8 +71,8 @@ const Asset = ({
           </span>
         </div>
       </td>
-      <td align='right' className='asset-actions'>
-        <div>actions</div>
+      <td align='right'>
+        <AssetActions />
       </td>
     </tr>
   ) : (

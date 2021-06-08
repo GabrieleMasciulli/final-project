@@ -280,6 +280,114 @@
   font-weight: 600;
 }
 
-.assets-table .asset-actions div {
+.assets-table .asset-actions {
   padding-right: 14px;
+}
+
+.asset-actions .add-trade-btn,
+.asset-actions .asset-options-btn {
+  border-radius: 50%;
+  padding: 0px;
+  width: 32px;
+  -webkit-box-align: center;
+  align-items: center;
+  background: transparent;
+  border: 0px;
+  display: inline-flex;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+  -webkit-box-pack: center;
+  justify-content: center;
+  outline: 0px;
+  font-weight: 600;
+  height: 32px;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.asset-actions .add-trade-btn:hover,
+.asset-actions .asset-options-btn:hover {
+  background: rgb(248, 250, 253);
+  box-shadow: rgb(239 242 245) 0px 0px 0px 3px;
+}
+
+.asset-actions .add-trade-btn svg,
+.asset-actions .asset-options-btn svg {
+  box-sizing: border-box;
+  margin: 0px;
+  height: 16px;
+  width: 16px;
+  color: rgb(166, 176, 195);
+}
+
+.asset-actions .asset-options {
+  display: inline-block;
+  box-sizing: border-box;
+  margin: 0px;
+}
+
+.actions-dropdown {
+  position: relative;
+
+  background-color: white;
+  box-shadow: var(--shadow-normal);
+  color: var(--color-text-1);
+  border-radius: 4px;
+  font-size: 14px;
+  line-height: 1.4;
+  outline: 0;
+  transition-property: transform, visibility, opacity;
+}
+
+.actions-dropdown .tippy-arrow {
+  color: white;
+}
+
+.actions-dropdown-content {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  margin: 0px;
+}
+
+.actions-dropdown-btn {
+  -webkit-box-pack: start;
+  justify-content: flex-start;
+  padding: 0px 12px;
+  -webkit-box-align: center;
+  align-items: center;
+  background: transparent;
+  border: 0px;
+  border-radius: 8px;
+  display: inline-flex;
+  color: rgb(0, 0, 0);
+  width: auto;
+  cursor: pointer;
+  outline: 0px;
+  font-weight: 600;
+  height: 40px;
+  font-size: 14px;
+  line-height: 24px;
+}
+
+.actions-dropdown-btn:hover {
+  background-color: rgb(248, 250, 253) !important;
+}
+
+.actions-dropdown-btn span {
+  -webkit-box-align: center;
+  align-items: center;
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  margin-left: 0px;
+  margin-right: 8px;
+}
+
+.actions-dropdown-btn span svg {
+  box-sizing: border-box;
+  margin: 0px;
+  height: 16px !important;
+  width: 16px !important;
+  color: currentcolor;
 }
