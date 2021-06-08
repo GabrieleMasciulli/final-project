@@ -26,8 +26,15 @@ const Navbar = ({ loginClick, signupClick, user, logoutClick }) => {
           <ul>
             <NavItem name='Cryptocurrencies' url='/' />
             <NavItem name='Exchanges' url='#' />
-            <NavItem name='Portfolio' url='/portfolio' />
-            <NavItem name='Watchlist' url='#' />
+            {user.isAuthenticated ? (
+              <>
+                <NavItem name='Portfolio' url='/portfolio' />
+                <NavItem name='Watchlist' url='#' />
+              </>
+            ) : (
+              ''
+            )}
+
             <NavItem name='Some Link' url='#' />
             <NavItem name='Some other Link' url='#' />
           </ul>
