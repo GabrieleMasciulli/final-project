@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import RemoveCoin from '../components/portfolioPage/tracker/RemoveCoin'
 import '../static/css/Portfolio.css'
 import '../static/css/TradeCryptoSearch.css'
 import Tracker from '../components/portfolioPage/tracker/Tracker'
@@ -81,6 +82,7 @@ const Portfolio = () => {
 
   return (
     <div>
+      <RemoveCoin />
       {addTransaction ? (
         <AddTransaction
           searchResults={results}

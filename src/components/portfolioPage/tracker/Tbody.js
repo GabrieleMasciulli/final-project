@@ -6,7 +6,7 @@ const Tbody = ({ assets }) => {
     <tbody>
       {assets.map(asset => (
         <Asset
-          key={asset.coin.coingecko_id}
+          key={asset.position.id}
           price={asset.last_price}
           coin={asset.coin}
           dayChange={asset.percentage_day_change}
