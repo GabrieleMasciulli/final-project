@@ -10,7 +10,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-const TippyContent = () => {
+const TippyContent = ({ onDelete, assetId }) => {
   return (
     <div className='actions-dropdown-content'>
       <button className='actions-dropdown-btn'>
@@ -19,7 +19,11 @@ const TippyContent = () => {
         </span>
         Transactions
       </button>
-      <button className='actions-dropdown-btn'>
+      <button
+        value={assetId}
+        className='actions-dropdown-btn'
+        onClick={onDelete}
+      >
         <span>
           <FontAwesomeIcon icon={faTrash} />
         </span>
@@ -29,7 +33,7 @@ const TippyContent = () => {
   )
 }
 
-const AssetActions = () => {
+const AssetActions = ({ onDelete, assetId }) => {
   return (
     <div className='asset-actions'>
       <button className='add-trade-btn'>
@@ -42,7 +46,7 @@ const AssetActions = () => {
         arrow={true}
         allowHTML='true'
         placement='bottom'
-        content={<TippyContent />}
+        content={<TippyContent onDelete={onDelete} assetId={assetId} />}
       >
         <div className='asset-options'>
           <button className='asset-options-btn'>

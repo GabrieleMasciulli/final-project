@@ -8,6 +8,7 @@ import Loader from '../../designItems/Loader'
 import AssetActions from './AssetActions'
 
 const Asset = ({
+  id,
   loading,
   coin,
   price,
@@ -18,6 +19,7 @@ const Asset = ({
   profitChange,
   dailyTrend,
   profitTrend,
+  onDelete,
 }) => {
   return !loading ? (
     <tr>
@@ -72,7 +74,7 @@ const Asset = ({
         </div>
       </td>
       <td align='right'>
-        <AssetActions />
+        <AssetActions assetId={id} onDelete={onDelete} />
       </td>
     </tr>
   ) : (

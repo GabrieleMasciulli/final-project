@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import RemoveCoin from '../components/portfolioPage/tracker/RemoveCoin'
 import '../static/css/Portfolio.css'
 import '../static/css/TradeCryptoSearch.css'
 import Tracker from '../components/portfolioPage/tracker/Tracker'
@@ -12,7 +11,7 @@ const Portfolio = () => {
   const [addTransaction, setAddTransaction] = useState(false)
   const [searchInput, setSearchInput] = useState('')
   const [results, setResults] = useState([])
-  const [userAction, setUserAction] = useState({
+  const [userTradingActions, setUserTradingAction] = useState({
     wants_to_trade: false,
     selected_coin: null,
     trades_added: 0,
@@ -24,7 +23,7 @@ const Portfolio = () => {
       setResults(results)
     })
   }
-  useEffect(getFirstResultsHook, [userAction])
+  useEffect(getFirstResultsHook, [userTradingActions])
 
   const getFilteredResultsHook = () => {
     if (searchInput.length >= 3) {
@@ -43,7 +42,7 @@ const Portfolio = () => {
 
   const handleCancel = () => {
     const newUserAction = {
-      ...userAction,
+      ...userTradingActions,
       wants_to_trade: false,
       selected_coin: null,
     }
@@ -51,7 +50,7 @@ const Portfolio = () => {
     if (searchInput !== '') {
       setSearchInput('')
     } else {
-      setUserAction(newUserAction)
+      setUserTradingAction(newUserAction)
     }
     setAddTransaction(false)
   }
@@ -64,25 +63,24 @@ const Portfolio = () => {
   const handleResultClick = e => {
     setAddTransaction(false)
     const newUserAction = {
-      ...userAction,
+      ...userTradingActions,
       wants_to_trade: true,
       selected_coin: e.currentTarget.value,
     }
 
-    setUserAction(newUserAction)
+    setUserTradingAction(newUserAction)
   }
 
   const handleTradeSuccess = () => {
     const newUserAction = {
-      ...userAction,
-      trades_added: userAction.trades_added + 1,
+      ...userTradingActions,
+      trades_added: userTradingActions.trades_added + 1,
     }
-    setUserAction(newUserAction)
+    setUserTradingAction(newUserAction)
   }
 
   return (
     <div>
-      <RemoveCoin />
       {addTransaction ? (
         <AddTransaction
           searchResults={results}
@@ -91,10 +89,10 @@ const Portfolio = () => {
           handleChange={handleSearchChange}
           handleClick={handleResultClick}
         />
-      ) : userAction.wants_to_trade ? (
+      ) : userTradingActions.wants_to_trade ? (
         <Trade
           cancel={handleCancel}
-          coin={userAction.selected_coin}
+          coin={userTradingActions.selected_coin}
           isSuccedeed={handleTradeSuccess}
         />
       ) : (
@@ -103,7 +101,7 @@ const Portfolio = () => {
       <div className='portfolio-page-wrapper'>
         <div className='portfolio-page-content'>
           <TopInfo addTransaction={() => setAddTransaction(!addTransaction)} />
-          <Tracker newTrades={userAction.trades_added} />
+          <Tracker newTrades={userTradingActions.trades_added} />
         </div>
       </div>
     </div>
