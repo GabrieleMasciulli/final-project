@@ -9,7 +9,7 @@ import portfolioService from '../../../services/portfolio.service'
 import authService from '../../../services/auth.service'
 import formatService from '../../../services/formatStockData'
 
-const Balance = () => {
+const Balance = ({ assets }) => {
   const user = authService.getCurrentUser()
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(true)
@@ -25,7 +25,7 @@ const Balance = () => {
     })
   }
 
-  useEffect(getBalanceData, [])
+  useEffect(getBalanceData, [assets])
 
   return !loading ? (
     <div className='balance-wrapper'>
@@ -55,7 +55,7 @@ const Balance = () => {
           &nbsp;(24h)
         </p>
 
-        <Charts />
+        <Charts assets={assets} />
       </div>
     </div>
   ) : (

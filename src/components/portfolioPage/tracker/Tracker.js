@@ -61,7 +61,7 @@ const Tracker = ({ newTrades }) => {
 
   return (
     <div className='tracker-wrapper'>
-      <Balance />
+      <Balance assets={assets} />
       <Assets
         loading={loading}
         assets={assets}

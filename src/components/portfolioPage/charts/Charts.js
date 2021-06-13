@@ -8,7 +8,7 @@ import {
   faBalanceScaleRight,
 } from '@fortawesome/free-solid-svg-icons'
 
-const Charts = () => {
+const Charts = ({ assets }) => {
   return (
     <div className='charts-wrapper'>
       <div className='chart-selector-wrapper'>
@@ -18,7 +18,7 @@ const Charts = () => {
       </div>
 
       <div className='chart-wrapper'>
-        <PieChart />
+        <PieChart assets={assets} />
       </div>
     </div>
   )

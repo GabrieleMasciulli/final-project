@@ -35,6 +35,10 @@ const Portfolio = () => {
         })
         setResults(filteredResults)
       })
+    } else if (searchInput === '') {
+      searchService.getFirst(100).then(results => {
+        setResults(results)
+      })
     }
   }
   // eslint-disable-next-line react-hooks/exhaustive-deps

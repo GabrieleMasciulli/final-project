@@ -4,7 +4,7 @@ import portfolioService from '../../../services/portfolio.service'
 import authService from '../../../services/auth.service'
 import formatService from '../../../services/formatStockData'
 
-const Pie = () => {
+const Pie = ({ assets }) => {
   const user = authService.getCurrentUser()
   const [loading, setLoading] = useState(true)
   const [data, setData] = useState([])
@@ -19,7 +19,7 @@ const Pie = () => {
     })
   }
 
-  useEffect(getPieData, [])
+  useEffect(getPieData, [assets])
 
   const options = {
     chartOptions: {
