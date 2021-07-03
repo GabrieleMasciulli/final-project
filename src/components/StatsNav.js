@@ -4,9 +4,12 @@ import DollarIcon from './designItems/DollarIcon'
 import SunIcon from './designItems/SunIcon'
 import '../static/css/StatsNav.css'
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
-const StatsNav = ({ loading, stats }) => {
-  return !loading ? (
+const StatsNav = () => {
+  const stats = useSelector(state => state.globalStats)
+
+  return (
     <div className='desktop'>
       <div className='upper-info-wrapper'>
         <div className='upper-info-content'>
@@ -58,8 +61,6 @@ const StatsNav = ({ loading, stats }) => {
         </div>
       </div>
     </div>
-  ) : (
-    ''
   )
 }
 

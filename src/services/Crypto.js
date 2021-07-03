@@ -2,46 +2,46 @@
 import axios from 'axios'
 const baseUrl = '/api/cryptos'
 
-const getSimplePrice = id => {
-  const request = axios.get(`${baseUrl}/price/${id}`)
-  return request.then(response => response.data)
+const getSimplePrice = async id => {
+  const response = await axios.get(`${baseUrl}/price/${id}`)
+  return response.data
 }
 
-const getTotNumberOfCryptos = () => {
-  const request = axios.get(baseUrl)
-  return request.then(response => response.data)
+const getTotNumberOfCryptos = async () => {
+  const response = await axios.get(baseUrl)
+  return response.data
 }
 
-const getInfo = (order, number, page) => {
-  const request = axios.get(`${baseUrl}/info/${order}/${number}/${page}`)
-  return request.then(response => response.data)
+const getInfo = async (order, number, page) => {
+  const response = await axios.get(`${baseUrl}/info/${order}/${number}/${page}`)
+  return response.data
 }
 
-const getInfoFromId = id => {
-  const request = axios.get(`${baseUrl}/detail/${id}`)
-  return request.then(response => response.data)
+const getInfoFromId = async id => {
+  const response = await axios.get(`${baseUrl}/detail/${id}`)
+  return response.data
 }
 
-const getSparklines = (order, number, page) => {
-  const request = axios.get(
+const getSparklines = async (order, number, page) => {
+  const response = await axios.get(
     `${baseUrl}/img/generated/sparklines/${order}/${number}/${page}`
   )
-  return request.then(response => response.data)
+  return response.data
 }
 
-const getChartData = (id, days) => {
-  const request = axios.get(`${baseUrl}/market_chart/${id}/${days}`)
-  return request.then(response => response.data)
+const getChartData = async (id, days) => {
+  const response = await axios.get(`${baseUrl}/market_chart/${id}/${days}`)
+  return response.data
 }
 
-const getStats = id => {
-  const request = axios.get(`${baseUrl}/stats/${id}`)
-  return request.then(response => response.data)
+const getStats = async id => {
+  const response = await axios.get(`${baseUrl}/stats/${id}`)
+  return response.data
 }
 
-const getGlobalStats = () => {
-  const request = axios.get('/api/global')
-  return request.then(response => response.data)
+const getGlobalStats = async () => {
+  const response = await axios.get('/api/global')
+  return response.data
 }
 
 export default {

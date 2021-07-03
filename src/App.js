@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import './static/css/Homepage.css'
 import {
   BrowserRouter as Router,
@@ -11,16 +11,13 @@ import Navbar from './components/navbar/Navbar'
 import Home from './pages/Home'
 import Detail from './pages/Detail'
 import Portfolio from './pages/Portfolio'
-import cryptoService from './services/Crypto'
 import Footer from './components/Footer'
 import SignUp from './components/auth/SignUp'
 import Login from './components/auth/Login'
 import AuthService from './services/auth.service'
-import formatService from './services/formatStockData'
 
 function App() {
   const [globalStats, setGlobalStats] = useState([])
-  const [globalLoading, setGlobalLoading] = useState(true)
   const [userAction, setUserAction] = useState({
     wants_to_login: false,
     wants_to_signup: false,
@@ -29,19 +26,6 @@ function App() {
     isAuthenticated: AuthService.getCurrentUser() ? true : false,
     data: AuthService.getCurrentUser() || null,
   })
-
-  // console.log(globalStats)
-
-  const getGlobalStats = () => {
-    setGlobalLoading(true)
-    cryptoService.getGlobalStats().then(response => {
-      const formattedGlobals = formatService.formatGlobalStats(response)
-      setGlobalStats(formattedGlobals)
-      setGlobalLoading(false)
-    })
-  }
-
-  useEffect(getGlobalStats, [])
 
   //user actions concerning authentication
   const handleSignUpClick = () => {
@@ -80,7 +64,7 @@ function App() {
     <>
       <div className='page-wrapper'>
         <Router>
-          <StatsNav loading={globalLoading} stats={globalStats} />
+          <StatsNav />
           <Navbar
             user={user}
             loginClick={handleLoginClick}

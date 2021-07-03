@@ -6,7 +6,13 @@ import Pagination from '../components/Pagination'
 import cryptoService from '../services/Crypto'
 import formatterService from '../services/formatStockData'
 
+//redux part
+import { useDispatch } from 'react-redux'
+import { initializeGlobalStats } from '../reducers/statsNav'
+
 const Home = ({ cryptoCount }) => {
+  const dispatch = useDispatch()
+
   const [cryptos, setCryptos] = useState([])
   const [loading, setLoading] = useState(false)
   const [pagination, setPagination] = useState({
@@ -47,6 +53,11 @@ const Home = ({ cryptoCount }) => {
     const newPagination = { ...pagination, page: value }
     setPagination(newPagination)
   }
+
+  //redux part
+  useEffect(() => {
+    dispatch(initializeGlobalStats())
+  }, [dispatch])
 
   return (
     <>
