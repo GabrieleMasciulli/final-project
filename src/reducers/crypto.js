@@ -1,31 +1,13 @@
 import cryptoService from '../services/Crypto'
 import formatterService from '../services/formatStockData'
 
-const initialState = {
-  rows: 20,
-  page: 1,
-  coins: [],
-}
-
-const reducer = (state = initialState, action) => {
+const reducer = (state = [], action) => {
   switch (action.type) {
     case 'INIT_CRYPTOS':
-      return action.data
+      return action.coins
 
     case 'SET_CRYPTOS':
-      return action.data
-
-    case 'SET_ROWS':
-      return {
-        ...state,
-        rows: action.rows,
-      }
-
-    case 'SET_PAGE':
-      return {
-        ...state,
-        page: action.page,
-      }
+      return action.coins
 
     default:
       return state
@@ -39,47 +21,20 @@ export const initializeCryptos = () => {
 
     dispatch({
       type: 'INIT_CRYPTOS',
-      data: {
-        rows: 20,
-        page: 1,
-        coins: formattedCryptos,
-      },
+      coins: formattedCryptos,
     })
   }
 }
 
 export const getCryptos = () => {
   return async (dispatch, getState) => {
-    const currentState = getState()
-    const { page, rows } = currentState.cryptos
+    const { page, rows } = getState().pagination
     const cryptos = await cryptoService.getInfo('market_cap_desc', rows, page)
     const formattedCryptos = formatterService.formatHomepageTable(cryptos)
 
     dispatch({
       type: 'SET_CRYPTOS',
-      data: {
-        rows,
-        page,
-        coins: formattedCryptos,
-      },
-    })
-  }
-}
-
-export const changeRows = rows => {
-  return async dispatch => {
-    dispatch({
-      type: 'SET_ROWS',
-      rows,
-    })
-  }
-}
-
-export const changePage = page => {
-  return async dispatch => {
-    dispatch({
-      type: 'SET_PAGE',
-      page,
+      coins: formattedCryptos,
     })
   }
 }
