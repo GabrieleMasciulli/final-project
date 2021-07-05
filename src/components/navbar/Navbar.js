@@ -5,8 +5,13 @@ import logo from '../../static/img/logo_size.jpeg'
 import NavItem from './NavItem'
 import SearchBar from './SearchBar'
 import Profile from './Profile'
+import { useDispatch, useSelector } from 'react-redux'
+import { showSignup, showLogin } from '../../reducers/authentication'
 
-const Navbar = ({ loginClick, signupClick, user, logoutClick }) => {
+const Navbar = () => {
+  const dispatch = useDispatch()
+  const { isAuthenticated } = useSelector(state => state.auth)
+
   return (
     <div className='navbar-wrapper'>
       <Link
@@ -26,7 +31,7 @@ const Navbar = ({ loginClick, signupClick, user, logoutClick }) => {
           <ul>
             <NavItem name='Cryptocurrencies' url='/' />
             <NavItem name='Exchanges' url='#' />
-            {user.isAuthenticated ? (
+            {isAuthenticated ? (
               <>
                 <NavItem name='Portfolio' url='/portfolio' />
                 <NavItem name='Watchlist' url='#' />
@@ -41,14 +46,20 @@ const Navbar = ({ loginClick, signupClick, user, logoutClick }) => {
         </nav>
       </div>
 
-      {user.isAuthenticated ? (
-        <Profile handleLogout={logoutClick} />
+      {isAuthenticated ? (
+        <Profile />
       ) : (
         <>
-          <button onClick={loginClick} className='nav-btn login-btn'>
+          <button
+            className='nav-btn login-btn'
+            onClick={() => dispatch(showLogin())}
+          >
             Log in
           </button>
-          <button onClick={signupClick} className='nav-btn signup-btn'>
+          <button
+            className='nav-btn signup-btn'
+            onClick={() => dispatch(showSignup())}
+          >
             Sign up
           </button>
         </>
