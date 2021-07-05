@@ -1,20 +1,20 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 
-const MailInput = ({ onChange, value, error }) => {
+const MailInput = ({ onChange, email }) => {
+  const { errors: { email: errorMessage } = {} } = useSelector(
+    state => state.auth
+  )
   return (
     <div className='input-wrapper'>
       <div className='label'>Email Address</div>
       <input
-        value={value}
+        value={email}
         onChange={onChange}
         placeholder='Enter your email address...'
         type='email'
       ></input>
-      {error === 'invalid' ? (
-        <div className='error-message'>This is not a valid email.</div>
-      ) : (
-        ''
-      )}
+      {errorMessage ? <div className='error-message'>{errorMessage}</div> : ''}
     </div>
   )
 }

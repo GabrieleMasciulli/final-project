@@ -1,26 +1,26 @@
 import React from 'react'
-
-//font awesome
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useSelector } from 'react-redux'
 
-const PasswInput = ({ value, onChange, error }) => {
+const PasswInput = ({ password, onChange }) => {
+  const { errors: { password: errorMessage } = {} } = useSelector(
+    state => state.auth
+  )
+
   return (
     <div className='input-wrapper'>
       <div className='label'>Password</div>
 
       <div className='passw-input-wrapper'>
         <input
-          value={value}
+          value={password}
           onChange={onChange}
           type='password'
           placeholder='Enter your password...'
         ></input>
-        {error === 'invalid' ? (
-          <div className='error-message'>
-            Password should contain both letter and number, with minimum length
-            of 8 characters
-          </div>
+        {errorMessage ? (
+          <div className='error-message'>{errorMessage}</div>
         ) : (
           ''
         )}

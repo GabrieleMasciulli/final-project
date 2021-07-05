@@ -1,22 +1,21 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 
-const UsernameInput = ({ onChange, value, error }) => {
+const UsernameInput = ({ onChange, username }) => {
+  const { errors: { username: errorMessage } = {} } = useSelector(
+    state => state.auth
+  )
+
   return (
     <div className='input-wrapper'>
       <div className='label'>Username</div>
       <input
-        value={value}
+        value={username}
         onChange={onChange}
         placeholder='Enter your username...'
         type='username'
       ></input>
-      {error === 'invalid' ? (
-        <div className='error-message'>
-          The username must be between 3 and 20 characters.
-        </div>
-      ) : (
-        ''
-      )}
+      {errorMessage ? <div className='error-message'>{errorMessage}</div> : ''}
     </div>
   )
 }
