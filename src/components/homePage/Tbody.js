@@ -1,7 +1,10 @@
 import React from 'react'
 import Row from './Row'
+import { useSelector } from 'react-redux'
 
-const Tbody = ({ cryptos }) => {
+const Tbody = () => {
+  const cryptos = useSelector(state => state.cryptos)
+
   return (
     <tbody>
       {cryptos.map(crypto => {
