@@ -13,11 +13,15 @@ const reducer = (state = {}, action) => {
 
 export const initializeGlobalStats = () => {
   return async dispatch => {
-    const stats = await cryptoService.getGlobalStats()
-    const formattedStats = formatService.formatGlobalStats(stats)
+    const rawStats = await cryptoService.getGlobalStats()
+    const formattedStats = formatService.formatGlobalStats(rawStats)
+
     dispatch({
       type: 'INIT_GLOBAL_STATS',
-      data: formattedStats,
+      data: {
+        formatted: formattedStats,
+        raw: rawStats,
+      },
     })
   }
 }

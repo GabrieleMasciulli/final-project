@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 const StatsNav = () => {
-  const stats = useSelector(state => state.globalStats)
+  const stats = useSelector(state => state.globalStats.formatted) || {}
 
   return (
     <div className='desktop'>
