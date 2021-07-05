@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import cryptoService from '../../services/Crypto'
+import React from 'react'
+import { useSelector } from 'react-redux'
 import { faCaretUp, faCaretDown } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
@@ -23,32 +23,20 @@ const abbreviate_number = (num, fixed) => {
 }
 
 const TopInfo = () => {
-  const [globalStats, setGlobalStats] = useState(0)
-  const [globalLoading, setGlobalLoading] = useState(true)
+  const globalStats = useSelector(state => state.globalStats.raw) || {}
+
   let marketcap_change = 0
   let marketcap = 0
   let trend = ''
 
-  if (!globalLoading) {
+  if (Object.keys(globalStats).length > 0) {
     marketcap = abbreviate_number(globalStats.total_market_cap.usd)
     marketcap_change =
       globalStats.market_cap_change_percentage_24h_usd.toFixed(2)
     trend = marketcap_change > 0 ? 'increase' : 'decrease'
   }
 
-  // console.log(globalStats)
-
-  const getGlobalStats = () => {
-    setGlobalLoading(true)
-    cryptoService.getGlobalStats().then(response => {
-      setGlobalStats(response)
-      setGlobalLoading(false)
-    })
-  }
-
-  useEffect(getGlobalStats, [])
-
-  return !globalLoading ? (
+  return (
     <section className='home-info-wrapper'>
       <div className='content-left'>
         <h1>Today's Cryptocurrency Prices by Market Cap</h1>
@@ -73,8 +61,6 @@ const TopInfo = () => {
         </div>
       </div>
     </section>
-  ) : (
-    ''
   )
 }
 
