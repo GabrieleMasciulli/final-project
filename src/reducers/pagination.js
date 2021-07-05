@@ -6,9 +6,11 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case 'SET_ROWS':
+      const pageCount = Math.ceil(action.data.crypto_count / state.rows)
       return {
         ...state,
-        rows: action.rows,
+        rows: action.data.rows,
+        pageCount,
       }
 
     case 'SET_PAGE':
@@ -23,10 +25,14 @@ const reducer = (state = initialState, action) => {
 }
 
 export const changeRows = rows => {
-  return async dispatch => {
+  return async (dispatch, getState) => {
+    const currentState = getState()
     dispatch({
       type: 'SET_ROWS',
-      rows,
+      data: {
+        rows,
+        crypto_count: currentState.globalStats.active_cryptocurrencies,
+      },
     })
   }
 }
