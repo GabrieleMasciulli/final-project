@@ -6,6 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
 import Tippy from '@tippyjs/react'
 import 'tippy.js/dist/tippy.css'
+import { useDispatch, useSelector } from 'react-redux'
+import { changePage, changeRows } from '../reducers/pagination'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -56,29 +58,34 @@ const TippyContent = ({ handleClick }) => {
   )
 }
 
-const PaginationRanges = ({
-  pagination,
-  count,
-  cryptoCount,
-  pageChage,
-  rowsChange,
-}) => {
+const PaginationRanges = () => {
   const classes = useStyles()
+  const dispatch = useDispatch()
+
+  const { rows, page, pageCount } = useSelector(state => state.pagination)
+  const globalStats = useSelector(state => state.globalStats.formatted) || {}
+
+  const cryptoCount = parseInt(globalStats.active_cryptocurrencies)
+
+  const handleRowsChange = e => {
+    const newRows = e.target.value
+    dispatch(changeRows(newRows))
+  }
 
   return (
     <div className='pagination-wrapper'>
       <div className='current-rows'>
         <p>
-          Showing {pagination.page * pagination.rows - pagination.rows + 1} -{' '}
-          {pagination.page * pagination.rows} rows out of {cryptoCount}
+          Showing {page * rows - rows + 1} - {page * rows} rows out of{' '}
+          {cryptoCount}
         </p>
       </div>
       <div className={classes.root}>
         <Pagination
           classes={{ ul: classes.ul }}
-          count={count}
-          page={pagination.page}
-          onChange={pageChage}
+          count={pageCount || Math.ceil(cryptoCount / 20)}
+          page={page}
+          onChange={(event, page) => dispatch(changePage(page))}
         />
       </div>
       <div className='show-rows'>
@@ -89,10 +96,10 @@ const PaginationRanges = ({
           arrow={false}
           allowHTML='true'
           placement='bottom'
-          content={<TippyContent handleClick={rowsChange} />}
+          content={<TippyContent handleClick={handleRowsChange} />}
         >
           <div className='rows-dropdown'>
-            {pagination.rows}
+            {rows}
             <FontAwesomeIcon icon={faCaretDown} />
           </div>
         </Tippy>
