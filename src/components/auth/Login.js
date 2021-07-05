@@ -1,108 +1,75 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useHistory } from 'react-router-dom'
 import '../../static/css/Auth.css'
 import MailInput from './MailInput'
 import PasswInput from './PasswInput'
 import SubmitBtn from './SubmitBtn'
 import CloseIcon from '../designItems/CloseIcon'
-import AuthService from '../../services/auth.service'
-import authValidation from '../../services/authValidation'
 import LoginSuccess from '../designItems/Success'
 
-const Login = ({ cancel, visible, setUser, changeToSignup }) => {
-  const history = useHistory()
+import { useSelector, useDispatch } from 'react-redux'
+import {
+  changeMail,
+  changePassword,
+  showSignup,
+  cancelAuth,
+  loginRequest,
+} from '../../reducers/authentication'
 
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [message, setMessage] = useState('')
-  const [success, setSuccess] = useState(false)
-  const [errors, setErrors] = useState({
-    email: null,
-    password: null,
-  })
+const Login = () => {
+  const history = useHistory()
+  const dispatch = useDispatch()
+
+  const {
+    failureMessage,
+    successMessage,
+    password,
+    email,
+    isSigningIn: visible,
+  } = useSelector(state => state.auth)
 
   const contentStyle = {
     width: '480px',
     height: 'auto',
   }
-  const type = 'login'
-
-  const onChangeEmail = e => {
-    const email = e.target.value
-    setEmail(email)
-  }
-
-  const onChangePassword = e => {
-    const password = e.target.value
-    setPassword(password)
-  }
-
-  const handleLogin = e => {
-    setMessage('')
-
-    const newErrors = {
-      email: authValidation.validateEmail(email),
-      password: authValidation.validatePassword(password),
-    }
-    setErrors(newErrors)
-
-    const validationResult = authValidation.validateLogin(email, password)
-
-    if (validationResult === 'valid') {
-      AuthService.login(email, password).then(
-        () => {
-          setSuccess(true)
-          setMessage('You have successfully logged in!')
-          setTimeout(() => {
-            setUser()
-            history.push('/')
-          }, 2000)
-        },
-        error => {
-          const resMessage =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString()
-
-          setMessage(resMessage)
-        }
-      )
-    }
-  }
 
   return (
     <div className={`auth-wrapper ${visible ? 'opened' : ''}`}>
       <div className='auth-content' style={contentStyle}>
-        <CloseIcon onClick={cancel} />
-        {!success ? (
+        <CloseIcon onClick={() => dispatch(cancelAuth())} />
+        {!successMessage ? (
           <div className='form-wrapper'>
             <div className='title'>Log In</div>
             <div className='top-info'>
               New to QCoinCap?
-              <span onClick={changeToSignup} className='redirect-link'>
+              <span
+                onClick={() => dispatch(showSignup())}
+                className='redirect-link'
+              >
                 Create an account
               </span>
             </div>
 
             <MailInput
-              value={email}
-              onChange={onChangeEmail}
-              error={errors.email}
+              email={email}
+              onChange={({ target }) => dispatch(changeMail(target.value))}
             />
             <PasswInput
-              value={password}
-              onChange={onChangePassword}
-              error={errors.password}
+              password={password}
+              onChange={({ target }) => dispatch(changePassword(target.value))}
             />
-            <SubmitBtn handleClick={handleLogin} type={type} />
+            <SubmitBtn
+              handleClick={() =>
+                dispatch(loginRequest(email, password, history))
+              }
+              type={'login'}
+            />
 
             {/* error message */}
-            <div className='error-message text-center'>{message}</div>
+            <div className='error-message text-center'>{failureMessage}</div>
           </div>
         ) : (
-          <LoginSuccess wrapper={'form-wrapper'} message={message} />
+          <LoginSuccess wrapper={'form-wrapper'} message={successMessage} />
         )}
       </div>
     </div>
