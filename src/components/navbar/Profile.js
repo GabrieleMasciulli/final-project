@@ -9,7 +9,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-const Profile = ({ handleLogout }) => {
+const Profile = () => {
   const [showDropdown, setShowDropdown] = useState(false)
 
   const handleProfileClick = () => {
@@ -26,7 +26,7 @@ const Profile = ({ handleLogout }) => {
         arrow={false}
         allowHTML='true'
         placement='bottom-end'
-        content={<ProfileDropdown handleLogout={handleLogout} />}
+        content={<ProfileDropdown />}
       >
         <button onClick={handleProfileClick} className='profile-button'>
           <FontAwesomeIcon icon={faUserAlt} />

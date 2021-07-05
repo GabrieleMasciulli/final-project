@@ -6,8 +6,12 @@ import {
   faCog,
   faSignOutAlt,
 } from '@fortawesome/free-solid-svg-icons'
+import { useDispatch } from 'react-redux'
+import { logoutUser } from '../../reducers/authentication'
 
-const ProfileDropdown = ({ handleLogout }) => {
+const ProfileDropdown = () => {
+  const dispatch = useDispatch()
+
   return (
     <div className='profile-dropdown-content'>
       <DropdownItem name='Watchlist' svg={faStar} url='#' />
@@ -16,7 +20,8 @@ const ProfileDropdown = ({ handleLogout }) => {
       <DropdownItem
         name='Logout'
         svg={faSignOutAlt}
-        handleClick={handleLogout}
+        handleClick={() => dispatch(logoutUser())}
+        url='home'
       />
     </div>
   )
