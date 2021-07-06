@@ -18,6 +18,7 @@ import Login from './components/auth/Login'
 import { useDispatch, useSelector } from 'react-redux'
 import { initializeGlobalStats } from './reducers/statsNav'
 import { getCryptos } from './reducers/crypto'
+import { getUser } from './reducers/authentication'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -27,6 +28,7 @@ const App = () => {
   //redux part
   useEffect(() => {
     dispatch(initializeGlobalStats())
+    dispatch(getUser())
   }, [dispatch])
 
   useEffect(() => {

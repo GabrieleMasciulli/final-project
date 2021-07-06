@@ -160,8 +160,27 @@ const reducer = (state = initial_state, action) => {
         failureMessage: errorMessageSignup,
       }
 
+    case init_user:
+      return {
+        ...initial_state,
+        isAuthenticated: true,
+        user: action.user,
+      }
+
     default:
       return state
+  }
+}
+
+export const getUser = () => {
+  return dispatch => {
+    const user = authService.getCurrentUser()
+    if (user) {
+      dispatch({
+        type: init_user,
+        user,
+      })
+    }
   }
 }
 
