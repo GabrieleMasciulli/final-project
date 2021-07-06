@@ -7,6 +7,8 @@ const show_signup = 'SHOW_SIGNUP'
 const hide_auth = 'HIDE_AUTH'
 const login_success = 'LOGIN_SUCCESS'
 const login_failure = 'LOGIN_FAILURE'
+const signup_success = 'SIGNUP_SUCCESS'
+const signup_failure = 'SIGNUP_FAILURE'
 const validation_failure = 'VALIDATION_FAILURE'
 const set_password = 'SET_PASSWORD'
 const set_email = 'SET_EMAIL'
@@ -56,6 +58,7 @@ const reducer = (state = initial_state, action) => {
         email: '',
         failureMessage: '',
         successMessage: '',
+        errors: initial_state.errors,
       }
 
     case set_email:
@@ -85,9 +88,9 @@ const reducer = (state = initial_state, action) => {
 
       return {
         ...state,
-        email: '',
-        password: '',
-        username: '',
+        email: emailValidity === 'invalid' ? '' : state.email,
+        username: emailValidity === 'invalid' ? '' : state.username,
+        password: emailValidity === 'invalid' ? '' : state.password,
         errors: {
           email:
             emailValidity === 'invalid' ? 'This is not a valid email.' : '',
@@ -95,9 +98,10 @@ const reducer = (state = initial_state, action) => {
             passwordValidity === 'invalid'
               ? 'Password should contain both letter and number, with minimum length of 8 characters'
               : '',
-          username: usernameValidity
-            ? 'The username must be between 3 and 20 characters.'
-            : '',
+          username:
+            usernameValidity === 'invalid'
+              ? 'The username must be between 3 and 20 characters.'
+              : '',
         },
       }
 
@@ -112,24 +116,49 @@ const reducer = (state = initial_state, action) => {
       }
 
     case login_failure:
-      const error = action.error
-      const errorMessage =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString()
+      const errorLogin = action.error
+      const errorMessageLogin =
+        (errorLogin.response &&
+          errorLogin.response.data &&
+          errorLogin.response.data.message) ||
+        errorLogin.message ||
+        errorLogin.toString()
       return {
         ...state,
         errors: initial_state.errors,
         email: '',
         password: '',
         username: '',
-        failureMessage: errorMessage,
+        failureMessage: errorMessageLogin,
       }
 
     case logout:
       return initial_state
+
+    case signup_success:
+      return {
+        ...state,
+        errors: initial_state.errors,
+        successMessage: action.successMessage,
+        failureMessage: '',
+      }
+
+    case signup_failure:
+      const errorSignup = action.error
+      const errorMessageSignup =
+        (errorSignup.response &&
+          errorSignup.response.data &&
+          errorSignup.response.data.message) ||
+        errorSignup.message ||
+        errorSignup.toString()
+      return {
+        ...state,
+        errors: initial_state.errors,
+        username: '',
+        email: '',
+        password: '',
+        failureMessage: errorMessageSignup,
+      }
 
     default:
       return state
@@ -184,6 +213,54 @@ export const changePassword = password => {
       type: set_password,
       password,
     })
+  }
+}
+
+export const registerRequest = (email, password, username) => {
+  return async dispatch => {
+    const validationResult = authValidation.validateRegistration(
+      email,
+      username,
+      password
+    )
+
+    if (validationResult === 'valid') {
+      try {
+        const { message } = await authService.register(
+          email,
+          username,
+          password
+        )
+
+        dispatch({
+          type: signup_success,
+          successMessage: message,
+        })
+      } catch (error) {
+        dispatch({
+          type: signup_failure,
+          error,
+        })
+
+        setTimeout(() => {
+          dispatch({
+            type: signup_failure,
+            error: '',
+          })
+        }, 5000)
+      }
+    } else {
+      const validationErrors = {
+        email: authValidation.validateEmail(email),
+        password: authValidation.validatePassword(password),
+        username: authValidation.validateUsername(username),
+      }
+
+      dispatch({
+        type: validation_failure,
+        errors: validationErrors,
+      })
+    }
   }
 }
 
