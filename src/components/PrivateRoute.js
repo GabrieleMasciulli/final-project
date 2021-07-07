@@ -5,13 +5,10 @@ import { useSelector } from 'react-redux'
 const PrivateRoute = ({ children, ...rest }) => {
   const { isAuthenticated } = useSelector(state => state.auth)
 
-  return (
-    <Route
-      {...rest}
-      render={() => {
-        return isAuthenticated ? children : <Redirect to='/home' />
-      }}
-    />
+  return isAuthenticated ? (
+    <Route {...rest} render={() => children} />
+  ) : (
+    <Redirect to='/home' />
   )
 }
 
