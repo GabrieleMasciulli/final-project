@@ -8,6 +8,7 @@ import statsNavbarReducer from './reducers/statsNav'
 import paginationReducer from './reducers/pagination'
 import authReducer from './reducers/authentication'
 import searchReducer from './reducers/searchCrypto'
+import tradeReducer from './reducers/trade'
 
 const reducer = combineReducers({
   globalStats: statsNavbarReducer,
@@ -15,6 +16,7 @@ const reducer = combineReducers({
   pagination: paginationReducer,
   auth: authReducer,
   search: searchReducer,
+  trade: tradeReducer,
 })
 
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)))
