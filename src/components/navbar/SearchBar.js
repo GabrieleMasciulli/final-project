@@ -17,7 +17,7 @@ const SearchBar = () => {
   const { query, results } = useSelector(state => state.search)
 
   useEffect(() => {
-    if (query === '') dispatch(initResults())
+    if (query === '') dispatch(initResults(15))
   }, [dispatch, query])
 
   useEffect(() => {
