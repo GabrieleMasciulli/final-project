@@ -1,19 +1,23 @@
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { changeTradeType } from '../../../reducers/trade'
 
-const Type = ({ handleClick, type }) => {
+const Type = () => {
+  const dispatch = useDispatch()
+  const { tradeType } = useSelector(state => state.trade)
+
   return (
     <ul className='trade-type'>
       <li
-        id='buy'
-        onClick={handleClick}
-        className={type === 'buy' ? 'selected' : ''}
+        onClick={() => dispatch(changeTradeType('buy'))}
+        className={tradeType === 'buy' ? 'selected' : ''}
       >
         Buy
       </li>
       <li
         id='sell'
-        onClick={handleClick}
-        className={type === 'sell' ? 'selected' : ''}
+        onClick={() => dispatch(changeTradeType('sell'))}
+        className={tradeType === 'sell' ? 'selected' : ''}
       >
         Sell
       </li>
