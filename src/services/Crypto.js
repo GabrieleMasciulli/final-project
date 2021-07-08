@@ -4,7 +4,7 @@ const baseUrl = '/api/cryptos'
 
 const getSimplePrice = async id => {
   const response = await axios.get(`${baseUrl}/price/${id}`)
-  return response.data
+  return response.data.usd
 }
 
 const getTotNumberOfCryptos = async () => {
