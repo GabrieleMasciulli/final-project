@@ -5,8 +5,13 @@ import {
   faComments,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useDispatch, useSelector } from 'react-redux'
+import { setDate } from '../../../reducers/trade'
 
-const Additions = ({ date, onDateChange, dateError }) => {
+const Additions = () => {
+  const dispatch = useDispatch()
+  const { date, errors } = useSelector(state => state.trade)
+
   return (
     <>
       <div className='trade-additions-wrapper'>
@@ -16,7 +21,7 @@ const Additions = ({ date, onDateChange, dateError }) => {
           </span>
           <input
             value={date}
-            onChange={onDateChange}
+            onChange={({ target: { value } }) => dispatch(setDate(value))}
             type='datetime-local'
             className='date-picker'
           />
@@ -28,6 +33,7 @@ const Additions = ({ date, onDateChange, dateError }) => {
           </span>
           Fee
         </button>
+
         <button className='notes'>
           <span>
             <FontAwesomeIcon icon={faComments} />
@@ -35,11 +41,10 @@ const Additions = ({ date, onDateChange, dateError }) => {
           Notes
         </button>
       </div>
-      {dateError.date === 'invalid' || dateError.timestamp === 'invalid' ? (
-        <div className='error-message'>Enter a valid purchase date.</div>
-      ) : (
-        ''
-      )}
+      {(errors.date && <div className='error-message'>{errors.date}</div>) ||
+        (errors.timestamp && (
+          <div className='error-message'>{errors.timestamp}</div>
+        ))}
     </>
   )
 }
