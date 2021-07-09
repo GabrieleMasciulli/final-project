@@ -13,7 +13,7 @@ const validateDate = date => {
 }
 
 const validateTimestamp = timestamp => {
-  const currentTimestamp = parseInt(new Date(Date.now()).getTime().toFixed(0))
+  const currentTimestamp = parseInt(+new Date())
   return timestamp < currentTimestamp ? 'valid' : 'invalid'
 }
 
