@@ -212,14 +212,14 @@
   margin-right: 8px;
 }
 
-@media screen and (min-width: 768px) {
+/* @media screen and (min-width: 768px) {
   .trade-additions-wrapper .date,
   .trade-additions-wrapper .notes {
     margin-right: 8px;
     padding-left: 16px;
     padding-right: 16px;
   }
-}
+} */
 
 .trade-additions-wrapper .fee {
   color: rgb(88, 102, 126);
