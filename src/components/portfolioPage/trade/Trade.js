@@ -12,7 +12,7 @@ import {
   addTrade,
 } from '../../../reducers/trade'
 
-const Trade = ({ isSuccedeed }) => {
+const Trade = () => {
   const dispatch = useDispatch()
   const {
     selectedCoin,
