@@ -1,7 +1,10 @@
 import React from 'react'
 import ResultItem from './ResultItem'
+import { useSelector } from 'react-redux'
 
-const Results = ({ results, onClick }) => {
+const Results = () => {
+  const { results } = useSelector(state => state.search)
+
   return (
     <div className='search-results-wrapper'>
       <div className='search-results-content'>
@@ -9,11 +12,10 @@ const Results = ({ results, onClick }) => {
         {results.map(result => (
           <ResultItem
             key={result.coingecko_id}
-            value={result.coingecko_id}
+            id={result.coingecko_id}
             name={result.name}
             symbol={result.symbol}
             logo={result.logo}
-            onClick={onClick}
           />
         ))}
       </div>
