@@ -42,9 +42,9 @@ const reducer = (state = initial_state, action) => {
   }
 }
 
-export const initResults = () => {
+export const initResults = number => {
   return async dispatch => {
-    const results = await searchService.getFirst(15)
+    const results = await searchService.getFirst(number)
     dispatch({
       type: init_results,
       results,
