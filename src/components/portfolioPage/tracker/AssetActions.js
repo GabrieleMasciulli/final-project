@@ -9,8 +9,10 @@ import {
   faTrash,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useDispatch } from 'react-redux'
+import { showDeletionPanel } from '../../../reducers/positions'
 
-const TippyContent = ({ onDelete, assetId }) => {
+const TippyContent = ({ onDelete }) => {
   return (
     <div className='actions-dropdown-content'>
       <button className='actions-dropdown-btn'>
@@ -19,11 +21,7 @@ const TippyContent = ({ onDelete, assetId }) => {
         </span>
         Transactions
       </button>
-      <button
-        value={assetId}
-        className='actions-dropdown-btn'
-        onClick={onDelete}
-      >
+      <button className='actions-dropdown-btn' onClick={onDelete}>
         <span>
           <FontAwesomeIcon icon={faTrash} />
         </span>
@@ -33,7 +31,9 @@ const TippyContent = ({ onDelete, assetId }) => {
   )
 }
 
-const AssetActions = ({ onDelete, assetId }) => {
+const AssetActions = ({ assetId }) => {
+  const dispatch = useDispatch()
+
   return (
     <div className='asset-actions'>
       <button className='add-trade-btn'>
@@ -46,7 +46,9 @@ const AssetActions = ({ onDelete, assetId }) => {
         arrow={true}
         allowHTML='true'
         placement='bottom'
-        content={<TippyContent onDelete={onDelete} assetId={assetId} />}
+        content={
+          <TippyContent onDelete={() => dispatch(showDeletionPanel(assetId))} />
+        }
       >
         <div className='asset-options'>
           <button className='asset-options-btn'>
