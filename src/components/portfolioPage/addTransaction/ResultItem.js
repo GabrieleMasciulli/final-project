@@ -1,10 +1,14 @@
 import React from 'react'
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { setCoin } from '../../../reducers/trade'
+import { useDispatch } from 'react-redux'
 
-const ResultItem = ({ value, name, symbol, logo, onClick }) => {
+const ResultItem = ({ id, name, symbol, logo }) => {
+  const dispatch = useDispatch()
+
   return (
-    <button value={value} onClick={onClick} className='item-wrapper'>
+    <button onClick={() => dispatch(setCoin(id))} className='item-wrapper'>
       <div className='item-content'>
         <div className='left-side'>
           <img className='coin-logo' src={logo} alt={name}></img>

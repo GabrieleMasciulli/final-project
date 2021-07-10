@@ -1,28 +1,25 @@
 import React from 'react'
 import CloseIcon from '../../designItems/CloseIconV2'
-import SearchCrypto from './SearchCrypto'
+import Searchbar from './Searchbar'
+import Results from './Results'
+import { useDispatch } from 'react-redux'
+import { hideTradePanel } from '../../../reducers/trade'
 
-const AddTransaction = ({
-  cancel,
-  value,
-  handleChange,
-  searchResults,
-  handleClick,
-}) => {
+const AddTransaction = () => {
+  const dispatch = useDispatch()
+
   return (
     <div className='add-transaction-wrapper'>
       <div className='add-transaction-content'>
         <div className='transaction-top-info'>
           <div>Select Coin</div>
-          <CloseIcon onClick={cancel} />
+          <CloseIcon onClick={() => dispatch(hideTradePanel())} />
         </div>
 
-        <SearchCrypto
-          value={value}
-          handleChange={handleChange}
-          searchResults={searchResults}
-          onClick={handleClick}
-        />
+        <div className='transaction-search-content'>
+          <Searchbar />
+          <Results />
+        </div>
       </div>
     </div>
   )
